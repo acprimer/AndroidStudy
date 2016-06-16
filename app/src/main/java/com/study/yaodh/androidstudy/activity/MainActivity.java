@@ -1,4 +1,4 @@
-package com.study.yaodh.androidstudy;
+package com.study.yaodh.androidstudy.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.study.yaodh.androidstudy.R;
 import com.study.yaodh.androidstudy.utils.IntentManager;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_expandable_list_item_1,
                 new String[]{
-                        "TextView属性"
+                        "TextView属性",
+                        "Notification"
                 });
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -29,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
                 switch (position) {
                     case 0:
                         IntentManager.startTextViewActivity(MainActivity.this);
+                        break;
+                    case 1:
+                        IntentManager.startNotificationActivity(MainActivity.this);
                         break;
                 }
             }

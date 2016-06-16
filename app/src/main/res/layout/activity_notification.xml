@@ -6,8 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
 
-    <ListView
-        android:id="@+id/listview"
+    <Button
+        android:id="@+id/notification"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:text="发送通知"/>
 </RelativeLayout>
