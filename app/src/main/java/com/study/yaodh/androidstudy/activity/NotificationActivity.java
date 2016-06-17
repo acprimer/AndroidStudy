@@ -46,8 +46,8 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_logo))
-                .setSmallIcon(R.drawable.ic_logo)
-//                .setColor(getResources().getColor(R.color.colorAccent))
+                .setSmallIcon(R.drawable.ic_message)
+//                .setColor(getResources().getColor(R.color.colorAccent))ic_logo.png
                 .setContentTitle("Title")
                 .setContentText("Message")
                 .setAutoCancel(true)
