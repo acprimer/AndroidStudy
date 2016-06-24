@@ -22,6 +22,9 @@
         <activity
             android:name=".activity.NotificationActivity"
             android:label="@string/textview"/>
+        <activity
+            android:name=".activity.RecyclerViewActivity"
+            android:label="@string/RecyclerView"/>
     </application>
 
 </manifest>

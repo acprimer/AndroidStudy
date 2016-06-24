@@ -27,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
                 android.R.layout.simple_expandable_list_item_1,
                 new String[]{
                         "TextView属性",
-                        "Notification"
+                        "Notification",
+                        "RecyclerView"
                 });
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -39,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 1:
                         IntentManager.startNotificationActivity(MainActivity.this);
+                        break;
+                    case 2:
+                        IntentManager.startRecyclerViewActivity(MainActivity.this);
                         break;
                 }
             }

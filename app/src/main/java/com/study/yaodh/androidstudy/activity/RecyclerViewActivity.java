@@ -1,0 +1,42 @@
+package com.study.yaodh.androidstudy.activity;
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+
+import com.study.yaodh.androidstudy.R;
+import com.study.yaodh.androidstudy.adapter.SimpleRecyclerViewAdapter;
+import com.study.yaodh.androidstudy.view.DividerItemDecoration;
+
+/**
+ * Created by yaodh on 2016/5/12.
+ */
+public class RecyclerViewActivity extends AppCompatActivity{
+    private RecyclerView recyclerView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_recyclerview);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.RecyclerView);
+        toolbar.setNavigationIcon(R.mipmap.ic_back);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new SimpleRecyclerViewAdapter(this, new String[]{"A", "B", "C"}));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+    }
+
+}
