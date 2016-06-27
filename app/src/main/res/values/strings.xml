@@ -2,4 +2,5 @@
     <string name="app_name">AndroidStudy</string>
     <string name="textview">TextView</string>
     <string name="RecyclerView">RecyclerView</string>
+    <string name="drawer">Navigation Drawer</string>
 </resources>

@@ -3,6 +3,7 @@ package com.study.yaodh.androidstudy.utils;
 import android.content.Context;
 import android.content.Intent;
 
+import com.study.yaodh.androidstudy.activity.DrawerActivity;
 import com.study.yaodh.androidstudy.activity.NotificationActivity;
 import com.study.yaodh.androidstudy.activity.RecyclerViewActivity;
 import com.study.yaodh.androidstudy.activity.TextViewActivity;
@@ -35,6 +36,14 @@ public class IntentManager {
      */
     public static void startRecyclerViewActivity(Context context) {
         Intent intent = new Intent(context, RecyclerViewActivity.class);
+        context.startActivity(intent);
+    }
+    /**
+     * start recyclerView activity
+     * @param context
+     */
+    public static void startDrawerActivity(Context context) {
+        Intent intent = new Intent(context, DrawerActivity.class);
         context.startActivity(intent);
     }
 

@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
                 new String[]{
                         "TextView属性",
                         "Notification",
-                        "RecyclerView"
+                        "RecyclerView",
+                        "Navigation Drawer"
                 });
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -43,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 2:
                         IntentManager.startRecyclerViewActivity(MainActivity.this);
+                        break;
+                    case 3:
+                        IntentManager.startDrawerActivity(MainActivity.this);
                         break;
                 }
             }

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.study.yaodh.androidstudy" >
+    package="com.study.yaodh.androidstudy">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".activity.MainActivity" >
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,13 +18,16 @@
 
         <activity
             android:name=".activity.TextViewActivity"
-            android:label="@string/textview"/>
+            android:label="@string/textview" />
         <activity
             android:name=".activity.NotificationActivity"
-            android:label="@string/textview"/>
+            android:label="@string/textview" />
         <activity
             android:name=".activity.RecyclerViewActivity"
-            android:label="@string/RecyclerView"/>
+            android:label="@string/RecyclerView" />
+        <activity
+            android:name=".activity.DrawerActivity"
+            android:label="@string/drawer" />
     </application>
 
 </manifest>
