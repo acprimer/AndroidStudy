@@ -29,7 +29,9 @@ public class MainActivity extends AppCompatActivity {
                         "TextView属性",
                         "Notification",
                         "RecyclerView",
-                        "Navigation Drawer"
+                        "Navigation Drawer",
+                        "ProgressBar",
+                        "ListActivity"
                 });
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -47,6 +49,12 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 3:
                         IntentManager.startDrawerActivity(MainActivity.this);
+                        break;
+                    case 4:
+                        IntentManager.startProgressbarActivity(MainActivity.this);
+                        break;
+                    case 5:
+                        IntentManager.startListActivity(MainActivity.this);
                         break;
                 }
             }

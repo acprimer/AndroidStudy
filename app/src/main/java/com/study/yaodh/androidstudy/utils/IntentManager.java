@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.study.yaodh.androidstudy.activity.DrawerActivity;
+import com.study.yaodh.androidstudy.activity.ListViewLoader;
 import com.study.yaodh.androidstudy.activity.NotificationActivity;
+import com.study.yaodh.androidstudy.activity.ProgressbarActivity;
 import com.study.yaodh.androidstudy.activity.RecyclerViewActivity;
 import com.study.yaodh.androidstudy.activity.TextViewActivity;
 
@@ -44,6 +46,24 @@ public class IntentManager {
      */
     public static void startDrawerActivity(Context context) {
         Intent intent = new Intent(context, DrawerActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * start recyclerView activity
+     * @param context
+     */
+    public static void startProgressbarActivity(Context context) {
+        Intent intent = new Intent(context, ProgressbarActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * start recyclerView activity
+     * @param context
+     */
+    public static void startListActivity(Context context) {
+        Intent intent = new Intent(context, ListViewLoader.class);
         context.startActivity(intent);
     }
 
