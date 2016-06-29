@@ -31,8 +31,11 @@
             android:label="@string/drawer" />
         <activity
             android:name=".activity.ProgressbarActivity"
-            android:label="@string/title_activity_progressbar"/>
-        <activity android:name=".activity.ListViewLoader"/>
+            android:label="@string/title_activity_progressbar" />
+        <activity android:name=".activity.ListViewLoader" />
+        <activity
+            android:name=".activity.ShareActivity"
+            android:label="@string/title_activity_share"></activity>
     </application>
 
 </manifest>

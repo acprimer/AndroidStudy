@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
                         "RecyclerView",
                         "Navigation Drawer",
                         "ProgressBar",
-                        "ListActivity"
+                        "ListActivity",
+                        "Share"
                 });
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -55,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 5:
                         IntentManager.startListActivity(MainActivity.this);
+                        break;
+                    case 6:
+                        IntentManager.startShareActivity(MainActivity.this);
                         break;
                 }
             }

@@ -8,6 +8,7 @@ import com.study.yaodh.androidstudy.activity.ListViewLoader;
 import com.study.yaodh.androidstudy.activity.NotificationActivity;
 import com.study.yaodh.androidstudy.activity.ProgressbarActivity;
 import com.study.yaodh.androidstudy.activity.RecyclerViewActivity;
+import com.study.yaodh.androidstudy.activity.ShareActivity;
 import com.study.yaodh.androidstudy.activity.TextViewActivity;
 
 /**
@@ -64,6 +65,15 @@ public class IntentManager {
      */
     public static void startListActivity(Context context) {
         Intent intent = new Intent(context, ListViewLoader.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * start recyclerView activity
+     * @param context
+     */
+    public static void startShareActivity(Context context) {
+        Intent intent = new Intent(context, ShareActivity.class);
         context.startActivity(intent);
     }
 
