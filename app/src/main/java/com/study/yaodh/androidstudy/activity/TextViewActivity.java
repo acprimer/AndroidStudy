@@ -1,13 +1,10 @@
 package com.study.yaodh.androidstudy.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.webkit.WebView;
 
 import com.study.yaodh.androidstudy.R;
 
@@ -22,30 +19,18 @@ public class TextViewActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_textview);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("TextView属性");
+        toolbar.setTitle(R.string.textview);
         toolbar.setNavigationIcon(R.mipmap.ic_back);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                onBackPressed();
             }
         });
 
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-        final CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(
-                R.id.collapsing_toolbar);
-        collapsingToolbar.setTitle("SSS");
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
-//        recyclerView.setAdapter(new MyAdapter(this));
-//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mu);
+        WebView webView = (WebView) findViewById(R.id.webview);
+        webView.loadDataWithBaseURL("", "n. अमात्य; शासकीय अधिकारी का कार्य; कर्मकर; सहायता देना;v. मंत्री; पुरोहित; म\u200Cंत्री; नौकर;", "text/html", "UTF-8", "");
     }
 
     @Override

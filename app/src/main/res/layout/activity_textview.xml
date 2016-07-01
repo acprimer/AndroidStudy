@@ -6,45 +6,12 @@
     android:orientation="vertical"
     tools:context=".activity.TextViewActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true">
-
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            tools:contentScrim="?attr/colorPrimary"
-            tools:expandedTitleMarginEnd="64dp"
-            tools:expandedTitleMarginStart="48dp"
-            tools:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <ImageView
-                android:id="@+id/backdrop"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fitsSystemWindows="true"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/home_bg"
-                android:transitionName="mu"
-                tools:layout_collapseMode="parallax" />
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                android:minHeight="?attr/actionBarSize" />
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -71,4 +38,9 @@
         android:layout_height="50dp"
         android:background="@drawable/shape_dash"
         android:layerType="software" />
+
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>
