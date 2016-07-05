@@ -1,5 +1,6 @@
 package com.study.yaodh.androidstudy.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -32,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
                         "Navigation Drawer",
                         "ProgressBar",
                         "ListActivity",
-                        "Share"
+                        "Share",
+                        "TextSwitcher"
                 });
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -59,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 6:
                         IntentManager.startShareActivity(MainActivity.this);
+                        break;
+                    case 7:
+                        Intent intent = new Intent(MainActivity.this, TextSwitcherActivity.class);
+                        startActivity(intent);
                         break;
                 }
             }

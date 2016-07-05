@@ -35,7 +35,10 @@
         <activity android:name=".activity.ListViewLoader" />
         <activity
             android:name=".activity.ShareActivity"
-            android:label="@string/title_activity_share"></activity>
+            android:label="@string/title_activity_share" />
+        <activity
+            android:name=".activity.TextSwitcherActivity"
+            android:label="@string/title_activity_text_swticher"></activity>
     </application>
 
 </manifest>
