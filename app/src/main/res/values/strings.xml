@@ -6,7 +6,8 @@
     <string name="title_activity_progressbar">ProgressbarActivity</string>
     <string name="title_activity_share">ShareActivity</string>
     <string name="title_activity_text_swticher">TextSwticherActivity</string>
-
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
     <string-array name="menu">
         <item>Menu1</item>
         <item>Menu2</item>
