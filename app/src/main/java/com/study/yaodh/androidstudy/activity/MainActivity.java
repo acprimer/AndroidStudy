@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
                         "ProgressBar",
                         "ListActivity",
                         "Share",
+                        "ImageView",
                         "TextSwitcher",
                         "SwitchButton",
                         "FastScrollList",
@@ -67,18 +68,22 @@ public class MainActivity extends AppCompatActivity {
                         IntentManager.startShareActivity(MainActivity.this);
                         break;
                     case 7:
-                        intent = new Intent(MainActivity.this, TextSwitcherActivity.class);
+                        intent = new Intent(MainActivity.this, ImageViewActivity.class);
                         startActivity(intent);
                         break;
                     case 8:
-                        intent = new Intent(MainActivity.this, SwitchButtonActivity.class);
+                        intent = new Intent(MainActivity.this, TextSwitcherActivity.class);
                         startActivity(intent);
                         break;
                     case 9:
-                        intent = new Intent(MainActivity.this, FastScrollListActivity.class);
+                        intent = new Intent(MainActivity.this, SwitchButtonActivity.class);
                         startActivity(intent);
                         break;
                     case 10:
+                        intent = new Intent(MainActivity.this, FastScrollListActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 11:
                         intent = new Intent(MainActivity.this, SectionRecyclerViewActivity.class);
                         startActivity(intent);
                         break;

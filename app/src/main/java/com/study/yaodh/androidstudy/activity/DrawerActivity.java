@@ -8,11 +8,9 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.study.yaodh.androidstudy.R;
@@ -52,20 +50,6 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-        mLeftDrawer.setNavigationItemSelectedListener(this);
-//        String s = "";
-//        for (int i = 0; i < mLeftDrawer.getMenu().getItem(1).getSubMenu().getItem(0).; i++) {
-//            s += mLeftDrawer.getMenu().getItem(i).getTitle() + " | ";
-//        }
-//        Toast.makeText(DrawerActivity.this, "Menu " + s, Toast.LENGTH_LONG).show();
-        SwitchCompat switchCompat = (SwitchCompat) mLeftDrawer.getMenu().getItem(1).getSubMenu().getItem(0).getActionView();
-        switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Toast.makeText(DrawerActivity.this, "Notification " + isChecked, Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     private void initToolbar() {

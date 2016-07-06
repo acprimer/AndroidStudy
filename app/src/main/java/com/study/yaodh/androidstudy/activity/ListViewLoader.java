@@ -45,6 +45,9 @@ public class ListViewLoader extends ListActivity
         getListView().setEmptyView(progressBar);
         getListView().setFastScrollEnabled(true);
 
+        getListView().setFastScrollEnabled(true);
+        getListView().setFastScrollAlwaysVisible(false);
+
         // Must add the progress bar to the root of the layout
         ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
         root.addView(progressBar);

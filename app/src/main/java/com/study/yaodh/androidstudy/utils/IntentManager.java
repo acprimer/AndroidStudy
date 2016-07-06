@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.study.yaodh.androidstudy.activity.DrawerActivity;
+import com.study.yaodh.androidstudy.activity.ImageViewActivity;
 import com.study.yaodh.androidstudy.activity.ListViewLoader;
 import com.study.yaodh.androidstudy.activity.NotificationActivity;
 import com.study.yaodh.androidstudy.activity.ProgressbarActivity;
@@ -69,11 +70,20 @@ public class IntentManager {
     }
 
     /**
-     * start recyclerView activity
+     * start share activity
      * @param context
      */
     public static void startShareActivity(Context context) {
         Intent intent = new Intent(context, ShareActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * start imageview activity
+     * @param context
+     */
+    public static void startImageViewActivity(Context context) {
+        Intent intent = new Intent(context, ImageViewActivity.class);
         context.startActivity(intent);
     }
 
