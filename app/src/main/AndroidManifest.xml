@@ -38,7 +38,10 @@
             android:label="@string/title_activity_share" />
         <activity
             android:name=".activity.TextSwitcherActivity"
-            android:label="@string/title_activity_text_swticher"></activity>
+            android:label="@string/title_activity_text_swticher" />
+        <activity android:name=".activity.SwitchButtonActivity" />
+        <activity android:name=".activity.SectionRecyclerViewActivity" />
+        <activity android:name=".activity.FastScrollListActivity" />
     </application>
 
 </manifest>

@@ -34,12 +34,16 @@ public class MainActivity extends AppCompatActivity {
                         "ProgressBar",
                         "ListActivity",
                         "Share",
-                        "TextSwitcher"
+                        "TextSwitcher",
+                        "SwitchButton",
+                        "FastScrollList",
+                        "Section RecyclerView"
                 });
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Intent intent;
                 switch (position) {
                     case 0:
                         IntentManager.startTextViewActivity(MainActivity.this);
@@ -63,7 +67,19 @@ public class MainActivity extends AppCompatActivity {
                         IntentManager.startShareActivity(MainActivity.this);
                         break;
                     case 7:
-                        Intent intent = new Intent(MainActivity.this, TextSwitcherActivity.class);
+                        intent = new Intent(MainActivity.this, TextSwitcherActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 8:
+                        intent = new Intent(MainActivity.this, SwitchButtonActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 9:
+                        intent = new Intent(MainActivity.this, FastScrollListActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 10:
+                        intent = new Intent(MainActivity.this, SectionRecyclerViewActivity.class);
                         startActivity(intent);
                         break;
                 }

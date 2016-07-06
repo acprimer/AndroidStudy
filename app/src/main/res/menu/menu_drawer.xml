@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="Offline">
+        <menu>
+            <item
+                android:id="@+id/offline"
+                android:checkable="true"
+                android:icon="@drawable/ic_logo"
+                android:title="Offline Dictionary" />
+        </menu>
+    </item>
+
+    <item android:title="Settings">
+        <menu>
+            <item
+                android:id="@+id/notification"
+                android:checkable="false"
+                android:icon="@drawable/ic_message"
+                android:title="Notification"
+                app:actionLayout="@layout/menu_switch" />
+            <item
+                android:id="@+id/clear"
+                android:icon="@drawable/ic_message"
+                android:title="Clear" />
+        </menu>
+    </item>
+
+</menu>

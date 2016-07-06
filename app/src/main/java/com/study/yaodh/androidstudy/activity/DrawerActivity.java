@@ -3,25 +3,26 @@ package com.study.yaodh.androidstudy.activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.TextView;
+import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import com.study.yaodh.androidstudy.R;
 
 /**
  * Created by yaodh on 2016/6/27.
  */
-public class DrawerActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
-    private String[] mPlanetTitles;
+public class DrawerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout mDrawerLayout;
-    private TextView mDrawerList;
-    private TextView textView;
+    private NavigationView mLeftDrawer;
     private ActionBarDrawerToggle mDrawerToggle;
 
     @Override
@@ -31,22 +32,12 @@ public class DrawerActivity extends AppCompatActivity implements AdapterView.OnI
 
         initToolbar();
 
-        mPlanetTitles = getResources().getStringArray(R.array.menu);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (TextView) findViewById(R.id.left_drawer);
-        textView = (TextView) findViewById(R.id.text);
-
-//        mDrawerList.setAdapter(new ArrayAdapter<>(
-//                this,
-//                android.R.layout.simple_list_item_1,
-//                mPlanetTitles
-//        ));
-//        mDrawerList.setOnItemClickListener(this);
+        mLeftDrawer = (NavigationView) findViewById(R.id.left_drawer);
 
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,
                 mDrawerLayout,
-                R.drawable.ic_logo,
                 R.string.drawer_open,
                 R.string.drawer_close
         ) {
@@ -61,6 +52,20 @@ public class DrawerActivity extends AppCompatActivity implements AdapterView.OnI
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        mLeftDrawer.setNavigationItemSelectedListener(this);
+//        String s = "";
+//        for (int i = 0; i < mLeftDrawer.getMenu().getItem(1).getSubMenu().getItem(0).; i++) {
+//            s += mLeftDrawer.getMenu().getItem(i).getTitle() + " | ";
+//        }
+//        Toast.makeText(DrawerActivity.this, "Menu " + s, Toast.LENGTH_LONG).show();
+        SwitchCompat switchCompat = (SwitchCompat) mLeftDrawer.getMenu().getItem(1).getSubMenu().getItem(0).getActionView();
+        switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Toast.makeText(DrawerActivity.this, "Notification " + isChecked, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initToolbar() {
@@ -69,7 +74,7 @@ public class DrawerActivity extends AppCompatActivity implements AdapterView.OnI
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDrawerLayout.openDrawer(mDrawerList);
+                mDrawerLayout.openDrawer(GravityCompat.START);
             }
         });
     }
@@ -95,13 +100,16 @@ public class DrawerActivity extends AppCompatActivity implements AdapterView.OnI
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        selectItem(position);
-    }
-
-    private void selectItem(int position) {
-        textView.setText("You clicked " + position);
-
-        mDrawerLayout.closeDrawer(mDrawerList);
+    public boolean onNavigationItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.notification:
+                Toast.makeText(this, "Notification", Toast.LENGTH_LONG).show();
+                break;
+            default:
+                item.setChecked(true);
+                mDrawerLayout.closeDrawer(GravityCompat.START);
+                break;
+        }
+        return true;
     }
 }
