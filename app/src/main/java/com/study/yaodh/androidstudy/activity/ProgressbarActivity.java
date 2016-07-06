@@ -1,33 +1,15 @@
 package com.study.yaodh.androidstudy.activity;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-
 import com.study.yaodh.androidstudy.R;
 
-public class ProgressbarActivity extends AppCompatActivity {
+public class ProgressbarActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_progressbar);
-
-        initToolbar();
+    protected int getLayoutId() {
+        return R.layout.activity_progressbar;
     }
 
-    private void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.title_activity_progressbar);
-        toolbar.setNavigationIcon(R.drawable.ic_back);
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
+    @Override
+    protected void initContent() {
     }
-
 }

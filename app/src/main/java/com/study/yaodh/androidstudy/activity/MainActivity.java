@@ -1,93 +1,65 @@
 package com.study.yaodh.androidstudy.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.study.yaodh.androidstudy.R;
-import com.study.yaodh.androidstudy.utils.IntentManager;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
+    private Class[] activities = new Class[]{
+            TextViewActivity.class,
+            NotificationActivity.class,
+            RecyclerViewActivity.class,
+            DrawerActivity.class,
+            ProgressbarActivity.class,
+            ListViewLoader.class,
+            ShareActivity.class,
+            ImageViewActivity.class,
+            TextSwitcherActivity.class,
+            SwitchButtonActivity.class,
+            FastScrollListActivity.class,
+            SectionRecyclerViewActivity.class,
+    };
+    private String[] titles = new String[]{
+            "TextView属性",
+            "Notification",
+            "RecyclerView",
+            "Navigation Drawer",
+            "ProgressBar",
+            "ListActivity",
+            "Share",
+            "ImageView",
+            "TextSwitcher",
+            "SwitchButton",
+            "FastScrollList",
+            "Section RecyclerView",
+    };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.app_name);
-        setSupportActionBar(toolbar);
+    @Override
+    protected boolean showBack() {
+        return false;
+    }
 
+    @Override
+    protected void initContent() {
         ListView listView = (ListView) findViewById(R.id.listview);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_expandable_list_item_1,
-                new String[]{
-                        "TextView属性",
-                        "Notification",
-                        "RecyclerView",
-                        "Navigation Drawer",
-                        "ProgressBar",
-                        "ListActivity",
-                        "Share",
-                        "ImageView",
-                        "TextSwitcher",
-                        "SwitchButton",
-                        "FastScrollList",
-                        "Section RecyclerView"
-                });
+                titles);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Intent intent;
-                switch (position) {
-                    case 0:
-                        IntentManager.startTextViewActivity(MainActivity.this);
-                        break;
-                    case 1:
-                        IntentManager.startNotificationActivity(MainActivity.this);
-                        break;
-                    case 2:
-                        IntentManager.startRecyclerViewActivity(MainActivity.this);
-                        break;
-                    case 3:
-                        IntentManager.startDrawerActivity(MainActivity.this);
-                        break;
-                    case 4:
-                        IntentManager.startProgressbarActivity(MainActivity.this);
-                        break;
-                    case 5:
-                        IntentManager.startListActivity(MainActivity.this);
-                        break;
-                    case 6:
-                        IntentManager.startShareActivity(MainActivity.this);
-                        break;
-                    case 7:
-                        intent = new Intent(MainActivity.this, ImageViewActivity.class);
-                        startActivity(intent);
-                        break;
-                    case 8:
-                        intent = new Intent(MainActivity.this, TextSwitcherActivity.class);
-                        startActivity(intent);
-                        break;
-                    case 9:
-                        intent = new Intent(MainActivity.this, SwitchButtonActivity.class);
-                        startActivity(intent);
-                        break;
-                    case 10:
-                        intent = new Intent(MainActivity.this, FastScrollListActivity.class);
-                        startActivity(intent);
-                        break;
-                    case 11:
-                        intent = new Intent(MainActivity.this, SectionRecyclerViewActivity.class);
-                        startActivity(intent);
-                        break;
-                }
+                Intent intent = new Intent(MainActivity.this, activities[position]);
+                startActivity(intent);
             }
         });
     }

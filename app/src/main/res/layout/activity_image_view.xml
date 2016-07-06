@@ -8,14 +8,7 @@
     android:orientation="vertical"
     tools:context=".activity.ImageViewActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:title="ImageView"
-        app:navigationIcon="@drawable/ic_back"
-        android:background="@color/colorPrimary"
-        android:minHeight="?attr/actionBarSize"/>
+    <include layout="@layout/layout_toolbar"/>
 
     <ImageView
         android:id="@+id/image"

@@ -1,8 +1,5 @@
 package com.study.yaodh.androidstudy.activity;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -12,17 +9,17 @@ import android.widget.ViewSwitcher.ViewFactory;
 
 import com.study.yaodh.androidstudy.R;
 
-public class TextSwitcherActivity extends AppCompatActivity {
+public class TextSwitcherActivity extends BaseActivity {
     private TextSwitcher mSwitcher;
     private int mCounter = 0;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_text_swticher);
+    protected int getLayoutId() {
+        return R.layout.activity_text_swticher;
+    }
 
-        initToolbar();
-
+    @Override
+    protected void initContent() {
         mSwitcher = (TextSwitcher) findViewById(R.id.switcher);
         mSwitcher.setFactory(mFactory);
 //        Animation in = AnimationUtils.loadAnimation(this,
@@ -45,17 +42,6 @@ public class TextSwitcherActivity extends AppCompatActivity {
         });
 
         mSwitcher.setCurrentText(String.valueOf(mCounter));
-    }
-
-    private void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
     }
 
     private ViewFactory mFactory = new ViewFactory() {

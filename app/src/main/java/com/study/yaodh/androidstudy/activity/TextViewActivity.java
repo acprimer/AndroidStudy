@@ -1,8 +1,5 @@
 package com.study.yaodh.androidstudy.activity;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.webkit.WebView;
 
@@ -11,24 +8,15 @@ import com.study.yaodh.androidstudy.R;
 /**
  * Created by yaodh on 2016/5/12.
  */
-public class TextViewActivity extends AppCompatActivity implements View.OnClickListener{
+public class TextViewActivity extends BaseActivity implements View.OnClickListener{
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_textview);
+    protected int getLayoutId() {
+        return R.layout.activity_textview;
+    }
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.textview);
-        toolbar.setNavigationIcon(R.drawable.ic_back);
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-
+    @Override
+    protected void initContent() {
         WebView webView = (WebView) findViewById(R.id.webview);
         webView.loadDataWithBaseURL("", "n. अमात्य; शासकीय अधिकारी का कार्य; कर्मकर; सहायता देना;v. मंत्री; पुरोहित; म\u200Cंत्री; नौकर;", "text/html", "UTF-8", "");
     }
