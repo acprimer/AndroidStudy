@@ -46,7 +46,12 @@ public class ImageViewActivity extends BaseActivity {
         // http://www.stay4it.com/course/24/learn#lesson/286
         roundImage = (ImageView) findViewById(R.id.round_image);
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.navigation_header);
-        roundImage.setImageBitmap(getRoundCornerBitmap(bitmap, 100.0f));
+//        roundImage.setImageBitmap(getRoundCornerBitmap(bitmap, 100.0f));
+        RoundedBitmapDrawable circularBitmapDrawable =
+                RoundedBitmapDrawableFactory.create(getResources(), bitmap);
+//        circularBitmapDrawable.setCircular(true);
+        circularBitmapDrawable.setCornerRadius(100.f);
+        roundImage.setImageDrawable(circularBitmapDrawable);
 
         // volley networkimageview
         volleyImage = (NetworkImageView) findViewById(R.id.volley_image);

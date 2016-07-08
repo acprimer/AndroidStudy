@@ -9,14 +9,16 @@ import android.widget.TextView;
 
 import com.study.yaodh.androidstudy.R;
 
+import java.util.List;
+
 /**
  * Created by yaodh on 2016/6/24.
  */
 public class SimpleRecyclerViewAdapter extends RecyclerView.Adapter<SimpleRecyclerViewAdapter.SimpleViewHolder> {
     private Context mContext;
-    private String[] titles;
+    private List<String> titles;
 
-    public SimpleRecyclerViewAdapter(Context context, String[] titles) {
+    public SimpleRecyclerViewAdapter(Context context, List<String> titles) {
         mContext = context;
         this.titles = titles;
     }
@@ -29,17 +31,17 @@ public class SimpleRecyclerViewAdapter extends RecyclerView.Adapter<SimpleRecycl
 
     @Override
     public void onBindViewHolder(SimpleViewHolder holder, int position) {
-        holder.tvTitle.setText(titles[position]);
+        holder.tvTitle.setText(titles.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return titles == null ? 0 : titles.length;
+        return titles == null ? 0 : titles.size();
     }
 
     @Override
     public int getItemViewType(int position) {
-        if(titles[position].equals("B")) {
+        if(titles.get(position).equals("B")) {
             return 1;
         }
         return 0;
