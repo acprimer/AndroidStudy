@@ -1,7 +1,6 @@
 package com.study.yaodh.androidstudy.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.study.yaodh.androidstudy.R;
 import com.study.yaodh.androidstudy.model.StaggerItem;
 
@@ -64,27 +61,6 @@ public class SimpleRecyclerViewAdapter extends RecyclerView.Adapter<SimpleRecycl
             super(itemView);
             ivPhoto = (ImageView) itemView.findViewById(R.id.image);
             tvTitle = (TextView) itemView.findViewById(R.id.title);
-        }
-    }
-
-    class Target extends BitmapImageViewTarget {
-        private int width;
-        public Target(ImageView view) {
-            super(view);
-        }
-
-        public Target(ImageView view, int width) {
-            super(view);
-            this.width = width;
-        }
-
-        @Override
-        public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-            float scale = resource.getWidth() / (width * 1.0f);
-            int viewHeight = (int) (resource.getHeight() * scale);
-            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(width, viewHeight);
-            view.setLayoutParams(params);
-            super.onResourceReady(resource, glideAnimation);
         }
     }
 }

@@ -61,6 +61,17 @@ public class SectionRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
         return mList == null ? 0 : mList.size();
     }
 
+    public int getPositionForSection(char section) {
+        for (int i = 0; i < getItemCount(); i++) {
+            String sortStr = mList.get(i).getTitle();
+            char firstChar = sortStr.toUpperCase().charAt(0);
+            if (firstChar == section) {
+                return i;
+            }
+        }
+        return -1;
+
+    }
     static class HeaderViewHolder extends RecyclerView.ViewHolder {
         TextView tvTitle;
 

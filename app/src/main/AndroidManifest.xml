@@ -50,6 +50,8 @@
         <activity android:name=".activity.FastScrollListActivity"/>
         <activity android:name=".activity.DataBindingActivity">
         </activity>
+        <activity android:name=".activity.IndexRecyclerViewActivity">
+        </activity>
     </application>
 
 </manifest>
