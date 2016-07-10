@@ -2,17 +2,23 @@ package com.study.yaodh.androidstudy.activity;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 
 import com.study.yaodh.androidstudy.R;
 import com.study.yaodh.androidstudy.adapter.SectionRecyclerViewAdapter;
 import com.study.yaodh.androidstudy.model.ListItem;
 import com.study.yaodh.androidstudy.view.SectionDividerItemDecoration;
+import com.study.yaodh.androidstudy.view.SideBar;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class SectionRecyclerViewActivity extends BaseActivity {
     private RecyclerView sectionRecyclerView;
+    private TextView tvCenter;
+    private SideBar sideBar;
+    private LinearLayoutManager layoutManager;
+    private SectionRecyclerViewAdapter mAdapter;
 
     @Override
     protected int getLayoutId() {
@@ -22,8 +28,16 @@ public class SectionRecyclerViewActivity extends BaseActivity {
     @Override
     protected void initContent() {
         super.initContent();
-        sectionRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        sectionRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        sectionRecyclerView = (RecyclerView) findViewById(R.id.list);
+        tvCenter = (TextView) findViewById(R.id.text_center);
+        sideBar = (SideBar) findViewById(R.id.side_bar);
+
+        sideBar.setTextView(tvCenter);
+
+        layoutManager = new LinearLayoutManager(this);
+//        layoutManager.setReverseLayout(true);
+//        layoutManager.setStackFromEnd(true);
+        sectionRecyclerView.setLayoutManager(layoutManager);
         String[] fruits = getResources().getStringArray(R.array.fruits_array);
         List<ListItem> list = new LinkedList<>();
         for (int i = 0; i < fruits.length; i++) {
@@ -32,8 +46,21 @@ public class SectionRecyclerViewActivity extends BaseActivity {
             }
             list.add(new ListItem(ListItem.TYPE_ITEM, fruits[i], "Fruit " + i));
         }
-        sectionRecyclerView.setAdapter(new SectionRecyclerViewAdapter(this, list));
+        sectionRecyclerView.setAdapter(mAdapter = new SectionRecyclerViewAdapter(this, list));
         sectionRecyclerView.addItemDecoration(new SectionDividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+
+        sideBar.setOnTouchingLetterChangedListener(new SideBar.OnTouchingLetterChangedListener() {
+            @Override
+            public void onTouchingLetterChanged(String s) {
+                if (mAdapter != null) {
+                }
+                int position = mAdapter.getPositionForSection(s.charAt(0));
+                if (position != -1) {
+                    layoutManager.scrollToPositionWithOffset(position, 0);
+                }
+            }
+        });
+
     }
 
 }

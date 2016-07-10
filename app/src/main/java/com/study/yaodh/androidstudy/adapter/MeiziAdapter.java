@@ -45,7 +45,7 @@ public class MeiziAdapter extends RecyclerView.Adapter<MeiziAdapter.MeiziViewHol
         holder.binding.setType(getItemViewType(position));
     }
 
-    @BindingAdapter("bind:imageUrl")
+    @BindingAdapter("imageUrl")
     public static void loadImage(ImageView imageView, String url) {
         Glide.with(imageView.getContext())
                 .load(url)

@@ -20,6 +20,10 @@ android {
     dataBinding {
         enabled = true
     }
+    // 移除lint检查的error
+    lintOptions {
+        abortOnError true
+    }
 }
 
 dependencies {

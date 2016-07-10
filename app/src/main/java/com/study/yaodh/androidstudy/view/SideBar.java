@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.study.yaodh.androidstudy.R;
+import com.study.yaodh.androidstudy.utils.Utils;
 
 /**
  * Created by yaodh on 16/7/10.
@@ -49,16 +50,16 @@ public class SideBar extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         int height = getHeight();
-        int width  = getWidth();
+        int width = getWidth();
         int singleHeight = height / letters.length;
 
         for (int i = 0; i < letters.length; i++) {
+            paint.setColor(getResources().getColor(R.color.side_bar_text));
+            paint.setColor(Color.BLACK);
+            paint.setTypeface(Typeface.DEFAULT);
+            paint.setAntiAlias(true);
+            paint.setTextSize(Utils.dip2px(mContext, 12));
             if (i == choose) {
-                paint.setColor(getResources().getColor(R.color.side_bar_text));
-                paint.setColor(Color.BLACK);
-                paint.setTypeface(Typeface.DEFAULT);
-                paint.setAntiAlias(true);
-                paint.setTextSize(12);
                 paint.setColor(getResources().getColor(R.color.colorPrimaryDark));
                 paint.setFakeBoldText(true);
             }
@@ -121,6 +122,6 @@ public class SideBar extends View {
      * @author coder
      */
     public interface OnTouchingLetterChangedListener {
-        public void onTouchingLetterChanged(String s);
+        void onTouchingLetterChanged(String s);
     }
 }
