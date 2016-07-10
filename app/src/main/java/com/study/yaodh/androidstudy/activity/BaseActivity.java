@@ -3,7 +3,6 @@ package com.study.yaodh.androidstudy.activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -19,7 +18,7 @@ public class BaseActivity extends AppCompatActivity {
     protected Context mContext;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getLayoutId() != -1) {
             setContentView(getLayoutId());
@@ -35,7 +34,7 @@ public class BaseActivity extends AppCompatActivity {
 
     }
 
-    private void initToolbar() {
+    protected void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar == null) {
             return;

@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
     tools:context=".activity.RecyclerViewActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -48,7 +47,6 @@
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ffffff"
             tools:listitem="@layout/item_simple"/>
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

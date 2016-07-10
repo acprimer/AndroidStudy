@@ -88,7 +88,7 @@ public class ImageViewActivity extends BaseActivity {
         // glide
         imageView = (ImageView) findViewById(R.id.image);
         Glide.with(this)
-                .load("http://o7rnhttbe.bkt.clouddn.com/dragon_small.png")
+                .load("http://oimageb1.ydstatic.com/image?product=dict-homepage&url=http://pic.vcg.cn/bigimg/800bignowaterbig/13326000/478455506.jpg")
                 .into(imageView);
 
         gifView = (ImageView) findViewById(R.id.gifview);
