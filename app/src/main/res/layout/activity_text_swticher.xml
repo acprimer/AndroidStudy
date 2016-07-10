@@ -2,27 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
-    <include layout="@layout/layout_toolbar"/>
+    <include layout="@layout/layout_toolbar" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ellipsize="marquee"
-        android:padding="16dp"
-        android:textSize="36sp"
-        android:marqueeRepeatLimit="1"
-        android:singleLine="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:text="利用ellipsize实现文字跑马灯效果"/>
+        android:marqueeRepeatLimit="1"
+        android:padding="16dp"
+        android:singleLine="true"
+        android:text="利用ellipsize实现文字跑马灯效果"
+        android:textSize="36sp" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Switch"/>
+        android:text="Switch" />
 
     <TextSwitcher
         android:id="@+id/switcher"
