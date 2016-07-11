@@ -23,6 +23,7 @@ public class MainActivity extends BaseActivity {
             FastScrollListActivity.class,
             SectionRecyclerViewActivity.class,
             DataBindingActivity.class,
+            AnimActivity.class,
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -38,6 +39,7 @@ public class MainActivity extends BaseActivity {
             "FastScrollList",
             "Section RecyclerView",
             "Data Binding",
+            "Animation",
     };
 
     @Override

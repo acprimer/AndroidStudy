@@ -45,6 +45,12 @@ public class MeiziAdapter extends RecyclerView.Adapter<MeiziAdapter.MeiziViewHol
         holder.binding.setType(getItemViewType(position));
     }
 
+    public void onClickImage(ImageView imageView) {
+        Glide.with(imageView.getContext())
+                .load("http://ww3.sinaimg.cn/large/610dc034jw1f5e7x5vlfyj20dw0euaax.jpg")
+                .into(imageView);
+    }
+
     @BindingAdapter("imageUrl")
     public static void loadImage(ImageView imageView, String url) {
         Glide.with(imageView.getContext())

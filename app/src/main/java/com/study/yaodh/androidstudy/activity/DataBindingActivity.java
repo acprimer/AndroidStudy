@@ -2,6 +2,7 @@ package com.study.yaodh.androidstudy.activity;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -29,6 +30,7 @@ public class DataBindingActivity extends BaseActivity {
     private RecyclerView recyclerView;
     private List<Meizi> meiziList;
     private MeiziAdapter mAdapter;
+    private ActivityDataBindingBinding binding;
 
     @Override
     protected int getLayoutId() {
@@ -39,7 +41,7 @@ public class DataBindingActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityDataBindingBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_data_binding);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_data_binding);
         initToolbar();
         meiziList = new ArrayList<>();
         binding.setList(meiziList);
@@ -58,10 +60,9 @@ public class DataBindingActivity extends BaseActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
                         try {
                             JSONObject obj = new JSONObject(response);
-                            if(obj.optString("error").equals("false")) {
+                            if (obj.optString("error").equals("false")) {
                                 Meizi[] list = new Gson().fromJson(obj.optString("results"), Meizi[].class);
                                 meiziList.addAll(Arrays.asList(list));
                                 mAdapter.notifyDataSetChanged();
@@ -74,7 +75,7 @@ public class DataBindingActivity extends BaseActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                binding.emptyView.setText(error.getMessage());
             }
         });
         // Add the request to the RequestQueue.
@@ -82,6 +83,11 @@ public class DataBindingActivity extends BaseActivity {
     }
 
     public void onLoadData(View view) {
-        loadData();
+        // 延迟1秒
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                loadData();
+            }
+        }, 1000);
     }
 }

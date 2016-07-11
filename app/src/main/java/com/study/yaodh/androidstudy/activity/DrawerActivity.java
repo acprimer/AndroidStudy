@@ -32,7 +32,7 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mLeftDrawer = (NavigationView) findViewById(R.id.left_drawer);
-
+        mLeftDrawer.setNavigationItemSelectedListener(this);
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,
                 mDrawerLayout,
