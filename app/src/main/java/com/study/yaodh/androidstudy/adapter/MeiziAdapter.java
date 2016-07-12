@@ -1,13 +1,11 @@
 package com.study.yaodh.androidstudy.adapter;
 
 import android.content.Context;
-import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.study.yaodh.androidstudy.databinding.MeiziItemBinding;
@@ -43,20 +41,17 @@ public class MeiziAdapter extends RecyclerView.Adapter<MeiziAdapter.MeiziViewHol
 //                .into(holder.ivPhoto);
         holder.binding.setMeizi(mList.get(position));
         holder.binding.setType(getItemViewType(position));
+        Glide.with(mContext)
+                .load(mList.get(position).getUrl())
+                .into(holder.binding.image);
     }
 
-    public void onClickImage(ImageView imageView) {
-        Glide.with(imageView.getContext())
-                .load("http://ww3.sinaimg.cn/large/610dc034jw1f5e7x5vlfyj20dw0euaax.jpg")
-                .into(imageView);
-    }
-
-    @BindingAdapter("imageUrl")
-    public static void loadImage(ImageView imageView, String url) {
-        Glide.with(imageView.getContext())
-                .load(url)
-                .into(imageView);
-    }
+//    @BindingAdapter("imageUrl")
+//    public static void loadImage(ImageView imageView, String url) {
+//        Glide.with(imageView.getContext())
+//                .load(url)
+//                .into(imageView);
+//    }
 
     @Override
     public int getItemViewType(int position) {
