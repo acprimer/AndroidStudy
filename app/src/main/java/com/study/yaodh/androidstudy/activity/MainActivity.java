@@ -24,6 +24,7 @@ public class MainActivity extends BaseActivity {
             SectionRecyclerViewActivity.class,
             DataBindingActivity.class,
             AnimActivity.class,
+            ActionModeActivity.class,
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -40,6 +41,7 @@ public class MainActivity extends BaseActivity {
             "Section RecyclerView",
             "Data Binding",
             "Animation",
+            "ActionMode",
     };
 
     @Override
