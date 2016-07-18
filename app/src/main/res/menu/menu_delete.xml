@@ -7,8 +7,8 @@
           app:showAsAction="always"
           android:icon="?attr/actionModeSelectAllDrawable"/>
 
-    <item android:id="@+id/copy"
-          android:title="Copy"
+    <item android:id="@+id/delete"
+          android:title="Delete"
           app:showAsAction="always"
-          android:icon="?attr/actionModeCopyDrawable"/>
+          android:icon="@android:drawable/ic_menu_delete"/>
 </menu>

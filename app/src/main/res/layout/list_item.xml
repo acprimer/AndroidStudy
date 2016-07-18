@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/selector_item_bg"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -12,7 +14,7 @@
         android:layout_height="wrap_content"
         android:textColor="#111"
         android:textSize="16sp"
-        tools:text="Title" />
+        tools:text="Title"/>
 
     <TextView
         android:id="@+id/content"
@@ -21,6 +23,6 @@
         android:layout_marginTop="8dp"
         android:textColor="#777"
         android:textSize="14sp"
-        tools:text="Content" />
+        tools:text="Content"/>
 
 </LinearLayout>

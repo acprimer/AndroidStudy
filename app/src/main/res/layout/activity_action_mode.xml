@@ -6,6 +6,15 @@
 
     <include layout="@layout/layout_toolbar"/>
 
+    <TextView
+        android:id="@+id/text"
+        android:padding="16dp"
+        android:text="Paste it."
+        android:gravity="center"
+        android:textIsSelectable="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <ListView
         android:id="@android:id/list"
         android:entries="@array/fruits_array"
