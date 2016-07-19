@@ -1,5 +1,6 @@
 package com.study.yaodh.androidstudy.activity;
 
+import android.util.Log;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ActionModeActivity extends BaseActivity {
+    private final static String TAG = "ActionMode";
     private TextView tvPaste;
     private ListView listView;
     private ListAdapter mAdapter;
@@ -58,6 +60,7 @@ public class ActionModeActivity extends BaseActivity {
             @Override
             public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
                 // mode应该是个全局的单例模式
+                Log.d(TAG, "onItemCheckedStateChanged " + position + " " + checked);
                 mode.setTitle(String.valueOf(listView.getCheckedItemCount()));
             }
 
@@ -65,11 +68,13 @@ public class ActionModeActivity extends BaseActivity {
             public boolean onCreateActionMode(ActionMode mode, Menu menu) {
                 MenuInflater inflater = mode.getMenuInflater();
                 inflater.inflate(R.menu.menu_delete, menu);
+                Log.d(TAG, "onCreateActionMode");
                 return true;
             }
 
             @Override
             public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                Log.d(TAG, "onPrepareActionMode");
                 return false;
             }
 
@@ -104,7 +109,7 @@ public class ActionModeActivity extends BaseActivity {
 
             @Override
             public void onDestroyActionMode(ActionMode mode) {
-
+                Log.d(TAG, "onDestroyActionMode");
             }
         });
     }
