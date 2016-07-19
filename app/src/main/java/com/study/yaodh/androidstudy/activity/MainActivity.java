@@ -25,6 +25,7 @@ public class MainActivity extends BaseActivity {
             DataBindingActivity.class,
             AnimActivity.class,
             ActionModeActivity.class,
+            CoordinatorActivity.class,
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -42,6 +43,7 @@ public class MainActivity extends BaseActivity {
             "Data Binding",
             "Animation",
             "ActionMode",
+            "CoordinatorLayout",
     };
 
     @Override

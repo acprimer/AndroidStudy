@@ -48,8 +48,9 @@
         <activity android:name=".activity.FastScrollListActivity" />
         <activity android:name=".activity.DataBindingActivity" />
         <activity android:name=".activity.AnimActivity" />
-        <activity android:name=".activity.CoordinatorActivity"></activity>
-        <activity android:name=".activity.ActionModeActivity"></activity>
+        <activity android:name=".activity.CoordinatorActivity" />
+        <activity android:name=".activity.ActionModeActivity" />
+        <activity android:name=".activity.CardActivity"></activity>
     </application>
 
 </manifest>

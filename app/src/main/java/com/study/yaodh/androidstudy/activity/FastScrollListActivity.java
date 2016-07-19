@@ -25,7 +25,7 @@ public class FastScrollListActivity extends BaseActivity {
 
     private void initListView() {
         listview = (ListView) findViewById(android.R.id.list);
-        String[] fruits = getResources().getStringArray(R.array.fruits_array);
+        String[] fruits = getResources().getStringArray(R.array.fruit_array);
         List<String> fruitList = Arrays.asList(fruits);
         Collections.sort(fruitList);
         listview.setAdapter(new SectionAdapter(this, fruitList));

@@ -17,7 +17,7 @@
 
     <ListView
         android:id="@android:id/list"
-        android:entries="@array/fruits_array"
+        android:entries="@array/fruit_array"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

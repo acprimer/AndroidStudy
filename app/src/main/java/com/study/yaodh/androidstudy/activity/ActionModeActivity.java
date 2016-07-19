@@ -112,6 +112,7 @@ public class ActionModeActivity extends BaseActivity {
                 Log.d(TAG, "onDestroyActionMode");
             }
         });
+
     }
 
     private void initCallback() {

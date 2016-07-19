@@ -38,7 +38,7 @@ public class SectionRecyclerViewActivity extends BaseActivity {
 //        layoutManager.setReverseLayout(true);
 //        layoutManager.setStackFromEnd(true);
         sectionRecyclerView.setLayoutManager(layoutManager);
-        String[] fruits = getResources().getStringArray(R.array.fruits_array);
+        String[] fruits = getResources().getStringArray(R.array.fruit_array);
         List<ListItem> list = new LinkedList<>();
         for (int i = 0; i < fruits.length; i++) {
             if (i == 0 || fruits[i - 1].charAt(0) != fruits[i].charAt(0)) {
