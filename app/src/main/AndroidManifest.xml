@@ -50,7 +50,8 @@
         <activity android:name=".activity.AnimActivity" />
         <activity android:name=".activity.CoordinatorActivity" />
         <activity android:name=".activity.ActionModeActivity" />
-        <activity android:name=".activity.CardActivity"></activity>
+        <activity android:name=".activity.CardActivity" />
+        <activity android:name=".activity.SearchActivity"></activity>
     </application>
 
 </manifest>

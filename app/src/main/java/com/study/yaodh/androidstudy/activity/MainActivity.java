@@ -26,6 +26,8 @@ public class MainActivity extends BaseActivity {
             AnimActivity.class,
             ActionModeActivity.class,
             CoordinatorActivity.class,
+            CardActivity.class,
+            SearchActivity.class,
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -44,6 +46,8 @@ public class MainActivity extends BaseActivity {
             "Animation",
             "ActionMode",
             "CoordinatorLayout",
+            "CardView",
+            "SearchView",
     };
 
     @Override
