@@ -22,16 +22,21 @@ public class AnimActivity extends BaseActivity {
         tvLeft = (TextView) findViewById(R.id.left);
         tvRight = (TextView) findViewById(R.id.right);
         btn = (Button) findViewById(R.id.button);
+        startAnim();
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                float dist = 0.0f;
-                if(tvLeft.getX() < 1e-6) {
-                    dist = tvRight.getLeft() - tvLeft.getLeft();
-                }
-                ObjectAnimator.ofFloat(tvLeft, "translationX", dist).start();
-                ObjectAnimator.ofFloat(tvRight, "translationX", -dist).start();
+                startAnim();
             }
         });
+    }
+
+    private void startAnim() {
+        float dist = 0.0f;
+        if(tvLeft.getX() < 1e-6) {
+            dist = tvRight.getLeft() - tvLeft.getLeft();
+        }
+        ObjectAnimator.ofFloat(tvLeft, "translationX", dist).start();
+        ObjectAnimator.ofFloat(tvRight, "translationX", -dist).start();
     }
 }
