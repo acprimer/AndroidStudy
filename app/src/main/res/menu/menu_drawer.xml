@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+      xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:title="Offline">
         <menu>
@@ -8,7 +8,7 @@
                 android:id="@+id/offline"
                 android:checkable="true"
                 android:icon="@drawable/ic_logo"
-                android:title="Offline Dictionary" />
+                android:title="Offline Dictionary"/>
         </menu>
     </item>
 
@@ -19,11 +19,12 @@
                 android:checkable="false"
                 android:icon="@drawable/ic_message"
                 android:title="Notification"
-                app:actionLayout="@layout/menu_switch" />
+                app:actionLayout="@layout/menu_switch"/>
             <item
-                android:id="@+id/clear"
+                android:id="@+id/message"
                 android:icon="@drawable/ic_message"
-                android:title="Clear" />
+                android:title="Clear"
+                app:actionLayout="@layout/menu_message"/>
         </menu>
     </item>
 

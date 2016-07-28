@@ -28,6 +28,7 @@ public class MainActivity extends BaseActivity {
             CoordinatorActivity.class,
             CardActivity.class,
             SearchActivity.class,
+            AlertActivity.class,
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -48,6 +49,7 @@ public class MainActivity extends BaseActivity {
             "CoordinatorLayout",
             "CardView",
             "SearchView",
+            "AlertDialog",
     };
 
     @Override

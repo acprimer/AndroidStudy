@@ -4,13 +4,17 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.study.yaodh.androidstudy.R;
@@ -30,6 +34,10 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
 
         initToolbar();
 
+        initDrawer();
+    }
+
+    private void initDrawer() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mLeftDrawer = (NavigationView) findViewById(R.id.left_drawer);
         mLeftDrawer.setNavigationItemSelectedListener(this);
@@ -50,6 +58,19 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        // drawer菜单的switch button
+        SwitchCompat switchCompat = (SwitchCompat) mLeftDrawer.getMenu().findItem(R.id.notification).getActionView();
+        switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Snackbar.make(mDrawerLayout, isChecked ? "opened" : "closed", Snackbar.LENGTH_SHORT).show();
+            }
+        });
+
+        // drawer菜单的消息数提示小红点
+        TextView tvMessage = (TextView) mLeftDrawer.getMenu().findItem(R.id.message).getActionView();
+        tvMessage.setText("10+");
     }
 
     private void initToolbar() {
