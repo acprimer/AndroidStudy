@@ -37,4 +37,5 @@ dependencies {
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.github.gabrielemariotti.recyclerview:recyclerview-animators:0.3.0-SNAPSHOT@aar'
     compile 'com.google.code.gson:gson:2.4'
+    compile 'com.sackcentury:shinebutton:0.1.5'
 }

@@ -9,5 +9,6 @@
     android:minHeight="?attr/actionBarSize"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     app:title="@string/app_name"
+    android:elevation="4dp"
     app:navigationIcon="?attr/homeAsUpIndicator" >
 </android.support.v7.widget.Toolbar>
