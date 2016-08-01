@@ -6,6 +6,17 @@
 
     <include layout="@layout/layout_toolbar"/>
 
+    <EditText
+        android:id="@+id/input"
+        android:hint="Input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/done"
+        android:text="Done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,6 +37,13 @@
         android:drawableBottom="#000"
         android:text="hello world" />
 
+    <TextView
+        android:id="@+id/sinhala"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableBottom="#000"
+        android:text="සිංහල"/>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -36,4 +54,6 @@
         android:id="@+id/webview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+
 </LinearLayout>

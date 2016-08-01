@@ -29,6 +29,7 @@ public class MainActivity extends BaseActivity {
             CardActivity.class,
             SearchActivity.class,
             AlertActivity.class,
+            ButtonActivity.class,
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -50,6 +51,7 @@ public class MainActivity extends BaseActivity {
             "CardView",
             "SearchView",
             "AlertDialog",
+            "Button",
     };
 
     @Override
