@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.study.yaodh.androidstudy"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -38,4 +38,5 @@ dependencies {
     compile 'com.github.gabrielemariotti.recyclerview:recyclerview-animators:0.3.0-SNAPSHOT@aar'
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.sackcentury:shinebutton:0.1.5'
+    compile 'com.github.mancj:MaterialSearchBar:0.1.1'
 }

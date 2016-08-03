@@ -37,13 +37,6 @@
         android:drawableBottom="#000"
         android:text="hello world" />
 
-    <TextView
-        android:id="@+id/sinhala"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableBottom="#000"
-        android:text="සිංහල"/>
-
     <View
         android:layout_width="match_parent"
         android:layout_height="50dp"

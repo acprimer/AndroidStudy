@@ -16,8 +16,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:checked="true"
-        android:theme="@style/ColorSwitchStyle"/>
+        android:checked="true"/>
+
+    <android.support.v7.widget.SwitchCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:enabled="false"
+        android:checked="true"/>
 
     <RadioGroup
         android:layout_width="wrap_content"

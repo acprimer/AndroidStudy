@@ -4,7 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.android.volley.Request;
@@ -22,12 +22,13 @@ import com.study.yaodh.androidstudy.model.Meizi;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class DataBindingActivity extends BaseActivity {
-    private RecyclerView recyclerView;
     private List<Meizi> meiziList;
     private MeiziAdapter mAdapter;
     private ActivityDataBindingBinding binding;
@@ -45,21 +46,27 @@ public class DataBindingActivity extends BaseActivity {
         initToolbar();
         meiziList = new ArrayList<>();
         binding.setList(meiziList);
-        recyclerView = (RecyclerView) findViewById(R.id.list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(mAdapter = new MeiziAdapter(this, meiziList));
+        binding.list.setLayoutManager(new LinearLayoutManager(this));
+        binding.list.setAdapter(mAdapter = new MeiziAdapter(this, meiziList));
+        loadData();
     }
 
     private void loadData() {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://gank.io/api/data/福利/10/1";
+        String url = null;
+        try {
+            url = "http://gank.io/api/data/" + URLEncoder.encode("福利", "utf-8") + "/10/1";
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Log.d("response", response);
                         try {
                             JSONObject obj = new JSONObject(response);
                             if (obj.optString("error").equals("false")) {
