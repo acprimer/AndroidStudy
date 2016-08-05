@@ -4,19 +4,22 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.NotificationCompat;
 import android.view.View;
-import android.widget.Button;
 
 import com.study.yaodh.androidstudy.R;
+import com.study.yaodh.androidstudy.databinding.ActivityNotificationBinding;
 
 /**
  * Created by yaodh on 2016/6/16.
  */
-public class NotificationActivity extends BaseActivity implements View.OnClickListener{
+public class NotificationActivity extends BaseActivity {
+    private ActivityNotificationBinding binding;
 
     @Override
     protected int getLayoutId() {
@@ -25,20 +28,14 @@ public class NotificationActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void initContent() {
-        Button button = (Button) findViewById(R.id.notification);
-        button.setOnClickListener(this);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_notification);
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.notification:
-                sendNotification();
-                break;
-        }
+    public void showSnackbar(View view) {
+        Snackbar.make(binding.rootView, "show snackbar", Snackbar.LENGTH_SHORT).show();
     }
 
-    private void sendNotification() {
+    public void sendNotification(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,

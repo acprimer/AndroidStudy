@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
@@ -29,9 +30,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DataBindingActivity extends BaseActivity {
+    private ActivityDataBindingBinding binding;
     private List<Meizi> meiziList;
     private MeiziAdapter mAdapter;
-    private ActivityDataBindingBinding binding;
+    private LinearLayoutManager mLayoutManager;
+    private boolean isLoading;
 
     @Override
     protected int getLayoutId() {
@@ -46,8 +49,31 @@ public class DataBindingActivity extends BaseActivity {
         initToolbar();
         meiziList = new ArrayList<>();
         binding.setList(meiziList);
-        binding.list.setLayoutManager(new LinearLayoutManager(this));
+        binding.list.setLayoutManager(mLayoutManager = new LinearLayoutManager(this));
         binding.list.setAdapter(mAdapter = new MeiziAdapter(this, meiziList));
+        binding.list.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                Log.d("scrolled", "dx: " + dx + " dy: " + dy);
+                if(dy <= 0) {
+                    return;
+                }
+                int visibleItemCount = mLayoutManager.getChildCount();
+                int totalItemCount = mLayoutManager.getItemCount();
+                int pastVisibleItems = mLayoutManager.findFirstVisibleItemPosition();
+                if(!isLoading && visibleItemCount + pastVisibleItems >= totalItemCount) {
+                    isLoading = true;
+                    Log.d("scrolled", "loading now");
+                    loadData();
+                }
+            }
+        });
         loadData();
     }
 
@@ -67,12 +93,14 @@ public class DataBindingActivity extends BaseActivity {
                     @Override
                     public void onResponse(String response) {
                         Log.d("response", response);
+                        isLoading = false;
                         try {
                             JSONObject obj = new JSONObject(response);
                             if (obj.optString("error").equals("false")) {
                                 Meizi[] list = new Gson().fromJson(obj.optString("results"), Meizi[].class);
+                                int last = mAdapter.getItemCount();
                                 meiziList.addAll(Arrays.asList(list));
-                                mAdapter.notifyDataSetChanged();
+                                mAdapter.notifyItemRangeInserted(last, list.length);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
