@@ -30,6 +30,7 @@ public class MainActivity extends BaseActivity {
             SearchActivity.class,
             AlertActivity.class,
             ButtonActivity.class,
+            BottomSheetActivity.class,
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -52,6 +53,7 @@ public class MainActivity extends BaseActivity {
             "SearchView",
             "AlertDialog",
             "Button",
+            "Bottom Sheet",
     };
 
     @Override
