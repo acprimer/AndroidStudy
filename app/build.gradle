@@ -39,4 +39,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.sackcentury:shinebutton:0.1.5'
     compile 'com.github.mancj:MaterialSearchBar:0.1.1'
+    compile 'pub.devrel:easypermissions:0.1.9'
 }

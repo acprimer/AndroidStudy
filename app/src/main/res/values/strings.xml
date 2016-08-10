@@ -10,4 +10,8 @@
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="fsv.transition.search.layout">fsv_transition_search_layout</string>
+    <string name="rationale_camera">This app needs access to your camera so you can take pictures.</string>
+    <string name="rationale_ask_again">This app may not work correctly without the requested permissions. Open the app settings screen to modify app permissions.</string>
+    <string name="setting">Settings</string>
+    <string name="cancel">Cancel</string>
 </resources>
