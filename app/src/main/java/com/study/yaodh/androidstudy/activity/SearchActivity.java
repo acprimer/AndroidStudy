@@ -1,6 +1,7 @@
 package com.study.yaodh.androidstudy.activity;
 
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import com.study.yaodh.androidstudy.R;
 import com.study.yaodh.androidstudy.view.FloatingSearchView;
 
 public class SearchActivity extends BaseActivity {
+    private RecyclerView mReccylerView;
     private SearchView searchView;
     private FloatingSearchView floatingSearchView;
     private MaterialSearchBar searchBar;
@@ -22,6 +24,7 @@ public class SearchActivity extends BaseActivity {
 
     @Override
     protected void initContent() {
+        mReccylerView = (RecyclerView) findViewById(R.id.recycler_view);
         searchView = (SearchView) findViewById(R.id.search);
         floatingSearchView = (FloatingSearchView) findViewById(R.id.floating_search);
         floatingSearchView.showIcon(true);

@@ -25,9 +25,8 @@ public class BaseActivity extends AppCompatActivity {
         }
         mContext = this;
 
-        initToolbar();
-
         initContent();
+        initToolbar();
     }
 
     protected void initContent() {
