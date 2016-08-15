@@ -32,6 +32,7 @@ public class MainActivity extends BaseActivity {
             ButtonActivity.class,
             BottomSheetActivity.class,
             PermissionActivity.class,
+            FileActivity.class,
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -56,6 +57,7 @@ public class MainActivity extends BaseActivity {
             "Button",
             "Bottom Sheet",
             "Permission",
+            "File"
     };
 
     @Override
