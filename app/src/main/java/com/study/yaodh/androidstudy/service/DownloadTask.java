@@ -2,6 +2,7 @@ package com.study.yaodh.androidstudy.service;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import com.study.yaodh.androidstudy.db.ThreadDaoImpl;
 import com.study.yaodh.androidstudy.model.PackageModel;
@@ -77,6 +78,7 @@ public class DownloadTask {
                 long time = System.currentTimeMillis();
                 // start download
                 if (connection.getResponseCode() == HttpURLConnection.HTTP_PARTIAL) {
+                    Log.d("download", "length: " + connection.getContentLength());
                     is = connection.getInputStream();
                     byte[] buffer = new byte[1024 * 4];
                     int len;
@@ -91,6 +93,7 @@ public class DownloadTask {
                             if (percent > 100) {
                                 percent = 100;
                             }
+                            Log.d("download", "len: " + len + " progress: " + progress + " len: " + model.getLength() + " percent: " + percent);
                             intent.putExtra(DownloadService.PROGRESS_KEY, percent);
                             mContext.sendBroadcast(intent);
                         }

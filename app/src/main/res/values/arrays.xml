@@ -64,4 +64,21 @@
         <item>Watermelon</item>
         <item>Woodapple</item>
     </string-array>
+
+    <string-array name="app_icon">
+        <item>http://0.pic.pc6.com/thumb/up/2016-8/20168171040282193192_80_80.png</item>
+        <item>http://7.pic.pc6.com/thumb/up/2014-11/20141125145849_80_80.png</item>
+        <item>http://2.pic.pc6.com/thumb/up/2014-8/201481410574_80_80.png</item>
+    </string-array>
+    <string-array name="app_url">
+        <item>http://www.pc6.com/down.asp?id=52748</item>
+        <item>http://www.pc6.com/down.asp?id=87508</item>
+        <item>http://www.pc6.com/down.asp?id=118952</item>
+    </string-array>
+
+    <string-array name="app_name">
+        <item>网易新闻</item>
+        <item>网易云音乐</item>
+        <item>邮箱大师</item>
+    </string-array>
 </resources>

@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 public class PackageModel implements Serializable{
     private int id;
+    private String icon;
     private String name;
     private String url;
     private int length;
@@ -20,12 +21,26 @@ public class PackageModel implements Serializable{
         this.url = url;
     }
 
+    public PackageModel(String icon, String name, String url) {
+        this.icon = icon;
+        this.name = name;
+        this.url = url;
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public String getUrl() {
@@ -64,8 +79,9 @@ public class PackageModel implements Serializable{
     public String toString() {
         return "PackageModel{" +
                 "id=" + id +
-                ", url='" + url + '\'' +
+                ", icon='" + icon + '\'' +
                 ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
                 ", length=" + length +
                 ", progress=" + progress +
                 '}';
