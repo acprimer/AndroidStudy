@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
-import com.study.yaodh.androidstudy.databinding.AppItemBinding;
+import com.study.yaodh.androidstudy.databinding.AppInfoItemBinding;
 import com.study.yaodh.androidstudy.model.PackageModel;
 import com.study.yaodh.androidstudy.service.DownloadService;
 
@@ -30,7 +30,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
 
     @Override
     public AppViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        AppItemBinding binding = AppItemBinding.inflate(LayoutInflater.from(mContext), parent, false);
+        AppInfoItemBinding binding = AppInfoItemBinding.inflate(LayoutInflater.from(mContext), parent, false);
         return new AppViewHolder(binding.getRoot());
     }
 
@@ -105,7 +105,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
     }
 
     static class AppViewHolder extends RecyclerView.ViewHolder {
-        AppItemBinding binding;
+        AppInfoItemBinding binding;
 
         public AppViewHolder(View itemView) {
             super(itemView);

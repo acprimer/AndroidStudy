@@ -101,6 +101,7 @@ public class DownloadService extends Service {
                 int length = -1;
                 if(connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                     length = connection.getContentLength();
+                    Log.d("download", "init " + length);
                 }
                 if(length < 0) {
                     return;

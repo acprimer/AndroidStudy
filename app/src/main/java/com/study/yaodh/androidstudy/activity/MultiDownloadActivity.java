@@ -21,15 +21,12 @@ public class MultiDownloadActivity extends BaseActivity {
     private ActivityMultiDownloadBinding binding;
     private List<PackageModel> mList;
     private AppAdapter mAdapter;
-    private String[] appIcons;
-    private String[] appNames;
-    private String[] appUrls;
 
     @Override
     protected void initContent() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_multi_download);
         mList = new ArrayList<>();
-        appIcons = getResources().getStringArray(R.array.app_icon);
+        String[] appIcons = getResources().getStringArray(R.array.app_icon);
         String[] appNames = getResources().getStringArray(R.array.app_name);
         String[] appUrls = getResources().getStringArray(R.array.app_url);
         for (int i = 0; i < appIcons.length; i++) {
@@ -67,7 +64,7 @@ public class MultiDownloadActivity extends BaseActivity {
                 mList.get(id).setProgress(progress);
                 mList.get(id).setLength(length);
                 mAdapter.notifyItemChanged(id);
-            } else if (DownloadService.ACTION_UPDATE.equals(intent.getAction())) {
+            } else if (DownloadService.ACTION_FINISH.equals(intent.getAction())) {
                 // download finished
                 int id = intent.getIntExtra(DownloadService.ID_KEY, 0);
                 mList.get(id).setProgress(mList.get(id).getLength());
