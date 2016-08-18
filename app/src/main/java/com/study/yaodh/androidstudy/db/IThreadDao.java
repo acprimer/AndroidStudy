@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface IThreadDao {
     void insert(ThreadInfo info);
-    void delete(String url, int thread_id);
+    void delete(String url);
     void update(String url, int thread_id, int progress);
     List<ThreadInfo> query(String url);
     boolean exists(String url, int thread_id);

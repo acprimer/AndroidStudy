@@ -13,7 +13,8 @@ public class ThreadInfo {
     public ThreadInfo() {
     }
 
-    public ThreadInfo(String url, int start, int end) {
+    public ThreadInfo(int id, String url, int start, int end) {
+        this.id = id;
         this.url = url;
         this.start = start;
         this.end = end;

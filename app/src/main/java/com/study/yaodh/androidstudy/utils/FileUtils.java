@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
  * Created by yaodh on 16/8/16.
  */
 public class FileUtils {
+    private static final String DOWNLOAD_DIR = "download";
     /**
      * 判断SD卡是否可以访问
      * @return
@@ -34,12 +35,20 @@ public class FileUtils {
         }
     }
 
-    public static File getFileDir(Context context, String path) {
+    public static File getFileDir(Context context) {
         if(isSDCardAvailable()) {
-            return context.getExternalFilesDir(path);
+            return context.getExternalFilesDir(null);
         } else {
             return context.getFilesDir();
         }
+    }
+
+    public static File getDownloadDir(Context context) {
+        File dir = new File(getFileDir(context), File.separator + "download" + File.separator);
+        if(!dir.exists()) {
+            dir.mkdir();
+        }
+        return dir;
     }
 
     /**

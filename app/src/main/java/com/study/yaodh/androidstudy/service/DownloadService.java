@@ -2,7 +2,6 @@ package com.study.yaodh.androidstudy.service;
 
 import android.app.Service;
 import android.content.Intent;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -10,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.study.yaodh.androidstudy.model.PackageModel;
+import com.study.yaodh.androidstudy.utils.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,6 +17,8 @@ import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Created by yaodh on 2016/8/17.
@@ -26,11 +28,14 @@ public class DownloadService extends Service {
     public static final String ACTION_START = "start";
     public static final String ACTION_PAUSE = "pause";
     public static final String ACTION_UPDATE = "update";
+    public static final String ACTION_FINISH = "finish";
     public static final String PROGRESS_KEY = "progress";
     public static final String PACKAGE_KEY = "package";
-    public static final int MSG_INIT = 289;
-    public static final String DOWNLOAD_PATH = Environment.getExternalStorageDirectory() + "/download/";
-    private DownloadTask mTask;
+    public static final String ID_KEY = "id";
+    public static final String SIZE_KEY = "size";
+    public static final int MSG_INIT = 0x79;
+//    private DownloadTask mTask;
+    private Map<Integer, DownloadTask> tasks = new LinkedHashMap<>();
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -41,9 +46,13 @@ public class DownloadService extends Service {
             new InitThread(model).start();
         } else {
             PackageModel model = (PackageModel) intent.getSerializableExtra(PACKAGE_KEY);
-            Log.d("Download", "Start " + model.toString());
-            if(mTask != null) {
-                mTask.isPause = true;
+            Log.d("Download", "Paused " + model.toString());
+//            if(mTask != null) {
+//                mTask.isPause = true;
+//            }
+            DownloadTask task = tasks.get(model.getId());
+            if(task != null) {
+                task.isPause = true;
             }
         }
         return super.onStartCommand(intent, flags, startId);
@@ -63,8 +72,11 @@ public class DownloadService extends Service {
                     PackageModel model = (PackageModel) msg.obj;
                     Log.d("Download", model.toString());
                     // start download task
-                    mTask = new DownloadTask(DownloadService.this, model);
-                    mTask.download();
+//                    mTask = new DownloadTask(DownloadService.this, model, 4);
+//                    mTask.download();
+                    DownloadTask task = new DownloadTask(DownloadService.this, model, 4);
+                    task.download();
+                    tasks.put(model.getId(), task);
                     break;
             }
         }
@@ -93,11 +105,7 @@ public class DownloadService extends Service {
                 if(length < 0) {
                     return;
                 }
-                File dir = new File(DOWNLOAD_PATH);
-                if(!dir.exists()) {
-                    dir.mkdir();
-                }
-                File file = new File(dir, model.getName());
+                File file = new File(FileUtils.getDownloadDir(DownloadService.this), model.getName());
                 raf = new RandomAccessFile(file, "rwd");
                 raf.setLength(length);
                 model.setLength(length);

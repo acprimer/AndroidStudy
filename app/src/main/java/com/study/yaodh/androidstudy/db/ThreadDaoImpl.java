@@ -16,11 +16,11 @@ public class ThreadDaoImpl implements IThreadDao {
     private DBHelper helper;
 
     public ThreadDaoImpl(Context context) {
-        helper = new DBHelper(context);
+        helper = DBHelper.getInstance(context);
     }
 
     @Override
-    public void insert(ThreadInfo info) {
+    public synchronized void insert(ThreadInfo info) {
         SQLiteDatabase db = helper.getWritableDatabase();
         db.execSQL("insert into thread_info(thread_id, url, start, end, progress) values(?,?,?,?,?)",
                 new Object[]{info.getId(), info.getUrl(), info.getStart(), info.getEnd(), info.getProgress()});
@@ -28,15 +28,15 @@ public class ThreadDaoImpl implements IThreadDao {
     }
 
     @Override
-    public void delete(String url, int thread_id) {
+    public synchronized void delete(String url) {
         SQLiteDatabase db = helper.getWritableDatabase();
-        db.execSQL("delete from thread_info where url=? and thread_id=?",
-                new Object[]{url, thread_id});
+        db.execSQL("delete from thread_info where url=?",
+                new Object[]{url});
         db.close();
     }
 
     @Override
-    public void update(String url, int thread_id, int progress) {
+    public synchronized void update(String url, int thread_id, int progress) {
         SQLiteDatabase db = helper.getWritableDatabase();
         db.execSQL("update thread_info set progress=? where url=? and thread_id=?",
                 new Object[]{progress, url, thread_id});
@@ -44,8 +44,8 @@ public class ThreadDaoImpl implements IThreadDao {
     }
 
     @Override
-    public List<ThreadInfo> query(String url) {
-        SQLiteDatabase db = helper.getWritableDatabase();
+    public synchronized List<ThreadInfo> query(String url) {
+        SQLiteDatabase db = helper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from thread_info where url=?", new String[]{url});
         List<ThreadInfo> infos = new ArrayList<>();
         while(cursor.moveToNext()) {
@@ -63,8 +63,8 @@ public class ThreadDaoImpl implements IThreadDao {
     }
 
     @Override
-    public boolean exists(String url, int thread_id) {
-        SQLiteDatabase db = helper.getWritableDatabase();
+    public synchronized boolean exists(String url, int thread_id) {
+        SQLiteDatabase db = helper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from thread_info where url=?", new String[]{url});
         boolean exists = cursor.moveToNext();
         cursor.close();

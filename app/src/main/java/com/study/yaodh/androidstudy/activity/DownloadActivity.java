@@ -1,12 +1,17 @@
 package com.study.yaodh.androidstudy.activity;
 
+import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.Cursor;
 import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -121,7 +126,7 @@ public class DownloadActivity extends BaseActivity {
 
             @Override
             protected void onPostExecute(Boolean success) {
-                if(success) {
+                if (success) {
                     Toast.makeText(DownloadActivity.this, "Download success", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -129,4 +134,51 @@ public class DownloadActivity extends BaseActivity {
     }
 
 
+    public void downloadManagerStart(View view) {
+        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(DOWNLOAD_URL));
+        request.setDescription("Some description");
+        request.setTitle("Download NetEase Cloud Music");
+        // in order for this if to run, you must use the android 3.2 to compile your app
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            request.allowScanningByMediaScanner();
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        }
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "mymusic.apk");
+
+        // get download service and enqueue file
+        final DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+//        manager.enqueue(request);
+        final long downloadId = manager.enqueue(request);
+        //update progress
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                boolean isDownloading = true;
+                while (isDownloading) {
+                    DownloadManager.Query query = new DownloadManager.Query();
+                    query.setFilterById(downloadId);
+
+                    Cursor cursor = manager.query(query);
+                    cursor.moveToFirst();
+                    int bytes_downloaded = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR));
+                    int bytes_total = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES));
+
+                    if(cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))
+                            == DownloadManager.STATUS_SUCCESSFUL) {
+                        isDownloading = false;
+                    }
+
+                    final int progress = bytes_downloaded * 100 / bytes_total;
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            binding.progressbarManager.setProgress(progress);
+                        }
+                    });
+                    Log.d("download", "percent " + progress);
+                    cursor.close();
+                }
+            }
+        }).start();
+    }
 }

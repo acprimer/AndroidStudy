@@ -7,6 +7,7 @@ import android.util.Log;
 import com.study.yaodh.androidstudy.db.ThreadDaoImpl;
 import com.study.yaodh.androidstudy.model.PackageModel;
 import com.study.yaodh.androidstudy.model.ThreadInfo;
+import com.study.yaodh.androidstudy.utils.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,28 +27,68 @@ public class DownloadTask {
     private PackageModel model;
     private ThreadDaoImpl mDao;
     public boolean isPause;
+    private int nThread;
+    private List<DownloadThread> mThreads;
 
     public DownloadTask(Context context, PackageModel model) {
+        this(context, model, 1);
+    }
+
+    public DownloadTask(Context context, PackageModel model, int nThread) {
         this.mContext = context;
         this.model = model;
+        this.nThread = nThread;
         mDao = new ThreadDaoImpl(context);
+        mThreads = new ArrayList<>(nThread);
     }
 
     public void download() {
         // get thread info from database
-        List<ThreadInfo> infos = mDao.query(model.getUrl());
-        ThreadInfo info;
-        if (infos == null || infos.size() <= 0) {
-            // init an empty thread info
-            info = new ThreadInfo(model.getUrl(), 0, model.getLength());
-        } else {
-            info = infos.get(0);
+        List<ThreadInfo> threads = mDao.query(model.getUrl());
+        if (threads.size() == 0) {
+            int length = model.getLength() / nThread;
+            for (int i = 0; i < nThread; i++) {
+                ThreadInfo info = new ThreadInfo(i, model.getUrl(), length * i, length * (i + 1) - 1);
+                if (i == nThread - 1) {
+                    info.setEnd(model.getLength());
+                }
+                threads.add(info);
+                mDao.insert(info);
+            }
         }
-        new DownloadThread(info).start();
+
+        for(ThreadInfo info : threads) {
+            DownloadThread thread = new DownloadThread(info);
+            thread.start();
+            mThreads.add(thread);
+        }
+//        ThreadInfo info;
+//        if (threads == null || threads.size() <= 0) {
+//            // init an empty thread info
+//            info = new ThreadInfo(model.getUrl(), 0, model.getLength());
+//        } else {
+//            info = threads.get(0);
+//        }
+//        new DownloadThread(info).start();
+    }
+
+    private synchronized boolean checkAllFinished() {
+        for(DownloadThread thread : mThreads) {
+            if(!thread.isFinished) {
+                return false;
+            }
+        }
+        Intent intent = new Intent(DownloadService.ACTION_FINISH);
+        intent.putExtra(DownloadService.ID_KEY, model.getId());
+        mContext.sendBroadcast(intent);
+        // delete thread info
+        mDao.delete(model.getUrl());
+        return true;
     }
 
     class DownloadThread extends Thread {
         private ThreadInfo mThreadInfo;
+        public boolean isFinished;
 
         public DownloadThread(ThreadInfo mThreadInfo) {
             this.mThreadInfo = mThreadInfo;
@@ -57,9 +99,7 @@ public class DownloadTask {
             HttpURLConnection connection = null;
             RandomAccessFile raf = null;
             InputStream is = null;
-            if (!mDao.exists(mThreadInfo.getUrl(), mThreadInfo.getId())) {
-                mDao.insert(mThreadInfo);
-            }
+
             try {
                 URL url = new URL(mThreadInfo.getUrl());
                 connection = (HttpURLConnection) url.openConnection();
@@ -70,15 +110,15 @@ public class DownloadTask {
                 int end = mThreadInfo.getEnd();
                 connection.setRequestProperty("Range", "bytes=" + start + "-" + end);
                 // set file write position
-                File file = new File(DownloadService.DOWNLOAD_PATH, model.getName());
+                File file = new File(FileUtils.getDownloadDir(mContext), model.getName());
                 raf = new RandomAccessFile(file, "rwd");
                 raf.seek(start);
                 Intent intent = new Intent(DownloadService.ACTION_UPDATE);
                 int progress = mThreadInfo.getProgress();
                 long time = System.currentTimeMillis();
                 // start download
+                Log.d("download", "code: " + connection.getResponseCode());
                 if (connection.getResponseCode() == HttpURLConnection.HTTP_PARTIAL) {
-                    Log.d("download", "length: " + connection.getContentLength());
                     is = connection.getInputStream();
                     byte[] buffer = new byte[1024 * 4];
                     int len;
@@ -87,24 +127,20 @@ public class DownloadTask {
                         raf.write(buffer, 0, len);
                         // send download progress broadcast
                         progress += len;
-                        if (System.currentTimeMillis() - time > 500) {
+                        if (System.currentTimeMillis() - time > 1000) {
                             time = System.currentTimeMillis();
-                            int percent = progress * 100 / model.getLength();
-                            if (percent > 100) {
-                                percent = 100;
-                            }
-                            Log.d("download", "len: " + len + " progress: " + progress + " len: " + model.getLength() + " percent: " + percent);
-                            intent.putExtra(DownloadService.PROGRESS_KEY, percent);
-                            mContext.sendBroadcast(intent);
+                            sendUpdateBroadcast(intent);
                         }
+                        setDownloadSize(len);
                         // pause download
                         if (isPause) {
                             mDao.update(mThreadInfo.getUrl(), mThreadInfo.getId(), progress);
                             return;
                         }
                     }
-                    // delete thread info
-                    mDao.delete(mThreadInfo.getUrl(), mThreadInfo.getId());
+                    // set finish flag
+                    isFinished = true;
+                    checkAllFinished();
                 }
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -113,12 +149,29 @@ public class DownloadTask {
             } finally {
                 connection.disconnect();
                 try {
-                    is.close();
-                    raf.close();
+                    if (is != null) {
+                        is.close();
+                    }
+                    if (raf != null) {
+                        raf.close();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
+
+        private void sendUpdateBroadcast(Intent intent) {
+            Log.d("download", "id " + mThreadInfo.getId() + " progress: " + model.getProgress() + " len: " + model.getLength());
+            intent.putExtra(DownloadService.PROGRESS_KEY, model.getProgress());
+            intent.putExtra(DownloadService.ID_KEY, model.getId());
+            intent.putExtra(DownloadService.SIZE_KEY, model.getLength());
+            mContext.sendBroadcast(intent);
+        }
+
+        private synchronized void setDownloadSize(int len) {
+            model.setProgress(model.getProgress() + len);
+        }
+
     }
 }

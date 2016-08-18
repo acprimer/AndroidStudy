@@ -21,7 +21,8 @@ public class PackageModel implements Serializable{
         this.url = url;
     }
 
-    public PackageModel(String icon, String name, String url) {
+    public PackageModel(int id, String icon, String name, String url) {
+        this.id = id;
         this.icon = icon;
         this.name = name;
         this.url = url;

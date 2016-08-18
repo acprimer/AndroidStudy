@@ -20,9 +20,9 @@
         <include layout="@layout/layout_toolbar" />
 
         <TextView
+            style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.AppCompat.Title"
             android:padding="16dp"
             android:text="Volley Download" />
 
@@ -30,19 +30,20 @@
             android:id="@+id/volley_progress"
             style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="4dp"
+            android:progressDrawable="@drawable/progress_bg" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="startVolleyDownload"
             android:layout_gravity="center"
+            android:onClick="startVolleyDownload"
             android:text="start" />
 
         <TextView
+            style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.AppCompat.Title"
             android:padding="16dp"
             android:text="断点续传" />
 
@@ -57,8 +58,9 @@
             android:id="@+id/progressbar"
             style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:progress="@{progress}" />
+            android:layout_height="4dp"
+            android:progress="@{progress}"
+            android:progressDrawable="@drawable/progress_bg" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -80,6 +82,28 @@
                 android:onClick="pauseDownload"
                 android:text="Pause" />
         </LinearLayout>
+
+        <TextView
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="DownloadManager" />
+
+        <ProgressBar
+            android:id="@+id/progressbar_manager"
+            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:progress="@{progress}"
+            android:progressDrawable="@drawable/progress_bg" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="downloadManagerStart"
+            android:text="Start" />
 
     </LinearLayout>
 
