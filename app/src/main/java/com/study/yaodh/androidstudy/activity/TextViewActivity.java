@@ -1,17 +1,15 @@
 package com.study.yaodh.androidstudy.activity;
 
-import android.view.View;
+import android.graphics.Typeface;
 import android.webkit.WebView;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 
 import com.study.yaodh.androidstudy.R;
 
 /**
  * Created by yaodh on 2016/5/12.
  */
-public class TextViewActivity extends BaseActivity implements View.OnClickListener {
-    private EditText input;
+public class TextViewActivity extends BaseActivity {
     @Override
     protected int getLayoutId() {
         return R.layout.activity_textview;
@@ -22,19 +20,16 @@ public class TextViewActivity extends BaseActivity implements View.OnClickListen
         WebView webView = (WebView) findViewById(R.id.webview);
         webView.loadDataWithBaseURL("", "n. अमात्य; शासकीय अधिकारी का कार्य; कर्मकर; सहायता देना;v. मंत्री; पुरोहित; म\u200Cंत्री; नौकर;", "text/html", "UTF-8", "");
 
-        input = (EditText) findViewById(R.id.input);
-        input.requestFocus();
-        Button done = (Button) findViewById(R.id.done);
-        done.setOnClickListener(this);
+
+        Typeface typeface = Typeface.createFromAsset(mContext.getAssets(),"fonts/Lohit-Gujarati.ttf");
+        TextView tvGujarati = (TextView) findViewById(R.id.gujarati);
+        tvGujarati.setTypeface(typeface);
+        tvGujarati.setText("Gujarati: હેલો");
+
+        Typeface typefaceP = Typeface.createFromAsset(mContext.getAssets(),"fonts/Lohit-Punjabi.ttf");
+        TextView tvPunjabi = (TextView) findViewById(R.id.punjabi);
+        tvPunjabi.setTypeface(typefaceP);
+        tvPunjabi.setText("Punjabi: ਹੈਲੋ");
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.done:
-                input.setFocusable(false);
-                input.clearFocus();
-                break;
-        }
-    }
 }
