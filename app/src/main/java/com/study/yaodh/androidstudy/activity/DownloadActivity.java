@@ -37,6 +37,7 @@ public class DownloadActivity extends BaseActivity {
     private static final String FILE_NAME = "cloud-music.apk";
     private static final String DOWNLOAD_URL = "http://s1.music.126.net/download/android/CloudMusic_2.8.1_official_4.apk";
     private PackageModel model;
+    private final DownloadManager.Request request = new DownloadManager.Request(Uri.parse(DOWNLOAD_URL));
 
     @Override
     protected void initContent() {
@@ -135,7 +136,7 @@ public class DownloadActivity extends BaseActivity {
 
 
     public void downloadManagerStart(View view) {
-        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(DOWNLOAD_URL));
+        DownloadManager.Request request =  new DownloadManager.Request(Uri.parse(DOWNLOAD_URL));
         request.setDescription("Some description");
         request.setTitle("Download NetEase Cloud Music");
         // in order for this if to run, you must use the android 3.2 to compile your app
