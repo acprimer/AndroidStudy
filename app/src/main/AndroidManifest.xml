@@ -73,6 +73,8 @@
         <service android:name=".service.DownloadService"/>
 
         <activity android:name=".activity.MultiDownloadActivity"/>
+        <activity android:name=".activity.RxAndroidActivity">
+        </activity>
     </application>
 
 </manifest>
