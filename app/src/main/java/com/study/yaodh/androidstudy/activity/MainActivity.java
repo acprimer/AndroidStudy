@@ -34,7 +34,8 @@ public class MainActivity extends BaseActivity {
             PermissionActivity.class,
             FileActivity.class,
             DownloadActivity.class,
-            MultiDownloadActivity.class
+            MultiDownloadActivity.class,
+            RxAndroidActivity.class
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -62,6 +63,7 @@ public class MainActivity extends BaseActivity {
             "File",
             "Download",
             "MultiDownload",
+            "RxAndroid"
     };
 
     @Override
