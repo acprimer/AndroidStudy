@@ -17,7 +17,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <!-- Checkbox -->
-        <item name="colorControlNormal">@color/colorText</item>
+        <item name="colorControlNormal">@color/text_color</item>
         <item name="colorControlActivated">@color/colorAccent</item>
         <item name="colorControlHighlight">@color/colorAccent</item>
     </style>
