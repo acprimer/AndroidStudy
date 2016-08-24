@@ -13,27 +13,84 @@
 
             <include layout="@layout/layout_toolbar" />
 
-            <ProgressBar
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ProgressBar
+                    style="@style/Widget.AppCompat.ProgressBar"
+                    android:layout_width="wrap_content"
+                    android:indeterminateTint="@color/colorPrimary"
+                    android:indeterminateTintMode="screen"
+                    android:layout_height="wrap_content"/>
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminateDrawable="@drawable/pb_rotate" />
+
+                <ImageView
+                    android:id="@+id/iv_pb"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/spinner"/>
+
+                <ProgressBar
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="8dp"
+                    android:indeterminateDuration="660"
+                    android:indeterminateDrawable="@drawable/pb_indeterminate" />
+
+            </LinearLayout>
+
+            <ProgressBar
+                style="@android:style/Widget.Holo.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:indeterminate="true" />
+
+            <ProgressBar
+                style="@android:style/Widget.Holo.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:indeterminateTint="@color/colorPrimary"
-                android:indeterminateTintMode="src_atop" />
+                android:indeterminateTintMode="src_in"
+                android:indeterminate="true" />
+
+            <ProgressBar
+                android:id="@+id/line_pb"
+                style="@android:style/Widget.Holo.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_marginTop="8dp"
+                android:progressDrawable="@drawable/progress_bg" />
 
             <com.study.yaodh.androidstudy.view.CircleProgressBar
                 android:id="@+id/custom_progress"
-                android:layout_marginTop="16dp"
-                app:style="solid_line"
-                app:progress_stroke_width="4dp"
-                app:line_width="4dp"
-                app:line_count="30"
-                app:progress_stroke_cap="round"
-                app:progress_shader="sweep"
-                app:progress_background_color="@color/shadow_bg"
-                app:progress_start_color="@color/colorAccent"
-                app:progress_end_color="@color/colorAccent"
-                app:progress_text_color="@color/text_color"
                 android:layout_width="50dp"
-                android:layout_height="50dp" />
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                app:line_count="30"
+                app:line_width="4dp"
+                app:progress_background_color="@color/shadow_bg"
+                app:progress_end_color="@color/colorAccent"
+                app:progress_shader="sweep"
+                app:progress_start_color="@color/colorAccent"
+                app:progress_stroke_cap="round"
+                app:progress_stroke_width="4dp"
+                app:progress_text_color="@color/text_color"
+                app:style="solid_line" />
         </LinearLayout>
 
     </ScrollView>
