@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bumptech.glide.Glide;
 import com.study.yaodh.androidstudy.databinding.MeiziItemBinding;
 import com.study.yaodh.androidstudy.model.Meizi;
 
@@ -41,17 +40,7 @@ public class MeiziAdapter extends RecyclerView.Adapter<MeiziAdapter.MeiziViewHol
 //                .into(holder.ivPhoto);
         holder.binding.setMeizi(mList.get(position));
         holder.binding.setType(getItemViewType(position));
-        Glide.with(mContext)
-                .load(mList.get(position).getUrl())
-                .into(holder.binding.image);
     }
-
-//    @BindingAdapter("imageUrl")
-//    public static void loadImage(ImageView imageView, String url) {
-//        Glide.with(imageView.getContext())
-//                .load(url)
-//                .into(imageView);
-//    }
 
     @Override
     public int getItemViewType(int position) {
