@@ -56,7 +56,7 @@
         <!-- message的样式 -->
         <item name="android:textAppearanceMedium">@style/MessageStyle</item>
         <!-- Button文字的颜色 -->
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">#202020</item>
         <!-- Button的样式 -->
         <item name="buttonStyle">@style/ButtonStyle</item>
         <item name="buttonBarPositiveButtonStyle">@style/ButtonStyle</item>

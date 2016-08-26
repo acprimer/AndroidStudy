@@ -18,7 +18,7 @@ import it.gmariotti.recyclerview.itemanimator.SlideInOutLeftItemAnimator;
 
 public class CoordinatorActivity extends BaseActivity {
 
-    private  ActivityCoordinatorBinding binding;
+    private ActivityCoordinatorBinding binding;
     private LinearLayoutManager mLayoutManage;
 
     @Override

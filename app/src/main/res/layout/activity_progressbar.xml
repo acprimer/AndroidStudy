@@ -81,8 +81,6 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="16dp"
-                app:line_count="30"
-                app:line_width="4dp"
                 app:progress_background_color="@color/shadow_bg"
                 app:progress_end_color="@color/colorAccent"
                 app:progress_shader="sweep"
