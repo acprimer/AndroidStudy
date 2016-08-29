@@ -20,7 +20,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getLayoutId() != -1) {
+        if (getLayoutId() != 0) {
             setContentView(getLayoutId());
         }
         mContext = this;
@@ -54,7 +54,7 @@ public class BaseActivity extends AppCompatActivity {
 
     @LayoutRes
     protected int getLayoutId() {
-        return -1;
+        return 0;
     }
 
     protected boolean showBack() {
