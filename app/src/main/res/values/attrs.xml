@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <attr format="reference" name="floatingSearchViewStyle"/>
+    <attr name="floatingSearchViewStyle" format="reference"/>
 
     <declare-styleable name="FloatingSearchView">
         <attr name="fsv_searchBarWidth" format="dimension|reference"/>
@@ -49,5 +49,11 @@
             <enum name="square" value="2"/>
         </attr>
 
+    </declare-styleable>
+
+    <declare-styleable name="CustomProgressbar">
+        <attr name="text_size" format="dimension"/>
+        <attr name="text_color" format="color"/>
+        <attr name="text_padding" format="dimension"/>
     </declare-styleable>
 </resources>
