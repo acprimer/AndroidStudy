@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.study.yaodh.androidstudy.R;
 
 /**
  * 主要用于在layout中自定义属性（layout必须使用DataBinding）
@@ -33,5 +34,16 @@ public class BindingUtils {
                 .load(url)
                 .placeholder(placeholder)
                 .into(view);
+    }
+
+    /**
+     * 设置ImageView图片的url
+     * @param view
+     * @param url
+     */
+    @BindingAdapter({"bind:img_url"})
+    public static void loadImage(ImageView view, String url) {
+        Drawable placeholder = view.getContext().getResources().getDrawable(R.drawable.ic_image_black_24dp);
+        loadImage(view, url, placeholder);
     }
 }

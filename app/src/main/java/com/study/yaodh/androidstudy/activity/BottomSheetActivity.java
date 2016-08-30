@@ -6,10 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.study.yaodh.androidstudy.R;
-import com.study.yaodh.androidstudy.databinding.BottomSheetBinding;
+import com.study.yaodh.androidstudy.databinding.ActivityBottomSheetBinding;
 
 public class BottomSheetActivity extends BaseActivity {
-    private BottomSheetBinding binding;
+    private ActivityBottomSheetBinding binding;
 
     @Override
     protected int getLayoutId() {

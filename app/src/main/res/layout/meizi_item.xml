@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="type"
-            type="int"/>
+            type="int" />
+
         <variable
             name="meizi"
             type="com.study.yaodh.androidstudy.model.Meizi" />
@@ -22,8 +24,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            app:img_url="@{meizi.url}"
-            android:scaleType="fitCenter"/>
+            android:scaleType="fitCenter"
+            app:img_url="@{meizi.url}" />
 
         <TextView
             android:id="@+id/title"
@@ -33,7 +35,7 @@
             android:gravity="center"
             android:padding="16dp"
             android:text="@{meizi.desc}"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black" />
 
     </LinearLayout>
 
