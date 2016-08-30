@@ -1,39 +1,30 @@
 package com.study.yaodh.androidstudy.activity;
 
+import android.databinding.DataBindingUtil;
 import android.support.design.widget.BottomSheetDialog;
-import android.support.design.widget.CoordinatorLayout;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 
 import com.study.yaodh.androidstudy.R;
+import com.study.yaodh.androidstudy.databinding.BottomSheetBinding;
 
-public class BottomSheetActivity extends BaseActivity implements View.OnClickListener{
+public class BottomSheetActivity extends BaseActivity {
+    private BottomSheetBinding binding;
+
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_bottom_sheet;
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_bottom_sheet);
+        return 0;
     }
 
     @Override
     protected void initContent() {
-        CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.cl);
-        Button button = (Button) findViewById(R.id.btn);
-        button.setOnClickListener(this);
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn:
-                showBottomSheetDialog();
-                break;
-        }
-    }
-
-    private void showBottomSheetDialog() {
+    public void showBottomSheetDialog(View view) {
         final BottomSheetDialog dialog = new BottomSheetDialog(this);
-        View view = LayoutInflater.from(this).inflate(R.layout.bottom_dialog, null);
-        dialog.setContentView(view);
+        View layout = LayoutInflater.from(this).inflate(R.layout.bottom_dialog, null);
+        dialog.setContentView(layout);
         dialog.show();
     }
 }
