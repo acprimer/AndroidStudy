@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 
@@ -24,6 +25,7 @@ public class CardActivity extends BaseActivity {
     private CardAdapter mAdapter;
     private List<String> list;
     private SparseArray<Boolean> marked;
+    private int selectedId = -1;
 
     @Override
     protected int getLayoutId() {
@@ -39,6 +41,7 @@ public class CardActivity extends BaseActivity {
         String[] array = getResources().getStringArray(R.array.fruit_array);
         list.addAll(Arrays.asList(array));
         recyclerView.setAdapter(mAdapter = new CardAdapter(this, list, marked));
+        recyclerView.setItemAnimator(null);
 
         Drawable drawable = getResources().getDrawable(R.drawable.ic_delete_black_24dp);
         final Bitmap bitmap = Utils.getBitmapFromDrawable(drawable);
@@ -83,15 +86,39 @@ public class CardActivity extends BaseActivity {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
-                marked.put(position, true);
-                mAdapter.notifyItemChanged(position);
+                Log.d("draw", "onSwiped position " + position + " selectedId " + selectedId);
+                if(selectedId == -1) {
+                    selectedId = position;
+                    marked.put(position, true);
+                    mAdapter.notifyItemChanged(position);
+                    return;
+                }
+                list.remove(selectedId);
+                marked.remove(selectedId);
+                mAdapter.notifyItemRemoved(selectedId);
+                if(selectedId > position) {
+                    selectedId = position;
+                    marked.put(position, true);
+                    mAdapter.notifyItemChanged(position);
+                } else if(selectedId < position){
+                    position--;
+                    selectedId = position;
+                    marked.put(position, true);
+                    mAdapter.notifyItemChanged(position);
+                } else {
+                    selectedId = -1;
+                }
 //                list.remove(position);
 //                mAdapter.notifyItemRemoved(position);
             }
 
             @Override
             public void onChildDraw(Canvas canvas, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+                super.onChildDraw(canvas, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
                 final int position = viewHolder.getAdapterPosition();
+                if(mAdapter.getItemViewType(position) == CardAdapter.TYPE_SWIPED) {
+                    return;
+                }
                 if(actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
                     View itemView = viewHolder.itemView;
                     Paint p = new Paint();
@@ -130,7 +157,6 @@ public class CardActivity extends BaseActivity {
                         canvas.drawBitmap(bitmap, itemView.getRight() - size - padding, itemView.getTop() + padding, p);
                     }
                 }
-                super.onChildDraw(canvas, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
             }
         };
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(mCallback);
