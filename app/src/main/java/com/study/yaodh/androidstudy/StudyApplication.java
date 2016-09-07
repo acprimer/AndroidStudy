@@ -17,6 +17,7 @@ public class StudyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
         if(BuildConfig.DEBUG) {
             Stetho.initializeWithDefaults(this);
         }
