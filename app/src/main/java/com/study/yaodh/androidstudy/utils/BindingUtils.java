@@ -18,7 +18,7 @@ public class BindingUtils {
      * @param view target textview
      * @param font 字体名称，不需要后缀
      */
-    @BindingAdapter("bind:font")
+    @BindingAdapter("font")
     public static void setFont(TextView view, String font) {
         view.setTypeface(FontCache.getInstance().get(font));
     }
@@ -28,7 +28,7 @@ public class BindingUtils {
      * @param view
      * @param url
      */
-    @BindingAdapter({"bind:img_url", "bing:placeholder"})
+    @BindingAdapter({"img_url", "placeholder"})
     public static void loadImage(ImageView view, String url, Drawable placeholder) {
         Glide.with(view.getContext())
                 .load(url)
@@ -41,7 +41,7 @@ public class BindingUtils {
      * @param view
      * @param url
      */
-    @BindingAdapter({"bind:img_url"})
+    @BindingAdapter({"img_url"})
     public static void loadImage(ImageView view, String url) {
         Drawable placeholder = view.getContext().getResources().getDrawable(R.drawable.ic_image_black_24dp);
         loadImage(view, url, placeholder);

@@ -45,12 +45,12 @@ public class ImageViewActivity extends BaseActivity {
         // 圆角矩形
         // http://www.stay4it.com/course/24/learn#lesson/286
         roundImage = (ImageView) findViewById(R.id.round_image);
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.navigation_header);
-//        roundImage.setImageBitmap(getRoundCornerBitmap(bitmap, 100.0f));
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.dragon_small);
+//        roundImage.setImageBitmap(getRoundCornerBitmap(bitmap, Utils.dip2px(this, 80), Utils.dip2px(this, 80), 10.0f));
         RoundedBitmapDrawable circularBitmapDrawable =
                 RoundedBitmapDrawableFactory.create(getResources(), bitmap);
-//        circularBitmapDrawable.setCircular(true);
-        circularBitmapDrawable.setCornerRadius(100.f);
+        circularBitmapDrawable.setCircular(true);
+//        circularBitmapDrawable.setCornerRadius(100.f);
         roundImage.setImageDrawable(circularBitmapDrawable);
 
         // volley networkimageview
@@ -112,6 +112,24 @@ public class ImageViewActivity extends BaseActivity {
                         roundGlide.setImageDrawable(circularBitmapDrawable);
                     }
                 });
+    }
+
+    public Bitmap getRoundCornerBitmap(Bitmap bitmap, int width, int height, float corner) {
+        if (bitmap == null) return bitmap;
+        Bitmap roundCornerBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(roundCornerBitmap);
+
+        Paint paint = new Paint();
+        paint.setColor(Color.BLACK);
+        paint.setAntiAlias(true);
+        Rect rect = new Rect(0, 0, width, height);
+        RectF rectF = new RectF(rect);
+        canvas.drawRoundRect(rectF, corner, corner, paint);
+
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, rect, rect, paint);
+
+        return roundCornerBitmap;
     }
 
     public Bitmap getRoundCornerBitmap(Bitmap bitmap, float corner) {
