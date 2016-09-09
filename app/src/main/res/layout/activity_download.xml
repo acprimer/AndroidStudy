@@ -19,6 +19,16 @@
 
         <include layout="@layout/layout_toolbar" />
 
+        <include
+            android:id="@+id/pie_btn"
+            layout="@layout/offline_language_item_pie_btn" />
+
+        <ImageView
+            android:id="@+id/iv_pb"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="#ff2a8cc8" />
+
         <TextView
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="wrap_content"

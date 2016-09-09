@@ -7,12 +7,14 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -28,6 +30,7 @@ import com.study.yaodh.androidstudy.model.ThreadInfo;
 import com.study.yaodh.androidstudy.network.ByteRequest;
 import com.study.yaodh.androidstudy.service.DownloadService;
 import com.study.yaodh.androidstudy.utils.FileUtils;
+import com.study.yaodh.androidstudy.view.MaterialProgressDrawable;
 
 import java.io.File;
 import java.util.List;
@@ -38,6 +41,8 @@ public class DownloadActivity extends BaseActivity {
     private static final String DOWNLOAD_URL = "http://s1.music.126.net/download/android/CloudMusic_2.8.1_official_4.apk";
     private PackageModel model;
     private final DownloadManager.Request request = new DownloadManager.Request(Uri.parse(DOWNLOAD_URL));
+    private static final int CIRCLE_BG_LIGHT = 0xFFFAFAFA;
+    private static final int CIRCLE_DIAMETER = 40;
 
     @Override
     protected void initContent() {
@@ -48,6 +53,23 @@ public class DownloadActivity extends BaseActivity {
         binding.progressbar.setMax(100);
         model = new PackageModel(FILE_NAME, DOWNLOAD_URL);
         initProgress();
+
+        MaterialProgressDrawable mProgressDrawable = new MaterialProgressDrawable(this, binding.ivPb);
+        mProgressDrawable.setBackgroundColor(CIRCLE_BG_LIGHT);
+        mProgressDrawable.setColorSchemeColors(Color.RED);
+        mProgressDrawable.start();
+//        binding.materialLayout.addView(mCircleView);
+        binding.ivPb.setImageDrawable(mProgressDrawable);
+
+        FrameLayout layout = (FrameLayout) findViewById(R.id.pie_btn);
+
+
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(DownloadActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // register broadcast receiver
         IntentFilter filter = new IntentFilter();
