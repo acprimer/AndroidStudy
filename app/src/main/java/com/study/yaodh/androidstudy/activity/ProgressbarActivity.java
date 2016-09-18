@@ -26,6 +26,8 @@ public class ProgressbarActivity extends BaseActivity {
                 int progress = (int) animation.getAnimatedValue();
                 binding.customProgress.setProgress(progress);
                 binding.linePb.setProgress(progress);
+                binding.cpv.setProgress(progress);
+                binding.customPb.setProgress(progress);
             }
         });
         animator.setRepeatCount(ValueAnimator.INFINITE);

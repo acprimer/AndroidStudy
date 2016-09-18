@@ -163,7 +163,7 @@ public class CircleProgressBar extends ProgressBar {
         mProgressBackgroundPaint.setStyle(mStyle == SOLID ? Paint.Style.FILL : Paint.Style.STROKE);
         mProgressBackgroundPaint.setStrokeWidth(mProgressStrokeWidth);
         mProgressBackgroundPaint.setColor(mProgressBackgroundColor);
-        mProgressBackgroundPaint.setStrokeCap(mCap);
+        mProgressBackgroundPaint.setStrokeCap(Paint.Cap.BUTT);
 
         mBackgroundPaint.setStyle(Paint.Style.FILL);
         mBackgroundPaint.setColor(mBackgroundColor);

@@ -25,9 +25,9 @@
                 <ProgressBar
                     style="@style/Widget.AppCompat.ProgressBar"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:indeterminateTint="@color/colorPrimary"
-                    android:indeterminateTintMode="screen"
-                    android:layout_height="wrap_content"/>
+                    android:indeterminateTintMode="screen" />
 
                 <ProgressBar
                     android:layout_width="wrap_content"
@@ -36,19 +36,19 @@
 
                 <ImageView
                     android:id="@+id/iv_pb"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/spinner"/>
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/spinner" />
 
                 <ProgressBar
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="8dp"
-                    android:indeterminateDuration="660"
-                    android:indeterminateDrawable="@drawable/pb_indeterminate" />
+                    android:indeterminateDrawable="@drawable/pb_indeterminate"
+                    android:indeterminateDuration="660" />
 
             </LinearLayout>
 
@@ -64,9 +64,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:indeterminate="true"
                 android:indeterminateTint="@color/colorPrimary"
-                android:indeterminateTintMode="src_in"
-                android:indeterminate="true" />
+                android:indeterminateTintMode="src_in" />
 
             <ProgressBar
                 android:id="@+id/line_pb"
@@ -89,6 +89,23 @@
                 app:progress_stroke_width="4dp"
                 app:progress_text_color="@color/text_color"
                 app:style="solid_line" />
+
+            <com.study.yaodh.androidstudy.view.CircularProgressView
+                android:id="@+id/cpv"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                app:cpv_color="@color/colorAccent"
+                app:cpv_indeterminate="false"
+                app:cpv_thickness="2dp" />
+
+            <com.study.yaodh.androidstudy.view.CustomProgressbar
+                android:id="@+id/custom_pb"
+                android:layout_marginTop="10dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:pb_color="@color/colorAccent"
+                app:pb_thick="2dp" />
         </LinearLayout>
 
     </ScrollView>
