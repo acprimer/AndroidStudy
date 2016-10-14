@@ -37,6 +37,7 @@ public class MainActivity extends BaseActivity {
             MultiDownloadActivity.class,
             RxAndroidActivity.class,
             FlexboxLayoutActivity.class,
+            ContentProviderActivity.class,
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -65,7 +66,8 @@ public class MainActivity extends BaseActivity {
             "Download",
             "MultiDownload",
             "RxAndroid",
-            "Flexbox Layout"
+            "Flexbox Layout",
+            "Content Provider",
     };
 
     @Override

@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
     <application
         android:name=".StudyApplication"
@@ -73,8 +74,12 @@
         <service android:name=".service.DownloadService" />
 
         <activity android:name=".activity.MultiDownloadActivity" />
-        <activity android:name=".activity.RxAndroidActivity"></activity>
-        <activity android:name=".activity.FlexboxLayoutActivity"></activity>
+        <activity android:name=".activity.RxAndroidActivity" />
+        <activity android:name=".activity.FlexboxLayoutActivity" />
+        <activity android:name=".activity.ContentProviderActivity"/>
+        <provider
+            android:authorities="college"
+            android:name=".db.StudentProvider"/>
     </application>
 
 </manifest>

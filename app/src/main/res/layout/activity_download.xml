@@ -115,6 +115,12 @@
             android:onClick="downloadManagerStart"
             android:text="Start" />
 
+        <Button
+            android:onClick="myDownloadManagerStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Download"/>
+
     </LinearLayout>
 
 </layout>
