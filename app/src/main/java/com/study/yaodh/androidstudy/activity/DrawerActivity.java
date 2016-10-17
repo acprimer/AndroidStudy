@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.study.yaodh.androidstudy.R;
+import com.study.yaodh.androidstudy.utils.IntentManager;
 
 /**
  * Created by yaodh on 2016/6/27.
@@ -57,7 +58,7 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
                 super.onDrawerOpened(drawerView);
             }
         };
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
 
         // drawer菜单的switch button
         SwitchCompat switchCompat = (SwitchCompat) mLeftDrawer.getMenu().findItem(R.id.notification).getActionView();
@@ -110,6 +111,8 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
             case R.id.notification:
                 Toast.makeText(this, "Notification", Toast.LENGTH_LONG).show();
                 break;
+            case R.id.offline:
+                IntentManager.startListActivity(this);
             default:
                 item.setChecked(true);
                 mDrawerLayout.closeDrawer(GravityCompat.START);

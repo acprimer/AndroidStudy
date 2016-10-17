@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.CursorWrapper;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.BaseColumns;
@@ -136,7 +137,7 @@ public class DownloadManager {
         if (underlyingCursor == null) {
             return null;
         }
-        return underlyingCursor;
+        return new CursorTranslator(underlyingCursor, mBaseUri);
     }
 
     static String getWhereClauseForIds(long[] ids) {
@@ -390,6 +391,146 @@ public class DownloadManager {
 
         private String statusClause(String operator, int value) {
             return Downloads.Impl.COLUMN_STATUS + operator + "'" + value + "'";
+        }
+    }
+
+    private static class CursorTranslator extends CursorWrapper {
+        private Uri mBaseUri;
+        /**
+         * Creates a cursor wrapper.
+         *
+         * @param cursor The underlying cursor to wrap.
+         */
+        public CursorTranslator(Cursor cursor, Uri baseUri) {
+            super(cursor);
+            mBaseUri = baseUri;
+        }
+
+        @Override
+        public int getInt(int columnIndex) {
+            return (int) getLong(columnIndex);
+        }
+
+        @Override
+        public long getLong(int columnIndex) {
+            if(getColumnName(columnIndex).equals(COLUMN_REASON)) {
+                return getReason(super.getInt(getColumnIndex(Downloads.Impl.COLUMN_STATUS)));
+            } else if(getColumnName(columnIndex).equals(COLUMN_STASUS)) {
+                return translateStatus(super.getInt(getColumnIndex(Downloads.Impl.COLUMN_STATUS)));
+            } else {
+                return super.getLong(columnIndex);
+            }
+        }
+
+        @Override
+        public String getString(int columnIndex) {
+            return (getColumnName(columnIndex).equals(COLUMN_LOCAL_URI) ?
+            getLocalUri() : super.getString(columnIndex));
+        }
+
+        private String getLocalUri() {
+            long destinationType = getLong(getColumnIndex(Downloads.Impl.COLUMN_DESTINATION));
+            if(destinationType == Downloads.Impl.DESTINATION_FILE_URI
+                    || destinationType == Downloads.Impl.DESTINATION_EXTERNAL
+                    || destinationType == Downloads.Impl.DESTINATION_NON_DOWNLOADMANAGER_DOWNLOAD) {
+                String localPath = getString(getColumnIndex(COLUMN_LOCAL_FILENAME));
+                if(localPath == null) {
+                    return null;
+                }
+                return Uri.fromFile(new File(localPath)).toString();
+            }
+
+            long downloadId = getLong(getColumnIndex(Downloads.Impl._ID));
+            return ContentUris.withAppendedId(mBaseUri, downloadId).toString();
+        }
+
+        private long getReason(int status) {
+            switch (translateStatus(status)) {
+                case STATUS_FAILED:
+                    return getErrorCode(status);
+
+                case STATUS_PAUSED:
+                    return getPausedReason(status);
+
+                default:
+                    return 0;
+            }
+        }
+
+        private long getPausedReason(int status) {
+            switch (status) {
+                case Downloads.Impl.STATUS_WAITING_TO_RETRY:
+                    return PAUSED_WAITING_TO_RETRY;
+
+                case Downloads.Impl.STATUS_WAITING_FOR_NETWORK:
+                    return PAUSED_WAITING_FOR_NETWORK;
+
+                case Downloads.Impl.STATUS_QUEUED_FOR_WIFI:
+                    return PAUSED_QUEUED_FOR_WIFI;
+
+                default:
+                    return PAUSED_UNKNOWN;
+            }
+        }
+
+        private long getErrorCode(int status) {
+            if((400 <= status && status < Downloads.Impl.MIN_ARTIFICIAL_ERROR_STATUS)
+                    || (500 <= status && status < 600)) {
+                return status;
+            }
+
+            switch (status) {
+                case Downloads.Impl.STATUS_FILE_ERROR:
+                    return ERROR_FILE_ERROR;
+
+                case Downloads.Impl.STATUS_UNHANDLED_HTTP_CODE:
+                case Downloads.Impl.STATUS_UNHANDLED_REDIRECT:
+                    return ERROR_UNHANLED_HTTP_CODE;
+
+                case Downloads.Impl.STATUS_HTTP_DATA_ERROR:
+                    return ERROR_HTTP_DATA_ERROT;
+
+                case Downloads.Impl.STATUS_TOO_MANY_REDIRECTS:
+                    return ERROR_TOO_MANY_REDIRECTS;
+
+                case Downloads.Impl.STATUS_INSUFFICIENT_SPACE_ERROR:
+                    return ERROR_INSUFFICIENT_SPACE;
+
+                case Downloads.Impl.STATUS_DEVICE_NOT_FOUND_ERROR:
+                    return ERROR_DEVICE_NOT_FOUND;
+
+                case Downloads.Impl.STATUS_CANNOT_RESUME:
+                    return ERROR_CANNOT_RESUME;
+
+                case Downloads.Impl.STATUS_FILE_ALREADY_EXISTS_ERROR:
+                    return ERROR_FILE_ALREADY_EXISTS;
+
+                default:
+                    return ERROR_UNKNOWN;
+            }
+        }
+
+        private int translateStatus(int status) {
+            switch (status) {
+                case Downloads.Impl.STATUS_PENDING:
+                    return STATUS_PENDING;
+
+                case Downloads.Impl.STATUS_RUNNING:
+                    return STATUS_RUNNING;
+
+                case Downloads.Impl.STATUS_PAUSED_BY_APP:
+                case Downloads.Impl.STATUS_WAITING_TO_RETRY:
+                case Downloads.Impl.STATUS_WAITING_FOR_NETWORK:
+                case Downloads.Impl.STATUS_QUEUED_FOR_WIFI:
+                    return STATUS_PAUSED;
+
+                case Downloads.Impl.STATUS_SUCCESS:
+                    return STATUS_SUCCESSFUL;
+
+                default:
+                    assert Downloads.Impl.isStatusError(status);
+                    return STATUS_FAILED;
+            }
         }
     }
 
