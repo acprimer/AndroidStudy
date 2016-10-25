@@ -51,8 +51,8 @@ public class ImageViewActivity extends BaseActivity {
 //        roundImage.setImageBitmap(getRoundCornerBitmap(bitmap, Utils.dip2px(this, 80), Utils.dip2px(this, 80), 10.0f));
         RoundedBitmapDrawable circularBitmapDrawable =
                 RoundedBitmapDrawableFactory.create(getResources(), bitmap);
-        circularBitmapDrawable.setCircular(true);
-//        circularBitmapDrawable.setCornerRadius(100.f);
+        circularBitmapDrawable.setCircular(false);
+        circularBitmapDrawable.setCornerRadius(100.f);
         roundImage.setImageDrawable(circularBitmapDrawable);
 
         // volley networkimageview
