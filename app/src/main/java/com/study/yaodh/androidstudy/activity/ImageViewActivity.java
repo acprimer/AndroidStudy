@@ -22,6 +22,7 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.study.yaodh.androidstudy.R;
+import com.study.yaodh.androidstudy.view.CircleImageView;
 
 public class ImageViewActivity extends BaseActivity {
 
@@ -34,6 +35,7 @@ public class ImageViewActivity extends BaseActivity {
 
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
+    private String dragonBallUrl = "http://o7rnhttbe.bkt.clouddn.com/dragon_small.png";
 
     @Override
     protected int getLayoutId() {
@@ -67,10 +69,10 @@ public class ImageViewActivity extends BaseActivity {
                 return mCache.get(url);
             }
         });
-        volleyImage.setImageUrl("http://o7rnhttbe.bkt.clouddn.com/dragon_small.png", mImageLoader);
+        volleyImage.setImageUrl(dragonBallUrl, mImageLoader);
 
         volleyRoundImage = (ImageView) findViewById(R.id.volley_round_image);
-        mImageLoader.get("http://o7rnhttbe.bkt.clouddn.com/dragon_small.png",
+        mImageLoader.get(dragonBallUrl,
                 new ImageLoader.ImageListener() {
                     @Override
                     public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
@@ -99,7 +101,7 @@ public class ImageViewActivity extends BaseActivity {
 
         // Glide round corner image
         roundGlide = (ImageView) findViewById(R.id.round_glide);
-        Glide.with(this).load("http://o7rnhttbe.bkt.clouddn.com/dragon_small.png")
+        Glide.with(this).load(dragonBallUrl)
                 .asBitmap()
                 .centerCrop().
                 into(new BitmapImageViewTarget(roundGlide) {
@@ -112,6 +114,15 @@ public class ImageViewActivity extends BaseActivity {
                         roundGlide.setImageDrawable(circularBitmapDrawable);
                     }
                 });
+
+        CircleImageView circleImageView = (CircleImageView) findViewById(R.id.v4_circle_image);
+//        Glide.with(this).load(dragonBallUrl)
+//                .into(circleImageView);
+
+        ImageView iv1 = (ImageView) findViewById(R.id.iv_1);
+        Glide.with(this).load(dragonBallUrl).placeholder(R.drawable.ic_logo).into(iv1);
+        NetworkImageView iv2 = (NetworkImageView) findViewById(R.id.iv_2);
+        iv2.setImageUrl(dragonBallUrl, mImageLoader);
     }
 
     public Bitmap getRoundCornerBitmap(Bitmap bitmap, int width, int height, float corner) {

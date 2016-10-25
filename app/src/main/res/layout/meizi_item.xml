@@ -25,7 +25,8 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            app:img_url="@{meizi.url}" />
+            app:img_url="@{meizi.url}"
+            app:placeholder="@{@drawable/ic_logo}"/>
 
         <TextView
             android:id="@+id/title"
