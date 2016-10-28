@@ -82,7 +82,8 @@
             android:name=".db.StudentProvider"
             android:authorities="college" />
 
-        <activity android:name=".activity.BottomNavActivity"></activity>
+        <activity android:name=".activity.BottomNavActivity" />
+        <activity android:name=".activity.DownloadListActivity"></activity>
     </application>
 
 </manifest>
