@@ -12,6 +12,7 @@ public class PackageModel implements Serializable{
     private String url;
     private int length;
     private int progress;
+    private long downloadId;
 
     public PackageModel() {
     }
@@ -74,6 +75,14 @@ public class PackageModel implements Serializable{
 
     public void setProgress(int progress) {
         this.progress = progress;
+    }
+
+    public long getDownloadId() {
+        return downloadId;
+    }
+
+    public void setDownloadId(long downloadId) {
+        this.downloadId = downloadId;
     }
 
     @Override

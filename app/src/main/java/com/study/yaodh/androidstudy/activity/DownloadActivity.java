@@ -158,7 +158,7 @@ public class DownloadActivity extends BaseActivity {
 
 
     public void downloadManagerStart(View view) {
-        DownloadManager.Request request =  new DownloadManager.Request(Uri.parse(DOWNLOAD_URL));
+        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(DOWNLOAD_URL));
         request.setDescription("Some description");
         request.setTitle("Download NetEase Cloud Music");
         // in order for this if to run, you must use the android 3.2 to compile your app
@@ -186,7 +186,7 @@ public class DownloadActivity extends BaseActivity {
                     int bytes_downloaded = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR));
                     int bytes_total = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES));
 
-                    if(cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))
+                    if (cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))
                             == DownloadManager.STATUS_SUCCESSFUL) {
                         isDownloading = false;
                     }
@@ -203,6 +203,16 @@ public class DownloadActivity extends BaseActivity {
                 }
             }
         }).start();
+    }
+
+    public static long downloadPackage(Context context, PackageModel model) {
+        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(model.getUrl()));
+        request.setTitle(model.getName());
+        request.allowScanningByMediaScanner();
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, model.getName()+".apk");
+        final DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+        return manager.enqueue(request);
     }
 
     public void myDownloadManagerStart(View view) {
