@@ -10,40 +10,25 @@
         <include layout="@layout/layout_toolbar" />
 
         <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/flex_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:flexWrap="wrap">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="Hello world" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="Hello world" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="Hello world" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="Hello world" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="Hello world" />
         </com.google.android.flexbox.FlexboxLayout>
+
+        <EditText
+            android:id="@+id/input"
+            android:hint="Input label.. "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/add_label"
+            android:text="Add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="addLabel"/>
 
     </LinearLayout>
 </layout>
