@@ -53,22 +53,52 @@
             android:layout_height="wrap_content" />
 
         <TextView
+            android:id="@+id/hindi_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="interj. सलाम; नमस्कार; स्वागत की अभिव्यक्ति का अंग्रेजी शब्द;"
+            android:textSize="20sp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:scrollbarAlwaysDrawHorizontalTrack="true"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/hindi_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="interj. सलाम; नमस्कार;स्वागत की अभिव्यक्ति का अंग्रेजी शब्द;\ninterj. सलाम;"
+                android:textSize="20sp" />
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/hindi_3"
+            android:scrollbars="horizontal"
+            android:scrollHorizontally="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="interj. सलाम; नमस्कार; स्वागत की अभिव्यक्ति का अंग्रेजी शब्द;"
+            android:textSize="20sp" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" હેલો  hello word"
-            app:font="@{`Lohit-Gujarati`}"/>
+            app:font="@{`Lohit-Gujarati`}" />
 
         <TextView
-            android:text="hello ਹੈਲੋ"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:font="@{`Lohit-Punjabi`}"/>
+            android:text="hello ਸਤ ਸ੍ਰੀ ਅਕਾਲ ਸਤ ਸ੍ਰੀ ਅਕਾਲ ਸਤ ਸ੍ਰੀ ਅਕਾਲ"
+            android:textSize="20sp"
+            app:font="@{`Lohit-Punjabi`}" />
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="hello ਹੈਲੋ હેલો"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:font="@{`Arial`}"/>
+            app:font="@{`Arial`}" />
 
     </LinearLayout>
 </layout>

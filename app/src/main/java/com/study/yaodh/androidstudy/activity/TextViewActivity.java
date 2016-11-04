@@ -18,7 +18,6 @@ public class TextViewActivity extends BaseActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_textview);
         binding.webview.loadDataWithBaseURL("", "n. अमात्य; शासकीय अधिकारी का कार्य; कर्मकर; सहायता देना;v. मंत्री; पुरोहित; म\u200Cंत्री; नौकर;", "text/html", "UTF-8", "");
 
-
         // set drawable in code
         // method 1: setBounds() can resize the image width and height.
         Drawable drawable = getResources().getDrawable(R.drawable.ic_arrow_left_black_48dp);
