@@ -83,7 +83,8 @@
             android:authorities="college" />
 
         <activity android:name=".activity.BottomNavActivity" />
-        <activity android:name=".activity.DownloadListActivity"></activity>
+        <activity android:name=".activity.DownloadListActivity" />
+        <activity android:name=".activity.ToolbarActivity"></activity>
     </application>
 
 </manifest>

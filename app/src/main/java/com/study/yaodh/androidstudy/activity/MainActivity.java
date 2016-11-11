@@ -40,6 +40,7 @@ public class MainActivity extends BaseActivity {
             FlexboxLayoutActivity.class,
             ContentProviderActivity.class,
             BottomNavActivity.class,
+            ToolbarActivity.class,
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -72,6 +73,7 @@ public class MainActivity extends BaseActivity {
             "Flexbox Layout",
             "Content Provider",
             "BottomNavigation",
+            "Toolbar",
     };
 
     @Override

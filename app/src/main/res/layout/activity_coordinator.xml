@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -27,14 +27,14 @@
                 android:text="Hello world"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
-                app:layout_scrollFlags="enterAlways"/>
+                app:layout_scrollFlags="enterAlways" />
         </android.support.design.widget.AppBarLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
@@ -44,7 +44,7 @@
             android:layout_margin="16dp"
             android:src="@drawable/ic_up"
             app:fabSize="normal"
-            app:layout_behavior="com.study.yaodh.androidstudy.behavior.ScrollAwareFABBehavior"/>
+            app:layout_behavior="com.study.yaodh.androidstudy.behavior.ScrollAwareFABBehavior" />
 
     </android.support.design.widget.CoordinatorLayout>
 </layout>

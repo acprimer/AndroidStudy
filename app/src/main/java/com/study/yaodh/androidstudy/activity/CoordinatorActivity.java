@@ -29,6 +29,7 @@ public class CoordinatorActivity extends BaseActivity {
     @Override
     protected void initContent() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_coordinator);
+        binding.toolbar.setTitle("");
         List<StaggerItem> data = new ArrayList<>();
         data.add(new StaggerItem("sequester", "http://ww4.sinaimg.cn/large/610dc034jw1f5md1e68p9j20fk0ncgo0.jpg"));
         data.add(new StaggerItem("enduring", "http://ww1.sinaimg.cn/large/610dc034jw1f5l6tgzc2sj20zk0nqgq0.jpg"));
