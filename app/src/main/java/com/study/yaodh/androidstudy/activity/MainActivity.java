@@ -41,6 +41,7 @@ public class MainActivity extends BaseActivity {
             ContentProviderActivity.class,
             BottomNavActivity.class,
             ToolbarActivity.class,
+            TTSActivity.class,
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -74,6 +75,7 @@ public class MainActivity extends BaseActivity {
             "Content Provider",
             "BottomNavigation",
             "Toolbar",
+            "TextToSpeech",
     };
 
     @Override

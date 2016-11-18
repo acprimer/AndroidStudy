@@ -84,7 +84,8 @@
 
         <activity android:name=".activity.BottomNavActivity" />
         <activity android:name=".activity.DownloadListActivity" />
-        <activity android:name=".activity.ToolbarActivity"></activity>
+        <activity android:name=".activity.ToolbarActivity" />
+        <activity android:name=".activity.TTSActivity"></activity>
     </application>
 
 </manifest>

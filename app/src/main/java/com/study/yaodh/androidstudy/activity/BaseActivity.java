@@ -38,7 +38,6 @@ public class BaseActivity extends AppCompatActivity {
         if (toolbar == null) {
             return;
         }
-        toolbar.setTitle(TAG);
         setSupportActionBar(toolbar);
         if(!showBack()) {
             toolbar.setNavigationIcon(null);
