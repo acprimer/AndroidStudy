@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:id="@+id/activity_blue_tooth"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            style="@style/BaseToolbarStyle"
+            app:title="BlueTooth" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/enable_bt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enable Bluetooth" />
+
+            <Button
+                android:id="@+id/disaable_bt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Disable Bluetooth" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+</layout>
