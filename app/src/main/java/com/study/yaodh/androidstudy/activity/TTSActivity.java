@@ -2,14 +2,18 @@ package com.study.yaodh.androidstudy.activity;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.study.yaodh.androidstudy.R;
 import com.study.yaodh.androidstudy.databinding.ActivityTtsBinding;
+import com.wooplr.spotlight.SpotlightView;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -33,9 +37,34 @@ public class TTSActivity extends BaseActivity implements TextToSpeech.OnInitList
 //        checkIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
 //        startActivityForResult(checkIntent, CHECK_CODE);
         mTTS = new TextToSpeech(this, this);
+
+        new SpotlightView.Builder(this)
+                .introAnimationDuration(400)
+                .performClick(true)
+                .fadeinTextDuration(400)
+                .headingTvColor(Color.parseColor("#eb273f"))
+                .headingTvSize(32)
+                .headingTvText("Love")
+                .subHeadingTvColor(Color.parseColor("#ffffff"))
+                .subHeadingTvSize(16)
+                .subHeadingTvText("Like the picture?\nLet others know.")
+                .maskColor(Color.parseColor("#dc000000"))
+                .target(binding.speechBtn)
+                .lineAnimDuration(400)
+                .lineAndArcColor(Color.parseColor("#eb273f"))
+                .dismissOnTouch(false)
+                .dismissOnBackPress(true)
+                .enableDismissAfterShown(false)
+                .performClick(true)
+                .show();
     }
 
     public void speechText(View view) {
+        String input = binding.etInput.getText().toString();
+        if(TextUtils.isEmpty(input)) {
+            Toast.makeText(this, "empty input", Toast.LENGTH_SHORT).show();
+            return;
+        }
         HashMap<String, String> params = new HashMap<>();
         params.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "stringId");
         mTTS.speak(binding.etInput.getText().toString(), TextToSpeech.QUEUE_FLUSH, params);
