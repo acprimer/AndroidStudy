@@ -216,9 +216,9 @@ public class DownloadActivity extends BaseActivity {
     }
 
     public void myDownloadManagerStart(View view) {
-        com.example.download.DownloadManager downloadManager = new com.example.download.DownloadManager(getContentResolver(), getPackageName());
-        com.example.download.DownloadManager.Request request = new com.example.download.DownloadManager.Request(Uri.parse(DOWNLOAD_URL));
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "mymusic111.apk");
-        downloadManager.enqueue(request);
+//        com.example.download.DownloadManager downloadManager = new com.example.download.DownloadManager(getContentResolver(), getPackageName());
+//        com.example.download.DownloadManager.Request request = new com.example.download.DownloadManager.Request(Uri.parse(DOWNLOAD_URL));
+//        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "mymusic111.apk");
+//        downloadManager.enqueue(request);
     }
 }

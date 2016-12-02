@@ -126,11 +126,56 @@
                 android:layout_height="wrap_content"
                 android:text="normal\nGujarati great મહાન Punjabi great ਮਹਾਨ \n ɪmˈpɪəri:əs kɔːz" />
 
-            <View
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/colorPrimary"
-                android:layout_marginTop="4dp" />
+                android:layout_height="wrap_content"
+                android:text="Hello world normal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hello world normal"
+                android:typeface="normal"/>
+
+            <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hello world sans"
+            android:typeface="sans"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hello world monospace"
+                android:typeface="monospace"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hello world serif"
+                android:typeface="serif"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#11000000"
+                    android:text="hello world"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="hello worldt"
+                    android:background="#11000000"
+                    app:font="@{`Lohit-Gujarati`}"/>
+            </LinearLayout>
+
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="8dp"/>
