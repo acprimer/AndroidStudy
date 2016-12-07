@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:title="Offline">
         <menu>
@@ -8,24 +8,62 @@
                 android:id="@+id/offline"
                 android:checkable="true"
                 android:icon="@drawable/ic_message"
-                android:title="Offline Dictionary"/>
+                android:title="Offline Dictionary" />
         </menu>
     </item>
 
-    <item android:title="Settings">
+    <item
+        android:title="Settings">
         <menu>
             <item
                 android:id="@+id/notification"
-                android:checkable="false"
                 android:icon="@drawable/ic_message"
                 android:title="Notification"
-                app:actionLayout="@layout/menu_switch"/>
+                app:actionLayout="@layout/menu_switch" />
             <item
                 android:id="@+id/message"
                 android:icon="@drawable/ic_message"
                 android:title="Clear"
-                app:actionLayout="@layout/menu_message"/>
+                app:actionLayout="@layout/menu_message" />
         </menu>
     </item>
+
+    <item
+        android:checkable="true"
+        android:title="Others">
+        <menu>
+            <item
+                android:icon="@drawable/ic_message"
+                android:checkable="true"
+                android:title="Test"/>
+            <item
+                android:icon="@drawable/ic_message"
+                android:checkable="true"
+                android:title="Test" />
+        </menu>
+    </item>
+
+    <group
+        android:id="@+id/test1"
+        android:checkableBehavior="single">
+        <item
+            android:icon="@drawable/ic_message"
+            android:title="Test" />
+        <item
+            android:icon="@drawable/ic_message"
+            android:title="Test" />
+    </group>
+
+    <group
+        android:id="@+id/test2"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/checked_id"
+            android:icon="@drawable/ic_message"
+            android:title="Test" />
+        <item
+            android:icon="@drawable/ic_message"
+            android:title="Test" />
+    </group>
 
 </menu>

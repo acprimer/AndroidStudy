@@ -3,6 +3,7 @@ package com.study.yaodh.androidstudy.activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
@@ -11,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -41,6 +43,10 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
     private void initDrawer() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mLeftDrawer = (NavigationView) findViewById(R.id.left_drawer);
+        disableNavigationViewScrollbars(mLeftDrawer);
+        // 默认选中的菜单项
+        mLeftDrawer.setCheckedItem(R.id.checked_id);
+        testNavMenu();
         mLeftDrawer.setNavigationItemSelectedListener(this);
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,
@@ -74,6 +80,13 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
         tvMessage.setText("10+");
     }
 
+    private void testNavMenu() {
+        Menu menu = mLeftDrawer.getMenu();
+        for (int i = 0, size = menu.size(); i < size; i++) {
+            System.out.println(menu.getItem(i));
+        }
+    }
+
     private void initToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -83,6 +96,15 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
                 mDrawerLayout.openDrawer(GravityCompat.START);
             }
         });
+    }
+
+    private void disableNavigationViewScrollbars(NavigationView navigationView) {
+        if(navigationView != null) {
+            NavigationMenuView menuView = (NavigationMenuView) navigationView.getChildAt(0);
+            if (menuView != null) {
+                menuView.setVerticalScrollBarEnabled(false);
+            }
+        }
     }
 
     @Override
@@ -107,6 +129,8 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+//        mLeftDrawer.setCheckedItem(item.getItemId());
+//        item.setChecked(true);
         switch (item.getItemId()) {
             case R.id.notification:
                 Toast.makeText(this, "Notification", Toast.LENGTH_LONG).show();
@@ -114,7 +138,6 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
             case R.id.offline:
                 IntentManager.startListActivity(this);
             default:
-                item.setChecked(true);
                 mDrawerLayout.closeDrawer(GravityCompat.START);
                 break;
         }
