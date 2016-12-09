@@ -69,4 +69,12 @@
         android:padding="8dp"
         app:srcCompat="@drawable/ic_search_black_24dp" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:background="@color/button_pressed"
+        android:text="Popup Menu"
+        android:onClick="showPopupMenu"/>
+
 </LinearLayout>
