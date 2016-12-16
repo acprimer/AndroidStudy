@@ -172,6 +172,8 @@ public class DownloadActivity extends BaseActivity {
         final DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
 //        manager.enqueue(request);
         final long downloadId = manager.enqueue(request);
+        binding.theProgressBar.setProgress(0.f);
+        binding.theProgressBar.startAnimation();
         //update progress
         new Thread(new Runnable() {
             @Override
@@ -196,6 +198,7 @@ public class DownloadActivity extends BaseActivity {
                         @Override
                         public void run() {
                             binding.progressbarManager.setProgress(progress);
+                            binding.theProgressBar.setProgress(progress);
                         }
                     });
                     Log.d("download", "percent " + progress);

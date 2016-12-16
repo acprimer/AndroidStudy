@@ -37,6 +37,8 @@ public class ProgressbarActivity extends BaseActivity {
     }
 
     public void start(View view) {
+//        binding.theProgressBar.setIndeterminate(false);
+        binding.theProgressBar.setProgress(0);
         binding.theProgressBar.startAnimation();
         simulateProgress();
     }

@@ -40,7 +40,7 @@ public class TextViewActivity extends BaseActivity {
         Pattern pattern = Pattern.compile("def://\\S*");
         Linkify.addLinks(binding.linkText, pattern, "def");
 
-        String webLinkText = "点击此处";
+        String webLinkText = "点击此处 word1 word2";
         SpannableString spStr = new SpannableString(webLinkText);
         ClickableSpan clickableSpan = new NoLineClickSpan(spStr.toString());
         spStr.setSpan(clickableSpan, 0, spStr.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);

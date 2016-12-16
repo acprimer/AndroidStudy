@@ -35,13 +35,13 @@
                 android:id="@+id/link_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="def://word def://test"/>
+                android:text="def://word def://test" />
 
             <TextView
                 android:id="@+id/link_text2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Word"/>
+                android:text="Word" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -119,7 +119,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="bʌg"/>
+                android:text="bʌg" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -139,33 +139,39 @@
                 android:text="normal\nGujarati great મહાન Punjabi great ਮਹਾਨ \n ɪmˈpɪəri:əs kɔːz" />
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="normal\nGujarati great મહાન Punjabi great ਮਹਾਨ \n ɪmˈpɪəri:əs kɔːz"
+                app:font="@{`productsansregular`}" />
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hello world normal"/>
+                android:text="Hello world normal" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Hello world normal"
-                android:typeface="normal"/>
+                android:typeface="normal" />
 
             <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hello world sans"
-            android:typeface="sans"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hello world sans"
+                android:typeface="sans" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Hello world monospace"
-                android:typeface="monospace"/>
+                android:typeface="monospace" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Hello world serif"
-                android:typeface="serif"/>
+                android:typeface="serif" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -176,21 +182,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#11000000"
-                    android:text="hello world"/>
+                    android:text="hello world" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="hello worldt"
                     android:background="#11000000"
-                    app:font="@{`Lohit-Gujarati`}"/>
+                    android:text="hello worldt"
+                    app:font="@{`Lohit-Gujarati`}" />
             </LinearLayout>
 
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="8dp"/>
+                android:layout_height="8dp" />
         </LinearLayout>
     </ScrollView>
 </layout>

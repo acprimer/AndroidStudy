@@ -96,14 +96,14 @@
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
                 app:cpv_color="@color/colorAccent"
-                app:cpv_indeterminate="false"
+                app:cpv_indeterminate="true"
                 app:cpv_thickness="2dp" />
 
-            <com.study.yaodh.androidstudy.view.CircularProgressView
+            <com.github.rahatarmanahmed.cpv.CircularProgressView
                 android:id="@+id/theProgressBar"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                app:cpv_animAutostart="true"
+                app:cpv_animAutostart="false"
                 app:cpv_color="@color/colorPrimary"
                 app:cpv_indeterminate="false"
                 app:cpv_thickness="4dp" />
