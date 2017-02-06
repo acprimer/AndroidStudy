@@ -91,11 +91,14 @@
         <activity android:name=".activity.BluetoothActivity" />
         <activity android:name=".activity.TextDefActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:scheme="def"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="def" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.LoaderActivity"></activity>
     </application>
 
 </manifest>

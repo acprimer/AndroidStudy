@@ -43,6 +43,7 @@ public class MainActivity extends BaseActivity {
             ToolbarActivity.class,
             TTSActivity.class,
             BluetoothActivity.class,
+            LoaderActivity.class,
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -78,6 +79,7 @@ public class MainActivity extends BaseActivity {
             "Toolbar",
             "TextToSpeech",
             "BlueTooth",
+            "Loader",
     };
 
     @Override

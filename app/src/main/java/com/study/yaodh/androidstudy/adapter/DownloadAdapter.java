@@ -3,15 +3,16 @@ package com.study.yaodh.androidstudy.adapter;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.study.yaodh.androidstudy.R;
-import com.study.yaodh.androidstudy.activity.DownloadActivity;
 import com.study.yaodh.androidstudy.model.PackageModel;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class DownloadAdapter extends BaseAdapter {
     private List<PackageModel> mPackages;
     private Map<Long, Integer> map;
     private Cursor mCursor;
+    ButtonListener btnListener = new ButtonListener();
 
     public DownloadAdapter(Context context, List<PackageModel> packages, Map<Long, Integer> map, Cursor cursor) {
         mContext = context;
@@ -72,14 +74,26 @@ public class DownloadAdapter extends BaseAdapter {
         }
 
         Button btn = (Button) view.findViewById(R.id.download);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // download
-                long id = DownloadActivity.downloadPackage(mContext, model);
-                model.setDownloadId(id);
-            }
-        });
+        btn.setTag(position);
+        btn.setOnClickListener(btnListener);
+        Log.d("listener", "getView: " + btnListener.toString());
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // download
+//                long id = DownloadActivity.downloadPackage(mContext, model);
+//                model.setDownloadId(id);
+//            }
+//        });
         return view;
+    }
+
+    class ButtonListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            int position = (int) v.getTag();
+            Toast.makeText(mContext, "postion " + position, Toast.LENGTH_SHORT).show();
+            Log.d("listener", "onClick: " + position);
+        }
     }
 }
