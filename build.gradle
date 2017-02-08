@@ -25,5 +25,5 @@ task clean(type: Delete) {
 }
 
 ext {
-    supportLibraryVersion = "25.0.1"
+    supportLibraryVersion = "25.1.0"
 }

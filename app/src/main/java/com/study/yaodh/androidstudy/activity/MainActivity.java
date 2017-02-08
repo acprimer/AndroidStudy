@@ -42,6 +42,7 @@ public class MainActivity extends BaseActivity {
             BottomNavActivity.class,
             ToolbarActivity.class,
             TTSActivity.class,
+            HandlerActivity.class,
             BluetoothActivity.class,
             LoaderActivity.class,
     };
@@ -78,6 +79,7 @@ public class MainActivity extends BaseActivity {
             "BottomNavigation",
             "Toolbar",
             "TextToSpeech",
+            "Handler"
             "BlueTooth",
             "Loader",
     };
