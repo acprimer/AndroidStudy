@@ -1,7 +1,7 @@
 package com.study.yaodh.androidstudy.activity;
 
+import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,45 +16,36 @@ public class HandlerActivity extends BaseActivity {
     private TextView tvTiming;
     private int time;
 
-    private static class AvoidLeakyHandler extends Handler {
-        private final WeakReference<HandlerActivity> mActivity;
+    private Handler mHandler = new Handler();
 
-        private AvoidLeakyHandler(HandlerActivity activity) {
-            mActivity = new WeakReference<HandlerActivity>(activity);
+    private static final class ClockRunnable implements Runnable {
+        private final WeakReference<HandlerActivity> mActivityRef;
+
+        private ClockRunnable(HandlerActivity activity) {
+            mActivityRef = new WeakReference<HandlerActivity>(activity);
         }
 
         @Override
-        public void handleMessage(Message msg) {
-            HandlerActivity activity = mActivity.get();
+        public void run() {
+            System.out.println("time: " + System.currentTimeMillis());
+            final HandlerActivity activity = mActivityRef.get();
             if (activity != null) {
-                System.out.println("not null handle msg: " + msg);
-            } else {
-                System.out.println("null handle msg: " + msg);
+                activity.updateView();
             }
         }
     }
 
-    private Handler mLeakyHandler = new AvoidLeakyHandler(this);
-    private static final Runnable sRunnable = new Runnable() {
-        @Override
-        public void run() {
-            System.out.println("run in Runnable.");
-        }
-    };
+    private ClockRunnable clockRunnable = new ClockRunnable(this);
 
-    private Handler mHandler = new Handler();
-
-    Runnable updateRunnable = new Runnable() {
-        @Override
-        public void run() {
-            time++;
-            int minute = time / 60;
-            int second = time % 60;
-            tvOutput.append("time: " + time +  "\n");
-            tvTiming.setText(String.format(Locale.ENGLISH, "%02d:%02d", minute, second));
-            mHandler.postDelayed(updateRunnable, 1000);
-        }
-    };
+    private void updateView() {
+        time++;
+        int minute = time / 60;
+        int second = time % 60;
+        System.out.println("time: " + time +  "\n");
+        tvOutput.append("time: " + time +  "\n");
+        tvTiming.setText(String.format(Locale.ENGLISH, "%02d:%02d", minute, second));
+//        mHandler.postDelayed(clockRunnable, 1000);
+    }
 
     @Override
     protected int getLayoutId() {
@@ -62,23 +53,42 @@ public class HandlerActivity extends BaseActivity {
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("time", time);
+    }
+
+    @Override
+    protected void readIntent(Bundle savedInstanceState) {
+        super.readIntent(savedInstanceState);
+        if (savedInstanceState == null) {
+            return;
+        }
+        time = savedInstanceState.getInt("time");
+    }
+
+    @Override
     protected void initContent() {
         super.initContent();
+        System.out.println("thread " + Thread.currentThread().getId());
+        System.out.println(mHandler);
+        System.out.println(mHandler.getLooper());
+        System.out.println(mHandler.getLooper().getQueue());
         tvOutput = (TextView) findViewById(R.id.tv_output);
         tvTiming = (TextView) findViewById(R.id.tv_timing);
 
 //        new UpdateThread().start();
-        mLeakyHandler.postDelayed(sRunnable, 1000 * 60 * 1);
+        mHandler.postDelayed(clockRunnable, 1000 * 20);
     }
 
     public void startTiming(View view) {
         tvOutput.append("started\n");
-        mHandler.postDelayed(updateRunnable, 1000);
+//        mHandler.postDelayed(updateRunnable, 1000);
     }
 
     public void stopTiming(View view) {
         tvOutput.append("stopped\n");
-        mHandler.removeCallbacks(updateRunnable);
+//        mHandler.removeCallbacks(updateRunnable);
     }
 
     class UpdateThread extends Thread {
@@ -99,5 +109,12 @@ public class HandlerActivity extends BaseActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("onDestroy");
+//        mHandler.removeCallbacksAndMessages(null);
     }
 }

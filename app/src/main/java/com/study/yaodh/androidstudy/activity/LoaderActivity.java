@@ -4,9 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
-import android.os.MessageQueue;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -38,8 +36,15 @@ public class LoaderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loader);
 
+        System.out.println("thread " + Thread.currentThread().getId());
+        System.out.println(mHandler);
+        System.out.println(mHandler.getLooper());
+        System.out.println(mHandler.getLooper().getQueue());
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_loader);
         binding.result2.setMovementMethod(new ScrollingMovementMethod());
+
+        mHandler.sendEmptyMessage(0);
 
         int cpu = Runtime.getRuntime().availableProcessors();
         binding.result.append("cpu " + cpu);
@@ -88,13 +93,13 @@ public class LoaderActivity extends AppCompatActivity {
 //        task2 = new TestAsyncTask(2);
 //        task2.execute();
 
-        Looper.myQueue().addIdleHandler(new MessageQueue.IdleHandler() {
-            @Override
-            public boolean queueIdle() {
-                System.out.println("idle");
-                return false;
-            }
-        });
+//        Looper.myQueue().addIdleHandler(new MessageQueue.IdleHandler() {
+//            @Override
+//            public boolean queueIdle() {
+//                System.out.println("idle");
+//                return false;
+//            }
+//        });
     }
 
     @Override
@@ -200,5 +205,13 @@ public class LoaderActivity extends AppCompatActivity {
         protected void onCancelled(String s) {
             Log.d(TAG, "onCancelled: " + s);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("onDestroy");
+        mHandler.removeCallbacksAndMessages(null);
+        mHandler.getLooper().quit();
     }
 }

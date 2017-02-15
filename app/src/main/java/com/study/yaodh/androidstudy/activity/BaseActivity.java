@@ -25,8 +25,13 @@ public class BaseActivity extends AppCompatActivity {
         }
         mContext = this;
 
+        readIntent(savedInstanceState);
         initContent();
         initToolbar();
+    }
+
+    protected void readIntent(Bundle savedInstanceState) {
+
     }
 
     protected void initContent() {
