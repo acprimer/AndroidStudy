@@ -1,11 +1,13 @@
 package com.study.yaodh.androidstudy.activity;
 
 import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.TextView;
 
 import com.study.yaodh.androidstudy.R;
 
+import java.lang.ref.WeakReference;
 import java.util.Locale;
 
 public class HandlerActivity extends BaseActivity {
@@ -13,6 +15,32 @@ public class HandlerActivity extends BaseActivity {
     private TextView tvOutput;
     private TextView tvTiming;
     private int time;
+
+    private static class AvoidLeakyHandler extends Handler {
+        private final WeakReference<HandlerActivity> mActivity;
+
+        private AvoidLeakyHandler(HandlerActivity activity) {
+            mActivity = new WeakReference<HandlerActivity>(activity);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            HandlerActivity activity = mActivity.get();
+            if (activity != null) {
+                System.out.println("not null handle msg: " + msg);
+            } else {
+                System.out.println("null handle msg: " + msg);
+            }
+        }
+    }
+
+    private Handler mLeakyHandler = new AvoidLeakyHandler(this);
+    private static final Runnable sRunnable = new Runnable() {
+        @Override
+        public void run() {
+            System.out.println("run in Runnable.");
+        }
+    };
 
     private Handler mHandler = new Handler();
 
@@ -39,7 +67,8 @@ public class HandlerActivity extends BaseActivity {
         tvOutput = (TextView) findViewById(R.id.tv_output);
         tvTiming = (TextView) findViewById(R.id.tv_timing);
 
-        new UpdateThread().start();
+//        new UpdateThread().start();
+        mLeakyHandler.postDelayed(sRunnable, 1000 * 60 * 1);
     }
 
     public void startTiming(View view) {

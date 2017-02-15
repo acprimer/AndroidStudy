@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.1"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         applicationId "com.study.yaodh.androidstudy"
@@ -51,4 +51,5 @@ dependencies {
     compile 'com.google.android:flexbox:0.2.3'
     compile 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    compile 'com.squareup.leakcanary:leakcanary-android:1.5'
 }

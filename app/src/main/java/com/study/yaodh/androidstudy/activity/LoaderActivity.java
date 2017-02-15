@@ -3,15 +3,16 @@ package com.study.yaodh.androidstudy.activity;
 import android.databinding.DataBindingUtil;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.os.MessageQueue;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 
 import com.study.yaodh.androidstudy.R;
 import com.study.yaodh.androidstudy.databinding.ActivityLoaderBinding;
-import com.study.yaodh.androidstudy.model.MyAsyncTaskLoader;
 import com.study.yaodh.androidstudy.utils.FileUtils;
 
 import java.io.File;
@@ -25,6 +26,13 @@ public class LoaderActivity extends AppCompatActivity {
     public static final String TAG = "LoaderActivity";
     private TestAsyncTask task1, task2;
 
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            System.out.println(msg);
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,23 +41,29 @@ public class LoaderActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_loader);
         binding.result2.setMovementMethod(new ScrollingMovementMethod());
 
-        getSupportLoaderManager().initLoader(0, null, new LoaderManager.LoaderCallbacks<String>() {
-            @Override
-            public Loader<String> onCreateLoader(int id, Bundle args) {
-                return new MyAsyncTaskLoader(LoaderActivity.this);
-            }
+        int cpu = Runtime.getRuntime().availableProcessors();
+        binding.result.append("cpu " + cpu);
 
-            @Override
-            public void onLoadFinished(Loader<String> loader, String data) {
-                Log.d(TAG, "AsyncTaskLoader onLoadFinished: 1");
-                binding.result.append(data);
-            }
+        task1 = new TestAsyncTask(1);
+//        task1.execute();
 
-            @Override
-            public void onLoaderReset(Loader<String> loader) {
-
-            }
-        });
+//        getSupportLoaderManager().initLoader(0, null, new LoaderManager.LoaderCallbacks<String>() {
+//            @Override
+//            public Loader<String> onCreateLoader(int id, Bundle args) {
+//                return new MyAsyncTaskLoader(LoaderActivity.this);
+//            }
+//
+//            @Override
+//            public void onLoadFinished(Loader<String> loader, String data) {
+//                Log.d(TAG, "AsyncTaskLoader onLoadFinished: 1");
+//                binding.result.append(data);
+//            }
+//
+//            @Override
+//            public void onLoaderReset(Loader<String> loader) {
+//
+//            }
+//        });
 
 //        getSupportLoaderManager().initLoader(1, null, new LoaderManager.LoaderCallbacks<String>() {
 //            @Override
@@ -69,10 +83,18 @@ public class LoaderActivity extends AppCompatActivity {
 //            }
 //        });
 
-//        task1 = new TestAsyncTask(1);
-//        task1.execute();
+
+
 //        task2 = new TestAsyncTask(2);
 //        task2.execute();
+
+        Looper.myQueue().addIdleHandler(new MessageQueue.IdleHandler() {
+            @Override
+            public boolean queueIdle() {
+                System.out.println("idle");
+                return false;
+            }
+        });
     }
 
     @Override

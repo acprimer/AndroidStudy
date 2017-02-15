@@ -43,7 +43,6 @@ public class MainActivity extends BaseActivity {
             ToolbarActivity.class,
             TTSActivity.class,
             HandlerActivity.class,
-            BluetoothActivity.class,
             LoaderActivity.class,
     };
     private String[] titles = new String[]{
@@ -79,8 +78,7 @@ public class MainActivity extends BaseActivity {
             "BottomNavigation",
             "Toolbar",
             "TextToSpeech",
-            "Handler"
-            "BlueTooth",
+            "Handler",
             "Loader",
     };
 

@@ -21,6 +21,7 @@ import okhttp3.OkHttpClient;
 
 public class MyAsyncTaskLoader extends AsyncTaskLoader<String> {
     private Context mContext;
+    private boolean canceled;
 
     public MyAsyncTaskLoader(Context context) {
         super(context);
@@ -46,6 +47,7 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<String> {
 //        Request request = new Request.Builder().url(url).build();
 //        Response response = client.newCall(request).execute();
 //        if(response.isSuccessful()) {
+//            System.out.println("successful");
 //            return response.body().string();
 //        }
         try {
@@ -92,7 +94,7 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<String> {
                 byte[] buffer = new byte[4096];
 
                 int downloadedSize = 0;
-                while (!isLoadInBackgroundCanceled() && (bytesRead = inputStream.read(buffer)) != -1) {
+                while (!canceled && (bytesRead = inputStream.read(buffer)) != -1) {
                     outputStream.write(buffer, 0, bytesRead);
                     downloadedSize += bytesRead;
                     int progress = 100 * downloadedSize / contentLength;
@@ -121,12 +123,7 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<String> {
 
     @Override
     protected void onStopLoading() {
-        System.out.println("onStopLoading");
-        cancelLoadInBackground();
-    }
-
-    @Override
-    public void onCanceled(String data) {
-        System.out.println("onCanceled " + data);
+        canceled = cancelLoad();
+        System.out.println("onStopLoading " + canceled);
     }
 }
