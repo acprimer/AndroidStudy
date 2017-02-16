@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
@@ -39,12 +40,13 @@ public class LoaderActivity extends AppCompatActivity {
         System.out.println("thread " + Thread.currentThread().getId());
         System.out.println(mHandler);
         System.out.println(mHandler.getLooper());
-        System.out.println(mHandler.getLooper().getQueue());
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_loader);
         binding.result2.setMovementMethod(new ScrollingMovementMethod());
 
         mHandler.sendEmptyMessage(0);
+
+        Handler handler = new Handler(Looper.myLooper());
 
         int cpu = Runtime.getRuntime().availableProcessors();
         binding.result.append("cpu " + cpu);
@@ -212,6 +214,7 @@ public class LoaderActivity extends AppCompatActivity {
         super.onDestroy();
         System.out.println("onDestroy");
         mHandler.removeCallbacksAndMessages(null);
-        mHandler.getLooper().quit();
+        // can't call quit() of MainThread's Looper.
+//        mHandler.getLooper().quit();
     }
 }

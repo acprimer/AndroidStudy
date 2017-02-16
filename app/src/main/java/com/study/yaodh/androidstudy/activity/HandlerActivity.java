@@ -73,7 +73,6 @@ public class HandlerActivity extends BaseActivity {
         System.out.println("thread " + Thread.currentThread().getId());
         System.out.println(mHandler);
         System.out.println(mHandler.getLooper());
-        System.out.println(mHandler.getLooper().getQueue());
         tvOutput = (TextView) findViewById(R.id.tv_output);
         tvTiming = (TextView) findViewById(R.id.tv_timing);
 
