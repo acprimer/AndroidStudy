@@ -44,6 +44,7 @@ public class MainActivity extends BaseActivity {
             TTSActivity.class,
             HandlerActivity.class,
             LoaderActivity.class,
+            EventBusActivity.class,
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -80,6 +81,7 @@ public class MainActivity extends BaseActivity {
             "TextToSpeech",
             "Handler",
             "Loader",
+            "EventBus",
     };
 
     @Override
