@@ -17,8 +17,8 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + MovieEntry.TABLE_NAME + " (" +
                     MovieEntry._ID + " INTEGER PRIMARY KEY," +
-                    MovieEntry.COLUMN_NAME_TITLE + " TEXT," +
-                    MovieEntry.COLUMN_NAME_SUBTITLE + " TEXT)";
+                    MovieEntry.COLUMN_NAME + " TEXT," +
+                    MovieEntry.COLUMN_NAME + " TEXT)";
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + MovieEntry.TABLE_NAME;
