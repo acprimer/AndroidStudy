@@ -88,7 +88,7 @@
         <activity android:name=".activity.DownloadListActivity" />
         <activity android:name=".activity.ToolbarActivity" />
         <activity android:name=".activity.TTSActivity" />
-        <!-- <activity android:name=".activity.BluetoothActivity"/> -->
+        <activity android:name=".activity.BluetoothActivity" />
         <activity android:name=".activity.HandlerActivity" />
         <activity android:name=".activity.TextDefActivity">
             <intent-filter>
@@ -101,7 +101,8 @@
         </activity>
         <activity android:name=".activity.LoaderActivity" />
         <activity android:name=".activity.EventBusActivity" />
-        <activity android:name=".activity.TouchEventActivity"></activity>
+        <activity android:name=".activity.TouchEventActivity" />
+        <activity android:name=".activity.LiulishuoDownloadActivity"></activity>
     </application>
 
 </manifest>
