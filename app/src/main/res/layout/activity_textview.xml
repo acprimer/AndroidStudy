@@ -326,13 +326,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="હેલો"
-                    app:font="@{`Lohit-Gujarati`}"/>
+                    app:font="@{`Lohit-Gujarati`}" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ਸਤ ਸ੍ਰੀ ਅਕਾਲ"
-                    app:font="@{`Lohit-Punjabi`}"/>
+                    app:font="@{`Lohit-Punjabi`}" />
 
             </LinearLayout>
 
@@ -361,18 +361,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="ɪmˈpɪəri:əs kɔːz hello /həˈləʊ/ hi: नमस्ते gu: હેલો pa: ਸਤ ਸ੍ਰੀ ਅਕਾਲ"/>
+                android:text="ɪmˈpɪəri:əs kɔːz hello /həˈləʊ/ hi: नमस्ते gu: હેલો pa: ਸਤ ਸ੍ਰੀ ਅਕਾਲ" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="ɪmˈpɪəri:əs kɔːz hello /həˈləʊ/ hi: नमस्ते gu: હેલો pa: ਸਤ ਸ੍ਰੀ ਅਕਾਲ"
-                app:font="@{`NotoSansUI-Regular`}"/>
+                app:font="@{`NotoSansUI-Regular`}" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_pronounce_play"
+                app:drawable_tint="@{@color/pronounce_tint_color}"
+                android:enabled="true"
+                android:text="Hello" />
         </LinearLayout>
     </ScrollView>
 </layout>

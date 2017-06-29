@@ -107,4 +107,12 @@
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
+    <style name="WhiteButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="colorButtonNormal">@android:color/white</item>
+    </style>
+
+    <style name="BlueButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="colorButtonNormal">@color/colorPrimary</item>
+    </style>
+
 </resources>

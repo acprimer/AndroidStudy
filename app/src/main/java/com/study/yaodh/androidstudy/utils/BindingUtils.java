@@ -1,7 +1,9 @@
 package com.study.yaodh.androidstudy.utils;
 
+import android.content.res.ColorStateList;
 import android.databinding.BindingAdapter;
 import android.graphics.drawable.Drawable;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -45,5 +47,17 @@ public class BindingUtils {
     public static void loadImage(ImageView view, String url) {
         Drawable placeholder = view.getContext().getResources().getDrawable(R.drawable.ic_image_black_24dp);
         loadImage(view, url, placeholder);
+    }
+
+    /**
+     * 设置TextView的图片颜色
+     */
+    @BindingAdapter({"drawable_tint"})
+    public static void setDrawableTint(TextView view, ColorStateList stateList) {
+        Drawable drawable = view.getCompoundDrawables()[0];
+        if (drawable != null) {
+            Drawable wrap = DrawableCompat.wrap(drawable);
+            DrawableCompat.setTintList(wrap, stateList);
+        }
     }
 }

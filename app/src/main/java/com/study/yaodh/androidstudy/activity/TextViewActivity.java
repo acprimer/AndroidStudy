@@ -76,7 +76,8 @@ public class TextViewActivity extends BaseActivity {
         demoSpannableString.append(getDemoSpannable());
         binding.paragraph.setText(demoSpannableString, TextView.BufferType.SPANNABLE);
 
-        binding.list.setText(Html.fromHtml("<ul> <li>first item</li> <li>item 2</li> </ul>"));
+        binding.list.setText(Html.fromHtml("<ul> <li>first item</li> <li>item 2</li> </ul><br><a href='http://www.baidu.com'>a link</a> in a text"));
+        binding.list.setMovementMethod(LinkMovementMethod.getInstance());
 
         String union = "hello /həˈləʊ/ hi: नमस्ते gu: હેલો pa: ਸਤ ਸ੍ਰੀ ਅਕਾਲ\nhello /həˈləʊ/ hi: नमस्ते gu: હેલો pa: ਸਤ ਸ੍ਰੀ ਅਕਾਲ";
         Typeface gujarati = FontCache.getInstance().get("Lohit-Gujarati");
