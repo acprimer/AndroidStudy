@@ -99,7 +99,7 @@
         <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="navigationIcon">?attr/homeAsUpIndicator</item>
-        <!--<item name="contentInsetStartWithNavigation">0dp</item>-->
+        <item name="contentInsetStartWithNavigation">0dp</item>
     </style>
 
     <style name="NavigationDrawerTextStyle">
