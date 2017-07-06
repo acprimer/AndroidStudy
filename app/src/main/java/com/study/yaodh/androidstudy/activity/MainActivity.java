@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.study.yaodh.androidstudy.R;
+import com.study.yaodh.androidstudy.activity.fb.FBAdActivity;
 
 public class MainActivity extends BaseActivity {
     private Class[] activities = new Class[]{
@@ -44,6 +45,7 @@ public class MainActivity extends BaseActivity {
             TTSActivity.class,
             HandlerActivity.class,
             LoaderActivity.class,
+            FBAdActivity.class,
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -80,6 +82,7 @@ public class MainActivity extends BaseActivity {
             "TextToSpeech",
             "Handler",
             "Loader",
+            "Facebook ad",
     };
 
     @Override

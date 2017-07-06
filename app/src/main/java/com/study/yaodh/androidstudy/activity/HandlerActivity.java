@@ -2,6 +2,9 @@ package com.study.yaodh.androidstudy.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
+import android.os.Message;
 import android.view.View;
 import android.widget.TextView;
 
@@ -78,6 +81,31 @@ public class HandlerActivity extends BaseActivity {
 
 //        new UpdateThread().start();
         mHandler.postDelayed(clockRunnable, 1000 * 20);
+
+        HandlerThread handlerThread = new HandlerThread("my handler thread");
+        handlerThread.start();
+        Handler mHandler2 = new Handler(handlerThread.getLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                System.out.println("handlerthread");
+            }
+        };
+        mHandler2.sendEmptyMessage(0);
+
+        new Thread() {
+            @Override
+            public void run() {
+                Looper.prepare();
+                System.out.println("looper start.");
+                try {
+                    sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Looper.loop();
+                System.out.println("looper end.");
+            }
+        }.start();
     }
 
     public void startTiming(View view) {
