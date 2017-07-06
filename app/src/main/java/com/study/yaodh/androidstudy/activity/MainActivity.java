@@ -46,6 +46,11 @@ public class MainActivity extends BaseActivity {
             HandlerActivity.class,
             LoaderActivity.class,
             FBAdActivity.class,
+            EventBusActivity.class,
+            TouchEventActivity.class,
+            BluetoothActivity.class,
+            LiulishuoDownloadActivity.class,
+            SpinnerActivity.class,
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -83,6 +88,11 @@ public class MainActivity extends BaseActivity {
             "Handler",
             "Loader",
             "Facebook ad",
+            "EventBus",
+            "TouchEvent",
+            "Bluetooth",
+            "Liulishuo Download",
+            "Spinner",
     };
 
     @Override

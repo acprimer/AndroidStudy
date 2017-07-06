@@ -1,20 +1,33 @@
 package com.study.yaodh.androidstudy.activity;
 
 import android.databinding.DataBindingUtil;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.text.Html;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextPaint;
+import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
+import android.text.style.AbsoluteSizeSpan;
+import android.text.style.BulletSpan;
 import android.text.style.ClickableSpan;
+import android.text.style.LeadingMarginSpan;
+import android.text.style.TabStopSpan;
 import android.text.util.Linkify;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.study.yaodh.androidstudy.R;
 import com.study.yaodh.androidstudy.databinding.ActivityTextviewBinding;
+import com.study.yaodh.androidstudy.span.FontTypefaceSpan;
+import com.study.yaodh.androidstudy.utils.FontCache;
 import com.study.yaodh.androidstudy.utils.Utils;
+import com.study.yaodh.androidstudy.view.CustomBulletSpan;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -46,6 +59,67 @@ public class TextViewActivity extends BaseActivity {
         spStr.setSpan(clickableSpan, 0, spStr.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         binding.linkText2.setText(spStr);
         binding.linkText2.setMovementMethod(LinkMovementMethod.getInstance());
+
+        CharSequence t1 = getDemoText()+"\n";
+        SpannableString s1 = new SpannableString(t1);
+        s1.setSpan(new CustomBulletSpan(15), 0, t1.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        CharSequence br = "\n";
+        SpannableString sbr = new SpannableString(br);
+        sbr.setSpan(new AbsoluteSizeSpan(4, true), 0, br.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        CharSequence t2 = getDemoText();
+        SpannableString s2 = new SpannableString(t2);
+        s2.setSpan(new BulletSpan(15), 0, t2.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        binding.html.setText(TextUtils.concat(s1, sbr, s2));
+
+        SpannableStringBuilder demoSpannableString = getDemoSpannable();
+        demoSpannableString.append("\n\n");
+        demoSpannableString.append(getDemoSpannable());
+        binding.paragraph.setText(demoSpannableString, TextView.BufferType.SPANNABLE);
+
+        binding.list.setText(Html.fromHtml("<ul> <li>first item</li> <li>item 2</li> </ul><br><a href='http://www.baidu.com'>a link</a> in a text"));
+        binding.list.setMovementMethod(LinkMovementMethod.getInstance());
+
+        String union = "hello /həˈləʊ/ hi: नमस्ते gu: હેલો pa: ਸਤ ਸ੍ਰੀ ਅਕਾਲ\nhello /həˈləʊ/ hi: नमस्ते gu: હેલો pa: ਸਤ ਸ੍ਰੀ ਅਕਾਲ";
+        Typeface gujarati = FontCache.getInstance().get("Lohit-Gujarati");
+        Typeface punjabi = FontCache.getInstance().get("Lohit-Punjabi");
+        SpannableString sunio = new SpannableString(union);
+
+        // 正则表达式
+        String regGujarati = "[\\u0A80-\\u0AFF]+";
+        Pattern patGujarati = Pattern.compile(regGujarati);
+        Matcher matcherGujarati = patGujarati.matcher(union);
+        while (matcherGujarati.find()) {
+            sunio.setSpan(new FontTypefaceSpan(gujarati), matcherGujarati.start(), matcherGujarati.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        String regPunjabi = "[\\u0A00-\\u0A7F]+";
+        Pattern patPunjabi = Pattern.compile(regPunjabi);
+        Matcher matcherPunjabi = patPunjabi.matcher(union);
+        while (matcherPunjabi.find()) {
+            sunio.setSpan(new FontTypefaceSpan(punjabi), matcherPunjabi.start(), matcherPunjabi.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+//        Typeface ut = FontCache.getInstance().get("font_noto_merged");
+//        sunio.setSpan(new FontTypefaceSpan(ut), 0, union.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        binding.reg.setText(sunio);
+    }
+
+    int columnIndentation = 150;
+
+    private SpannableStringBuilder getDemoSpannable () {
+        SpannableStringBuilder demoSpannableString = new SpannableStringBuilder(getDemoText());
+        demoSpannableString.setSpan(new TabStopSpan() {
+            @Override
+            public int getTabStop() {
+                return columnIndentation;
+            }
+        }, 0, demoSpannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        demoSpannableString.setSpan(new LeadingMarginSpan.Standard(columnIndentation), 0, demoSpannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        demoSpannableString.setSpan(new MyTypefaceSpan(this, TIMES_NEW_ROMAN), 0, demoSpannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return demoSpannableString;
+    }
+
+    public String getDemoText () {
+        return "Lorem \tipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis condimentum tincidunt.";
     }
 
     private class NoLineClickSpan extends ClickableSpan {

@@ -9,10 +9,14 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.util.LruCache;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
@@ -21,8 +25,18 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.squareup.picasso.Picasso;
 import com.study.yaodh.androidstudy.R;
 import com.study.yaodh.androidstudy.view.CircleImageView;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class ImageViewActivity extends BaseActivity {
 
@@ -123,6 +137,18 @@ public class ImageViewActivity extends BaseActivity {
         Glide.with(this).load(dragonBallUrl).placeholder(R.drawable.ic_logo).into(iv1);
         NetworkImageView iv2 = (NetworkImageView) findViewById(R.id.iv_2);
         iv2.setImageUrl(dragonBallUrl, mImageLoader);
+
+        ImageView ivPicasso = (ImageView) findViewById(R.id.picasso);
+        Picasso picasso = Picasso.with(this);
+        picasso.setLoggingEnabled(true);
+        picasso.load(dragonBallUrl).into(ivPicasso);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                downloadPicture();
+            }
+        }).start();
     }
 
     public Bitmap getRoundCornerBitmap(Bitmap bitmap, int width, int height, float corner) {
@@ -162,5 +188,72 @@ public class ImageViewActivity extends BaseActivity {
 
         return roundCornerBitmap;
     }
+
+    private Handler downloadHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case LOAD_SUCCESS:
+                    File file = new File(Environment.getExternalStorageDirectory(), "pic.jpg");
+                    FileInputStream fis = null;
+                    try {
+                        fis = new FileInputStream(file);
+                        Bitmap bitmap = BitmapFactory.decodeStream(fis);
+                        ImageView imageView = (ImageView) findViewById(R.id.http_connection);
+                        imageView.setImageBitmap(bitmap);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case LOAD_FAILED:
+                    Toast.makeText(ImageViewActivity.this, "download picture failed", Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        }
+    };
+
+    private void downloadPicture() {
+        URL url = null;
+        InputStream is = null;
+        FileOutputStream fos = null;
+        try {
+            url = new URL(dragonBallUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setConnectTimeout(3 * 1000);
+            connection.setRequestMethod("GET");
+            int responseCode = connection.getResponseCode();
+            if (responseCode >= 300) {
+                connection.disconnect();
+                return;
+            }
+            is = connection.getInputStream();
+            File file = new File(Environment.getExternalStorageDirectory(), "pic.jpg");
+            fos = new FileOutputStream(file);
+            int len = 0;
+            byte[] buffer = new byte[4 * 1024];
+            while ((len = is.read(buffer)) != -1) {
+                fos.write(buffer, 0, len);
+            }
+            fos.flush();
+            downloadHandler.sendEmptyMessage(LOAD_SUCCESS);
+        } catch (Exception e) {
+            downloadHandler.sendEmptyMessage(LOAD_FAILED);
+        } finally {
+            try {
+                if (is != null) {
+                    is.close();
+                }
+                if (fos != null) {
+                    fos.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    public static final int LOAD_SUCCESS = 0;
+    public static final int LOAD_FAILED = 1;
 
 }

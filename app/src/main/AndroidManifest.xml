@@ -99,8 +99,11 @@
                 <data android:scheme="def" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LoaderActivity"/>
-        <activity android:name=".activity.fb.FBAdActivity"/>
+        <activity android:name=".activity.LoaderActivity" />
+        <activity android:name=".activity.EventBusActivity" />
+        <activity android:name=".activity.TouchEventActivity" />
+        <activity android:name=".activity.LiulishuoDownloadActivity" />
+        <activity android:name=".activity.SpinnerActivity"></activity>
     </application>
 
 </manifest>

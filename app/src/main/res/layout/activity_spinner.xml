@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            style="@style/BaseToolbarStyle"
+            app:title="Spinner" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="通过entries属性设置数据" />
+
+        <Spinner
+            android:id="@+id/default_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:entries="@array/fruit_array"
+            android:layout_marginRight="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="通过ArrayAdapter属性设置数据" />
+
+        <Spinner
+            android:id="@+id/simple_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="自定义点击背景" />
+
+        <Spinner
+            android:id="@+id/custom_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:popupBackground="@drawable/ic_directory_bg"
+            android:background="@drawable/ic_spinner_arrow"
+            android:layout_marginRight="8dp" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:entries="@array/fruit_array"
+            android:layout_marginRight="8dp" />
+
+    </LinearLayout>
+</layout>

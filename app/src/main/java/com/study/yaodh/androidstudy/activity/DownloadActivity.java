@@ -32,6 +32,8 @@ import com.study.yaodh.androidstudy.service.DownloadService;
 import com.study.yaodh.androidstudy.utils.FileUtils;
 import com.study.yaodh.androidstudy.view.MaterialProgressDrawable;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.File;
 import java.util.List;
 
@@ -194,6 +196,8 @@ public class DownloadActivity extends BaseActivity {
                     }
 
                     final int progress = bytes_downloaded * 100 / bytes_total;
+                    System.out.println("progress " + progress);
+                    EventBus.getDefault().post("progress " + progress);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

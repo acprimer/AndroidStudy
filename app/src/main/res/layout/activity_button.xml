@@ -77,4 +77,16 @@
         android:text="Popup Menu"
         android:onClick="showPopupMenu"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/WhiteButtonStyle"
+        android:text="点击"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/BlueButtonStyle"
+        android:text="点击"/>
+
 </LinearLayout>

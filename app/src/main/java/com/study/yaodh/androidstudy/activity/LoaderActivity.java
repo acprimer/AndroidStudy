@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 
 import com.study.yaodh.androidstudy.R;
 import com.study.yaodh.androidstudy.databinding.ActivityLoaderBinding;
+import com.study.yaodh.androidstudy.model.MyAsyncTaskLoader;
 import com.study.yaodh.androidstudy.utils.FileUtils;
 
 import java.io.File;
@@ -54,23 +57,23 @@ public class LoaderActivity extends AppCompatActivity {
         task1 = new TestAsyncTask(1);
 //        task1.execute();
 
-//        getSupportLoaderManager().initLoader(0, null, new LoaderManager.LoaderCallbacks<String>() {
-//            @Override
-//            public Loader<String> onCreateLoader(int id, Bundle args) {
-//                return new MyAsyncTaskLoader(LoaderActivity.this);
-//            }
-//
-//            @Override
-//            public void onLoadFinished(Loader<String> loader, String data) {
-//                Log.d(TAG, "AsyncTaskLoader onLoadFinished: 1");
-//                binding.result.append(data);
-//            }
-//
-//            @Override
-//            public void onLoaderReset(Loader<String> loader) {
-//
-//            }
-//        });
+        getSupportLoaderManager().initLoader(0, null, new LoaderManager.LoaderCallbacks<String>() {
+            @Override
+            public Loader<String> onCreateLoader(int id, Bundle args) {
+                return new MyAsyncTaskLoader(LoaderActivity.this);
+            }
+
+            @Override
+            public void onLoadFinished(Loader<String> loader, String data) {
+                Log.d(TAG, "AsyncTaskLoader onLoadFinished: 1");
+                binding.result.append(data);
+            }
+
+            @Override
+            public void onLoaderReset(Loader<String> loader) {
+
+            }
+        });
 
 //        getSupportLoaderManager().initLoader(1, null, new LoaderManager.LoaderCallbacks<String>() {
 //            @Override

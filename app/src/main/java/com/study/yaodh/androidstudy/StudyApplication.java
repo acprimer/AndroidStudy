@@ -3,6 +3,7 @@ package com.study.yaodh.androidstudy;
 import android.app.Application;
 
 import com.facebook.stetho.Stetho;
+import com.liulishuo.filedownloader.FileDownloader;
 import com.squareup.leakcanary.LeakCanary;
 
 /**
@@ -28,6 +29,8 @@ public class StudyApplication extends Application {
         if(BuildConfig.DEBUG) {
             Stetho.initializeWithDefaults(this);
         }
+
+        FileDownloader.init(this);
     }
 
 }
