@@ -2,7 +2,6 @@ package com.study.yaodh.androidstudy.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
 import android.view.View;
@@ -73,39 +72,59 @@ public class HandlerActivity extends BaseActivity {
     @Override
     protected void initContent() {
         super.initContent();
-        System.out.println("thread " + Thread.currentThread().getId());
-        System.out.println(mHandler);
-        System.out.println(mHandler.getLooper());
-        tvOutput = (TextView) findViewById(R.id.tv_output);
-        tvTiming = (TextView) findViewById(R.id.tv_timing);
+//        System.out.println("thread " + Thread.currentThread().getId());
+//        System.out.println(mHandler);
+//        System.out.println(mHandler.getLooper());
+//        tvOutput = (TextView) findViewById(R.id.tv_output);
+//        tvTiming = (TextView) findViewById(R.id.tv_timing);
+//
+////        new UpdateThread().start();
+//        mHandler.postDelayed(clockRunnable, 1000 * 20);
+//
+//        HandlerThread handlerThread = new HandlerThread("my handler thread");
+//        handlerThread.start();
+//        Handler mHandler2 = new Handler(handlerThread.getLooper()) {
+//            @Override
+//            public void handleMessage(Message msg) {
+//                System.out.println("handlerthread");
+//            }
+//        };
+//        mHandler2.sendEmptyMessage(0);
 
-//        new UpdateThread().start();
-        mHandler.postDelayed(clockRunnable, 1000 * 20);
-
-        HandlerThread handlerThread = new HandlerThread("my handler thread");
-        handlerThread.start();
-        Handler mHandler2 = new Handler(handlerThread.getLooper()) {
-            @Override
-            public void handleMessage(Message msg) {
-                System.out.println("handlerthread");
-            }
-        };
-        mHandler2.sendEmptyMessage(0);
-
+        final LooperThread test = new LooperThread();
+        test.start();
         new Thread() {
             @Override
             public void run() {
-                Looper.prepare();
-                System.out.println("looper start.");
                 try {
-                    sleep(5000);
+                    sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                Looper.loop();
-                System.out.println("looper end.");
+                test.myHandler.sendEmptyMessage(0);
             }
         }.start();
+    }
+
+    class LooperThread extends Thread {
+        public Handler myHandler;
+
+        @Override
+        public void run() {
+            Looper.prepare();
+            System.out.println("looper start.");
+            System.out.println("looper " + Looper.myLooper());
+
+            myHandler = new Handler() {
+                @Override
+                public void handleMessage(Message msg) {
+                    System.out.println("handleMessage " + msg);
+                    Looper.myLooper().quit();
+                }
+            };
+            Looper.loop();
+            System.out.println("looper end.");
+        }
     }
 
     public void startTiming(View view) {
