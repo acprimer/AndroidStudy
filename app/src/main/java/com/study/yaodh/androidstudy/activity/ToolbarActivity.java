@@ -27,6 +27,18 @@ public class ToolbarActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        Toolbar toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
+        toolbar2.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        Toolbar toolbar3 = (Toolbar) findViewById(R.id.toolbar3);
+        setSupportActionBar(toolbar3);
+        getSupportActionBar().setElevation(4);
     }
 
     public void onClick(View view) {
