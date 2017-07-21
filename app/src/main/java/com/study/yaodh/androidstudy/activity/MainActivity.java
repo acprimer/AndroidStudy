@@ -51,6 +51,8 @@ public class MainActivity extends BaseActivity {
             BluetoothActivity.class,
             LiulishuoDownloadActivity.class,
             SpinnerActivity.class,
+            CalendarActivity.class,
+            ViewPagerActivity.class
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -93,6 +95,8 @@ public class MainActivity extends BaseActivity {
             "Bluetooth",
             "Liulishuo Download",
             "Spinner",
+            "Calendar",
+            "ViewPager"
     };
 
     @Override
