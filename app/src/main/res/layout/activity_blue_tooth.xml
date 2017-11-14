@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/activity_blue_tooth"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -35,5 +36,5 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-    </RelativeLayout>
+    </LinearLayout>
 </layout>

@@ -27,9 +27,9 @@
         <item name="color">@android:color/white</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="ColorSwitchStyle">
         <item name="colorControlActivated">@color/colorAccent</item>
@@ -100,6 +100,28 @@
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="navigationIcon">?attr/homeAsUpIndicator</item>
         <item name="contentInsetStartWithNavigation">0dp</item>
+    </style>
+
+    <style name="CustomToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="navigationIcon">@drawable/toolbar_back</item>
+        <item name="titleTextAppearance">@style/NavigationDrawerTextStyle</item>
+        <item name="contentInsetStartWithNavigation">0dp</item>
+    </style>
+    
+    <style name="CustomToolbarTheme">
+        <item name="toolbarNavigationButtonStyle">@style/NavigationStyle</item>
+    </style>
+
+    <style name="NavigationStyle" parent="Base.Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="android:background">@drawable/btn_press_circle_shape</item>
+        <item name="android:width">40dp</item>
+        <item name="android:height">40dp</item>
     </style>
 
     <style name="NavigationDrawerTextStyle">

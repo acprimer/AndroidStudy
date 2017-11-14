@@ -104,9 +104,8 @@
         <activity android:name=".activity.TouchEventActivity" />
         <activity android:name=".activity.LiulishuoDownloadActivity" />
         <activity android:name=".activity.SpinnerActivity" />
-        <activity android:name=".activity.LinearLayoutActivity" />
-        <activity android:name=".activity.AnimationActivity" />
-        <activity android:name=".activity.VectorActivity"></activity>
+        <activity android:name=".activity.CalendarActivity" />
+        <activity android:name=".activity.ViewPagerActivity"></activity>
     </application>
 
 </manifest>
