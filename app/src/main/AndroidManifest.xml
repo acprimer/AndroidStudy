@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.study.yaodh.androidstudy">
+    package="com.study.yaodh.androidstudy">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
         android:name=".StudyApplication"
@@ -21,75 +21,75 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activity.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.TextViewActivity"
             android:label="@string/textview">
             <intent-filter>
-                <action android:name="android.intent.action.CREATE_SHORTCUT"/>
+                <action android:name="android.intent.action.CREATE_SHORTCUT" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.NotificationActivity"
-            android:label="@string/textview"/>
+            android:label="@string/textview" />
         <activity
             android:name=".activity.RecyclerViewActivity"
-            android:label="@string/RecyclerView"/>
+            android:label="@string/RecyclerView" />
         <activity
             android:name=".activity.DrawerActivity"
-            android:label="@string/drawer"/>
+            android:label="@string/drawer" />
         <activity
             android:name=".activity.ProgressbarActivity"
-            android:label="@string/title_activity_progressbar"/>
-        <activity android:name=".activity.ListViewLoader"/>
+            android:label="@string/title_activity_progressbar" />
+        <activity android:name=".activity.ListViewLoader" />
         <activity
             android:name=".activity.ShareActivity"
-            android:label="@string/title_activity_share"/>
+            android:label="@string/title_activity_share" />
         <activity
             android:name=".activity.ImageViewActivity"
-            android:label="@string/title_activity_image_view"/>
+            android:label="@string/title_activity_image_view" />
         <activity
             android:name=".activity.TextSwitcherActivity"
-            android:label="@string/title_activity_text_swticher"/>
-        <activity android:name=".activity.SwitchButtonActivity"/>
-        <activity android:name=".activity.SectionRecyclerViewActivity"/>
-        <activity android:name=".activity.FastScrollListActivity"/>
-        <activity android:name=".activity.DataBindingActivity"/>
-        <activity android:name=".activity.AnimActivity"/>
-        <activity android:name=".activity.CoordinatorActivity"/>
-        <activity android:name=".activity.ActionModeActivity"/>
-        <activity android:name=".activity.CardActivity"/>
-        <activity android:name=".activity.SearchActivity"/>
-        <activity android:name=".activity.AlertActivity"/>
-        <activity android:name=".activity.ButtonActivity"/>
-        <activity android:name=".activity.BottomSheetActivity"/>
-        <activity android:name=".activity.PermissionActivity"/>
-        <activity android:name=".activity.FileActivity"/>
-        <activity android:name=".activity.DownloadActivity"/>
+            android:label="@string/title_activity_text_swticher" />
+        <activity android:name=".activity.SwitchButtonActivity" />
+        <activity android:name=".activity.SectionRecyclerViewActivity" />
+        <activity android:name=".activity.FastScrollListActivity" />
+        <activity android:name=".activity.DataBindingActivity" />
+        <activity android:name=".activity.AnimActivity" />
+        <activity android:name=".activity.CoordinatorActivity" />
+        <activity android:name=".activity.ActionModeActivity" />
+        <activity android:name=".activity.CardActivity" />
+        <activity android:name=".activity.SearchActivity" />
+        <activity android:name=".activity.AlertActivity" />
+        <activity android:name=".activity.ButtonActivity" />
+        <activity android:name=".activity.BottomSheetActivity" />
+        <activity android:name=".activity.PermissionActivity" />
+        <activity android:name=".activity.FileActivity" />
+        <activity android:name=".activity.DownloadActivity" />
 
-        <service android:name=".service.DownloadService"/>
+        <service android:name=".service.DownloadService" />
 
-        <activity android:name=".activity.MultiDownloadActivity"/>
-        <activity android:name=".activity.RxAndroidActivity"/>
-        <activity android:name=".activity.FlexboxLayoutActivity"/>
-        <activity android:name=".activity.ContentProviderActivity"/>
+        <activity android:name=".activity.MultiDownloadActivity" />
+        <activity android:name=".activity.RxAndroidActivity" />
+        <activity android:name=".activity.FlexboxLayoutActivity" />
+        <activity android:name=".activity.ContentProviderActivity" />
 
         <provider
             android:name=".db.StudentProvider"
-            android:authorities="college"/>
+            android:authorities="college" />
 
-        <activity android:name=".activity.BottomNavActivity"/>
-        <activity android:name=".activity.DownloadListActivity"/>
-        <activity android:name=".activity.ToolbarActivity"/>
-        <activity android:name=".activity.TTSActivity"/>
-        <!--<activity android:name=".activity.BluetoothActivity"/>-->
-        <activity android:name=".activity.HandlerActivity"/>
+        <activity android:name=".activity.BottomNavActivity" />
+        <activity android:name=".activity.DownloadListActivity" />
+        <activity android:name=".activity.ToolbarActivity" />
+        <activity android:name=".activity.TTSActivity" />
+        <!-- <activity android:name=".activity.BluetoothActivity"/> -->
+        <activity android:name=".activity.HandlerActivity" />
         <activity android:name=".activity.TextDefActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -103,7 +103,10 @@
         <activity android:name=".activity.EventBusActivity" />
         <activity android:name=".activity.TouchEventActivity" />
         <activity android:name=".activity.LiulishuoDownloadActivity" />
-        <activity android:name=".activity.SpinnerActivity"></activity>
+        <activity android:name=".activity.SpinnerActivity" />
+        <activity android:name=".activity.LinearLayoutActivity" />
+        <activity android:name=".activity.AnimationActivity" />
+        <activity android:name=".activity.VectorActivity"></activity>
     </application>
 
 </manifest>

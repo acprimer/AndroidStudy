@@ -370,6 +370,54 @@
                 android:text="ɪmˈpɪəri:əs kɔːz hello /həˈləʊ/ hi: नमस्ते gu: હેલો pa: ਸਤ ਸ੍ਰੀ ਅਕਾਲ"
                 app:font="@{`NotoSansUI-Regular`}" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="ɪmˈpɪəri:əs kɔːz hello /həˈləʊ/ hi: नमस्ते gu: હેલો pa: ਸਤ ਸ੍ਰੀ ਅਕਾਲ"
+                app:font="@{`phonetic.subset`}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="ɪmˈpɪəri:əs kɔːz hello /həˈləʊ/ hi: नमस्ते gu: હેલો pa: ਸਤ ਸ੍ਰੀ ਅਕਾਲ"
+                app:font="@{`phonetic`}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="ɪmˈpɪəri:əs kɔːz hello /həˈləʊ/ hi: नमस्ते gu: હેલો pa: ਸਤ ਸ੍ਰੀ ਅਕਾਲ"
+                app:font="@{`DroidSans-Regular.subset`}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="ɪmˈpɪəri:əs kɔːz hello /həˈləʊ/ hi: नमस्ते gu: હેલો pa: ਸਤ ਸ੍ਰੀ ਅਕਾਲ"
+                app:font="@{`DroidSans-Regular.subset1`}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="ɪmˈpɪəri:əs kɔːz hello /həˈləʊ/ hi: नमस्ते gu: હેલો pa: ਸਤ ਸ੍ਰੀ ਅਕਾਲ"
+                app:font="@{`DroidSans-Regular`}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="ɪmˈpɪəri:əs kɔːz hello /həˈləʊ/ hi: नमस्ते gu: હેલો pa: ਸਤ ਸ੍ਰੀ ਅਕਾਲ"
+                app:font="@{`segoeui`}" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="ɪmˈpɪəri:əs kɔːz hello /həˈləʊ/ hi: नमस्ते gu: હેલો pa: ਸਤ ਸ੍ਰੀ ਅਕਾਲ"
+                app:font="@{`segoeui.subset`}" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="8dp" />

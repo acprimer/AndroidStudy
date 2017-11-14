@@ -51,6 +51,9 @@ public class MainActivity extends BaseActivity {
             BluetoothActivity.class,
             LiulishuoDownloadActivity.class,
             SpinnerActivity.class,
+            LinearLayoutActivity.class,
+            AnimationActivity.class,
+            VectorActivity.class
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -93,6 +96,9 @@ public class MainActivity extends BaseActivity {
             "Bluetooth",
             "Liulishuo Download",
             "Spinner",
+            "LinearLayout",
+             "动画",
+            "Vector"
     };
 
     @Override
@@ -107,7 +113,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initContent() {
-        ListView listView = (ListView) findViewById(R.id.listview);
+        ListView listView = findViewById(R.id.listview);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_expandable_list_item_1,
                 titles);
