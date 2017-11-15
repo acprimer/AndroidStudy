@@ -53,6 +53,8 @@ public class MainActivity extends BaseActivity {
             SpinnerActivity.class,
             CalendarActivity.class,
             ViewPagerActivity.class,
+            ListViewActivity.class,
+            ViewPagerActivity.class,
             LinearLayoutActivity.class,
             AnimationActivity.class,
             VectorActivity.class
@@ -99,6 +101,8 @@ public class MainActivity extends BaseActivity {
             "Liulishuo Download",
             "Spinner",
             "Calendar",
+            "ViewPager",
+            "ListView",
             "ViewPager",
             "LinearLayout",
             "动画",

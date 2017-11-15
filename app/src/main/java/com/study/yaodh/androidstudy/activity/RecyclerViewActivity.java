@@ -1,5 +1,6 @@
 package com.study.yaodh.androidstudy.activity;
 
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -10,7 +11,6 @@ import android.view.MenuItem;
 import com.study.yaodh.androidstudy.R;
 import com.study.yaodh.androidstudy.adapter.SimpleRecyclerViewAdapter;
 import com.study.yaodh.androidstudy.model.StaggerItem;
-import com.study.yaodh.androidstudy.view.DividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +52,7 @@ public class RecyclerViewActivity extends BaseActivity implements Toolbar.OnMenu
         SlideInOutLeftItemAnimator animator = new SlideInOutLeftItemAnimator(recyclerView);
         animator.setAddDuration(500);
         recyclerView.setItemAnimator(animator);
+//        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
     }
 

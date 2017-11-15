@@ -69,6 +69,10 @@ public class TTSActivity extends BaseActivity implements TextToSpeech.OnInitList
                             binding.ivSpeech.setBackgroundResource(R.drawable.spinner);
                             AnimationDrawable animationDrawable = (AnimationDrawable) binding.ivSpeech.getBackground();
                             animationDrawable.start();
+
+                            binding.speechText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.spinner, 0, 0, 0);
+                            AnimationDrawable d = (AnimationDrawable) binding.speechText.getCompoundDrawables()[0];
+                            d.start();
                         }
                     });
                 }

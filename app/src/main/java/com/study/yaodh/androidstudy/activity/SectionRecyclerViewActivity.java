@@ -1,5 +1,6 @@
 package com.study.yaodh.androidstudy.activity;
 
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
@@ -7,7 +8,6 @@ import android.widget.TextView;
 import com.study.yaodh.androidstudy.R;
 import com.study.yaodh.androidstudy.adapter.SectionRecyclerViewAdapter;
 import com.study.yaodh.androidstudy.model.ListItem;
-import com.study.yaodh.androidstudy.view.SectionDividerItemDecoration;
 import com.study.yaodh.androidstudy.view.SideBar;
 
 import java.util.LinkedList;
@@ -47,7 +47,8 @@ public class SectionRecyclerViewActivity extends BaseActivity {
             list.add(new ListItem(ListItem.TYPE_ITEM, fruits[i], "Fruit " + i));
         }
         sectionRecyclerView.setAdapter(mAdapter = new SectionRecyclerViewAdapter(this, list));
-        sectionRecyclerView.addItemDecoration(new SectionDividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+//        sectionRecyclerView.addItemDecoration(new SectionDividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        sectionRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
         sideBar.setOnTouchingLetterChangedListener(new SideBar.OnTouchingLetterChangedListener() {
             @Override

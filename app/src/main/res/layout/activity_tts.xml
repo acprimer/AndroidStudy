@@ -32,7 +32,29 @@
             android:id="@+id/iv_speech"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_pronounce"/>
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_pronounce" />
+
+        <TextView
+            android:id="@+id/speech_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:drawableLeft="@drawable/ic_pronounce"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:text="发音" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:drawableLeft="@drawable/spinner"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:text="发音" />
 
     </LinearLayout>
 </layout>

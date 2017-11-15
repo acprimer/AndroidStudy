@@ -100,6 +100,12 @@ public class TextViewActivity extends BaseActivity {
 //        Typeface ut = FontCache.getInstance().get("font_noto_merged");
 //        sunio.setSpan(new FontTypefaceSpan(ut), 0, union.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         binding.reg.setText(sunio);
+
+        autoFitTextView();
+    }
+
+    private void autoFitTextView() {
+        binding.autoFit.setVisibility(View.GONE);
     }
 
     int columnIndentation = 150;

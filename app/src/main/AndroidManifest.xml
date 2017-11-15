@@ -106,6 +106,8 @@
         <activity android:name=".activity.SpinnerActivity" />
         <activity android:name=".activity.CalendarActivity" />
         <activity android:name=".activity.ViewPagerActivity" />
+        <activity android:name=".activity.ListViewActivity"></activity>
+        <activity android:name=".activity.ViewPagerActivity" />
         <activity android:name=".activity.LinearLayoutActivity" />
         <activity android:name=".activity.AnimationActivity" />
         <activity android:name=".activity.VectorActivity" />
