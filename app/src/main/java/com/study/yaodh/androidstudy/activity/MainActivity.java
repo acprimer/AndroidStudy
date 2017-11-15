@@ -52,7 +52,10 @@ public class MainActivity extends BaseActivity {
             LiulishuoDownloadActivity.class,
             SpinnerActivity.class,
             CalendarActivity.class,
-            ViewPagerActivity.class
+            ViewPagerActivity.class,
+            LinearLayoutActivity.class,
+            AnimationActivity.class,
+            VectorActivity.class
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -96,7 +99,10 @@ public class MainActivity extends BaseActivity {
             "Liulishuo Download",
             "Spinner",
             "Calendar",
-            "ViewPager"
+            "ViewPager",
+            "LinearLayout",
+            "动画",
+            "Vector"
     };
 
     @Override
