@@ -105,7 +105,7 @@ public class TextViewActivity extends BaseActivity {
     }
 
     private void autoFitTextView() {
-        binding.autoFit.setVisibility(View.GONE);
+//        binding.autoFit.setVisibility(View.GONE);
     }
 
     int columnIndentation = 150;

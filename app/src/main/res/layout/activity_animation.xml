@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/view_anim"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -14,16 +16,19 @@
             android:layout_height="wrap_content"
             android:onClick="translationAnim"
             android:text="平移" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="scaleAnim"
             android:text="缩放" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="rotateAnim"
             android:text="旋转" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,11 +36,54 @@
             android:text="透明度" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/img"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_centerInParent="true"
-        android:src="@drawable/dragon_small" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-</RelativeLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Egg" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:onClick="shakeEgg">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:src="@drawable/promotion_henhouse" />
+
+        <ImageView
+            android:id="@+id/egg"
+            android:layout_marginBottom="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/promotion_hatchingegg" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:src="@drawable/promotion_henhouse_mask"/>
+    </FrameLayout>
+
+    <ImageView
+        app:srcCompat="@drawable/anim_vector_cloud"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:onClick="fly"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:onClick="argb"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="#ff0000"/>
+
+</LinearLayout>

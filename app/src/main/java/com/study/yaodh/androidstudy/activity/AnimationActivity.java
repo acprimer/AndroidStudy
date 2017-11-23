@@ -1,5 +1,9 @@
 package com.study.yaodh.androidstudy.activity;
 
+import android.animation.ObjectAnimator;
+import android.animation.TypeEvaluator;
+import android.animation.ValueAnimator;
+import android.graphics.drawable.AnimatedVectorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,6 +12,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.study.yaodh.androidstudy.R;
+import com.study.yaodh.androidstudy.interpolator.EggShakeInterpolator;
+import com.study.yaodh.androidstudy.interpolator.HesitateInterpolator;
 
 public class AnimationActivity extends AppCompatActivity {
     private ImageView img;
@@ -17,12 +23,13 @@ public class AnimationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animation);
 
-        img = findViewById(R.id.img);
+        img = findViewById(R.id.egg);
     }
 
     public void translationAnim(View view) {
         // 1. XML实现方式
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.anim_translate);
+        anim.setInterpolator(new HesitateInterpolator());
         img.startAnimation(anim);
 
         // 2. 代码实现方式
@@ -39,5 +46,50 @@ public class AnimationActivity extends AppCompatActivity {
     }
 
     public void alphaAnim(View view) {
+    }
+
+    public void shakeEgg(View view) {
+        ImageView egg = view.findViewById(R.id.egg);
+//        Animation anim = AnimationUtils.loadAnimation(this, R.anim.anim_rotate);
+//        anim.setInterpolator(new EggShakeInterpolator());
+//        egg.startAnimation(anim);
+        egg.setPivotX(egg.getWidth() / 2.f);
+        egg.setPivotY(egg.getHeight());
+        final ObjectAnimator anim = ObjectAnimator.ofFloat(egg, View.ROTATION, 0, 1);
+        anim.setDuration(EggShakeInterpolator.DURATION);
+        anim.setInterpolator(new EggShakeInterpolator());
+//        anim.setRepeatCount(ValueAnimator.INFINITE);
+//        anim.setEvaluator(new FloatEvaluator());
+        anim.setEvaluator(new TypeEvaluator<Float>() {
+            @Override
+            public Float evaluate(float fraction, Float startValue, Float endValue) {
+                System.out.printf("evaluate %.3f %.3f %.3f\n", fraction, startValue, endValue);
+                return startValue + fraction * (endValue - startValue);
+            }
+        });
+        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float fraction = anim.getAnimatedFraction();
+                float value = (float) anim.getAnimatedValue();
+                System.out.printf("onAnimationUpdate %.3f %.3f\n",
+                        fraction, value);
+            }
+        });
+
+        anim.start();
+    }
+
+    public void fly(View view) {
+        AnimatedVectorDrawable drawable = (AnimatedVectorDrawable) getDrawable(R.drawable.anim_vector_cloud);
+        ((ImageView)view).setImageDrawable(drawable);
+        drawable.start();
+    }
+
+    public void argb(View view) {
+        ObjectAnimator anim = ObjectAnimator.ofArgb(view, "backgroundColor", 0xff00ff00, 0xff0000ff);
+        anim.setDuration(3000);
+        anim.setRepeatCount(Animation.INFINITE);
+        anim.start();
     }
 }
