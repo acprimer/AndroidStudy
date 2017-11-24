@@ -83,7 +83,15 @@
     <View
         android:onClick="argb"
         android:layout_width="48dp"
+        android:layout_marginLeft="16dp"
         android:layout_height="48dp"
-        android:background="#ff0000"/>
+        android:background="#ffff0000"/>
+
+    <com.study.yaodh.androidstudy.view.BallView
+        android:id="@+id/ball"
+        android:onClick="pointAnim"
+        android:layout_width="48dp"
+        android:layout_marginLeft="16dp"
+        android:layout_height="48dp"/>
 
 </LinearLayout>

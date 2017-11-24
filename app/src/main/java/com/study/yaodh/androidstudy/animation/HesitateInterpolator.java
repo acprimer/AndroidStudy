@@ -1,4 +1,4 @@
-package com.study.yaodh.androidstudy.interpolator;
+package com.study.yaodh.androidstudy.animation;
 
 import android.view.animation.Interpolator;
 

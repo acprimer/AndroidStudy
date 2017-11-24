@@ -3,20 +3,27 @@ package com.study.yaodh.androidstudy.activity;
 import android.animation.ObjectAnimator;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
+import android.graphics.PointF;
 import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
 import com.study.yaodh.androidstudy.R;
-import com.study.yaodh.androidstudy.interpolator.EggShakeInterpolator;
-import com.study.yaodh.androidstudy.interpolator.HesitateInterpolator;
+import com.study.yaodh.androidstudy.animation.EggShakeInterpolator;
+import com.study.yaodh.androidstudy.animation.HesitateInterpolator;
+import com.study.yaodh.androidstudy.animation.HsvEvaluator;
+import com.study.yaodh.androidstudy.animation.PointEvaluator;
+import com.study.yaodh.androidstudy.view.BallView;
 
 public class AnimationActivity extends AppCompatActivity {
     private ImageView img;
+    private BallView ball;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +31,8 @@ public class AnimationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_animation);
 
         img = findViewById(R.id.egg);
+        ball = findViewById(R.id.ball);
+        ball.setColor(0x3300ff00);
     }
 
     public void translationAnim(View view) {
@@ -81,15 +90,35 @@ public class AnimationActivity extends AppCompatActivity {
     }
 
     public void fly(View view) {
-        AnimatedVectorDrawable drawable = (AnimatedVectorDrawable) getDrawable(R.drawable.anim_vector_cloud);
-        ((ImageView)view).setImageDrawable(drawable);
-        drawable.start();
+        Drawable drawable = ((ImageView)view).getDrawable();
+        if (drawable instanceof AnimatedVectorDrawable) {
+            ((AnimatedVectorDrawable) drawable).start();
+        }
+//        AnimatedVectorDrawable drawable = (AnimatedVectorDrawable) getDrawable(R.drawable.anim_vector_cloud);
+//        ((ImageView)view).setImageDrawable(drawable);
+//        drawable.start();
     }
 
     public void argb(View view) {
-        ObjectAnimator anim = ObjectAnimator.ofArgb(view, "backgroundColor", 0xff00ff00, 0xff0000ff);
+        // API 21
+//        ObjectAnimator anim = ObjectAnimator.ofArgb(view, "backgroundColor", 0xff00ff00, 0xff0000ff);
+//        anim.setDuration(3000);
+//        anim.setRepeatCount(Animation.INFINITE);
+//        anim.start();
+
+        ObjectAnimator anim = ObjectAnimator.ofInt(
+                view, "backgroundColor", 0xffff0000, 0xff00ff00);
+//        anim.setEvaluator(new ArgbEvaluator());
+        anim.setEvaluator(new HsvEvaluator());
         anim.setDuration(3000);
-        anim.setRepeatCount(Animation.INFINITE);
+        anim.start();
+    }
+
+    public void pointAnim(View view) {
+        ObjectAnimator anim = ObjectAnimator.ofObject(view, "position",
+                new PointEvaluator(), new PointF(0, 0), new PointF(100, 100));
+        anim.setInterpolator(new LinearInterpolator());
+        anim.setDuration(3000);
         anim.start();
     }
 }
