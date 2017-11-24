@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.study.yaodh.androidstudy.R;
 import com.study.yaodh.androidstudy.view.FloatingSearchView;
 
@@ -15,7 +14,7 @@ public class SearchActivity extends BaseActivity {
     private RecyclerView mReccylerView;
     private SearchView searchView;
     private FloatingSearchView floatingSearchView;
-    private MaterialSearchBar searchBar;
+//    private MaterialSearchBar searchBar;
 
     @Override
     protected int getLayoutId() {
@@ -37,9 +36,9 @@ public class SearchActivity extends BaseActivity {
             }
         });
 
-        searchBar = (MaterialSearchBar) findViewById(R.id.searchBar);
-        searchBar.setHint("Custom hint");
-        searchBar.setSpeechMode(true);
+//        searchBar = (MaterialSearchBar) findViewById(R.id.searchBar);
+//        searchBar.setHint("Custom hint");
+//        searchBar.setSpeechMode(true);
         //enable searchbar callbacks
 //        searchBar.setOnSearchActionListener(this);
         //restore last queries from disk

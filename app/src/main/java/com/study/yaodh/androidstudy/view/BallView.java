@@ -16,7 +16,8 @@ public class BallView extends View {
 
     private Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private PointF position = new PointF();
-    private int color = 0xFF000000;
+    private int color = 0x3300FF00;
+    private int radius = 60;
 
     public BallView(Context context) {
         super(context);
@@ -45,16 +46,17 @@ public class BallView extends View {
 
     public void setPosition(PointF position) {
         this.position = position;
+        invalidate();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        int width = getWidth();
-        int height = getHeight();
+        int paddingLeft = getPaddingLeft();
+        int paddingTop = getPaddingTop();
         mPaint.setColor(color);
 
-        canvas.drawCircle(width / 2 + position.x, height / 2 + position.y, width / 2, mPaint);
+        canvas.drawCircle(paddingLeft + radius + position.x, paddingTop + radius + position.y, radius, mPaint);
     }
 }

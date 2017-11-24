@@ -1,39 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/view_anim"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
+        <TextView
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="视图动画" />
+
+        <Button
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:onClick="translationAnim"
             android:text="平移" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="scaleAnim"
-            android:text="缩放" />
-
-        <Button
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:onClick="rotateAnim"
             android:text="旋转" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:onClick="scaleAnim"
+            android:text="缩放" />
+
+        <Button
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:onClick="alphaAnim"
-            android:text="透明度" />
+            android:text="渐变" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:onClick="setAnim"
+            android:text="集合" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="逐帧动画" />
+
+        <ImageView
+            android:id="@+id/iv_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="playPhone"
+            android:src="@drawable/anim_pronounce" />
     </LinearLayout>
 
     <LinearLayout
@@ -41,57 +71,128 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Egg" />
+            android:text="属性动画" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:onClick="translationProperty"
+            android:text="平移" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:onClick="rotateProperty"
+            android:text="旋转" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:onClick="scaleProperty"
+            android:text="缩放" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:onClick="alphaProperty"
+            android:text="渐变" />
     </LinearLayout>
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:onClick="shakeEgg">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:src="@drawable/promotion_henhouse" />
-
-        <ImageView
-            android:id="@+id/egg"
-            android:layout_marginBottom="18dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/promotion_hatchingegg" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:src="@drawable/promotion_henhouse_mask"/>
-    </FrameLayout>
-
-    <ImageView
-        app:srcCompat="@drawable/anim_vector_cloud"
-        android:layout_marginTop="10dp"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:onClick="fly"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-    <View
-        android:onClick="argb"
-        android:layout_width="48dp"
-        android:layout_marginLeft="16dp"
-        android:layout_height="48dp"
-        android:background="#ffff0000"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="插值器" />
 
-    <com.study.yaodh.androidstudy.view.BallView
-        android:id="@+id/ball"
-        android:onClick="pointAnim"
-        android:layout_width="48dp"
-        android:layout_marginLeft="16dp"
-        android:layout_height="48dp"/>
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:onClick="shakeEgg">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:src="@drawable/promotion_henhouse" />
+
+            <ImageView
+                android:id="@+id/egg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:src="@drawable/promotion_hatchingegg" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:src="@drawable/promotion_henhouse_mask" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="计算规则" />
+
+        <com.study.yaodh.androidstudy.view.BallView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:onClick="pointAnim"
+            android:paddingLeft="60dp"
+            android:paddingTop="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ofObject" />
+
+        <com.study.yaodh.androidstudy.view.BallView
+            android:layout_width="match_parent"
+            android:layout_height="96dp"
+            android:background="#33ff0000"
+            android:onClick="objAnim"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="矢量图动画" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="fly"
+            app:srcCompat="@drawable/anim_vector_cloud" />
+    </LinearLayout>
 </LinearLayout>

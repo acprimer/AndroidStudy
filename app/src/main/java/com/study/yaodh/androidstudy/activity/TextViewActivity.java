@@ -43,7 +43,7 @@ public class TextViewActivity extends BaseActivity {
 
         // set drawable in code
         // method 1: setBounds() can resize the image width and height.
-        Drawable drawable = getResources().getDrawable(R.drawable.ic_arrow_left_black_48dp);
+        Drawable drawable = getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp);
         drawable.setBounds(0, 0, Utils.dip2px(this, 24), Utils.dip2px(this, 24));
         binding.tvIcon.setCompoundDrawables(drawable, null, null, null);
         // method 2: recommended
