@@ -99,6 +99,12 @@
             android:layout_height="wrap_content"
             android:onClick="alphaProperty"
             android:text="渐变" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:onClick="setProperty"
+            android:text="集合" />
     </LinearLayout>
 
     <LinearLayout

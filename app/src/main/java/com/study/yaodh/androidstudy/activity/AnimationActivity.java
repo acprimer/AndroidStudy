@@ -1,5 +1,6 @@
 package com.study.yaodh.androidstudy.activity;
 
+import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
@@ -115,7 +116,7 @@ public class AnimationActivity extends AppCompatActivity {
     }
 
 
-    public void translationProperty(View view) {
+    public void translationProperty(final View view) {
         // 方式一
 //        ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationX", 60);
 //        animator.setDuration(2000);
@@ -123,7 +124,19 @@ public class AnimationActivity extends AppCompatActivity {
         // 方式二
 //        ObjectAnimator.ofFloat(view, "translationX", 0, 1000).setDuration(2000).start();
         // 方式三
-        view.animate().translationX(1000).setDuration(2000).start();
+//        view.animate().translationX(1000).setDuration(2000).start();
+
+        // ValueAnimator
+        ValueAnimator animator = ValueAnimator.ofFloat(0, 1000);
+        animator.setDuration(2000);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                view.setTranslationX((Float) animation.getAnimatedValue());
+                System.out.println("onAnimationUpdate " + animation.getAnimatedValue());
+            }
+        });
+        animator.start();
     }
 
     public void rotateProperty(View view) {
@@ -149,6 +162,35 @@ public class AnimationActivity extends AppCompatActivity {
         ObjectAnimator.ofFloat(view, "alpha", 1, 0, 1).setDuration(2000).start();
     }
 
+    public void setProperty(View view) {
+        ObjectAnimator a1 = ObjectAnimator.ofFloat(view, "translationX", 0, 60, 0).setDuration(2000);
+        ObjectAnimator a5 = ObjectAnimator.ofFloat(view, "translationX", 0, 60, 0).setDuration(2000);
+        ObjectAnimator a6 = ObjectAnimator.ofFloat(view, "translationX", 0, 60, 0).setDuration(2000);
+        ObjectAnimator a2 = ObjectAnimator.ofFloat(view, "rotation", 0, 360).setDuration(2000);
+        ObjectAnimator a3 = ObjectAnimator.ofFloat(view, "scaleX", 1.0f, 0.5f, 1.0f).setDuration(2000);
+        ObjectAnimator a4 = ObjectAnimator.ofFloat(view, "alpha", 1, 0, 1).setDuration(2000);
+        AnimatorSet set = new AnimatorSet();
+        set.play(a1).with(a2).before(a3);
+        set.play(a3).before(a4);
+        set.play(a4).with(a5).before(a6);
+        set.start();
+//        set.playTogether(a1, a2, a3, a4);
+//        set.playSequentially(a1, a2, a3, a4);
+//        set.play(a2).with(a3).after(a1).before(a4);
+//        set.play(a1).with(a1);
+//        set.play(a4).after(4000).before(a1).before(a2);
+//        set.play(a1).before(a2).before(a3);
+//        AnimatorSet.Builder builder = set.play(a1).with(a2);
+//        builder = builder.before(a3);
+//        builder.before(a4);
+//        set.play(a1).with(a2).before(a3).before(a4);
+//        set.play(a3).with(a4);
+//        set.play(a3).before(a4);
+//        set.start();
+//        set = new AnimatorSet();
+//        set.play(a4).after(4000).before(a1).before(a2);
+//        set.start();
+    }
 
     public void pointAnim(View view) {
         ObjectAnimator anim = ObjectAnimator.ofInt(
@@ -161,12 +203,19 @@ public class AnimationActivity extends AppCompatActivity {
 
 
     public void objAnim(View view) {
-        BallView ball = (BallView) view;
+        final BallView ball = (BallView) view;
         ball.setColor(0xff000000);
         ObjectAnimator anim = ObjectAnimator.ofObject((BallView) view, "position",
-                new PointEvaluator(), new PointF(0, 0), new PointF(1000, 100));
+                new PointEvaluator(), new PointF(0, 0), new PointF(700, 100));
         anim.setDuration(3000);
         anim.start();
+
+        view.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ball.setColor(0xffff0000);
+            }
+        }, 1000);
     }
 
     public void fly(View view) {
