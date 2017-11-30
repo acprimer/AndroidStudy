@@ -57,7 +57,9 @@ public class MainActivity extends BaseActivity {
             ViewPagerActivity.class,
             LinearLayoutActivity.class,
             AnimationActivity.class,
-            VectorActivity.class
+            VectorActivity.class,
+            ClassLoaderActivity.class,
+            ViewActivity.class
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -106,7 +108,9 @@ public class MainActivity extends BaseActivity {
             "ViewPager",
             "LinearLayout",
             "动画",
-            "Vector"
+            "Vector",
+            "ClassLoader",
+            "自定义View"
     };
 
     @Override

@@ -1,7 +1,6 @@
 package com.study.yaodh.androidstudy.activity;
 
 import android.animation.AnimatorSet;
-import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.TypeEvaluator;
@@ -15,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.Interpolator;
 import android.widget.ImageView;
 
 import com.study.yaodh.androidstudy.R;
@@ -195,7 +195,21 @@ public class AnimationActivity extends AppCompatActivity {
     public void pointAnim(View view) {
         ObjectAnimator anim = ObjectAnimator.ofInt(
                 (BallView) view, "color", 0xff00ff00, 0xffff0000);
-        anim.setEvaluator(new ArgbEvaluator());
+        anim.setInterpolator(new Interpolator() {
+            @Override
+            public float getInterpolation(float input) {
+                System.out.println("getInterpolation " + input);
+                return 0;
+            }
+        });
+        anim.setEvaluator(new TypeEvaluator<Integer>() {
+            @Override
+            public Integer evaluate(float fraction, Integer startValue, Integer endValue) {
+                System.out.println("evaluate " + fraction);
+                return (int) fraction * endValue;
+            }
+        });
+//        anim.setEvaluator(new ArgbEvaluator());
 //        anim.setEvaluator(new HsvEvaluator());
         anim.setDuration(3000);
         anim.start();
