@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -43,8 +44,8 @@ public class HandlerActivity extends BaseActivity {
         time++;
         int minute = time / 60;
         int second = time % 60;
-        System.out.println("time: " + time +  "\n");
-        tvOutput.append("time: " + time +  "\n");
+        System.out.println("time: " + time + "\n");
+        tvOutput.append("time: " + time + "\n");
         tvTiming.setText(String.format(Locale.ENGLISH, "%02d:%02d", minute, second));
 //        mHandler.postDelayed(clockRunnable, 1000);
     }
@@ -72,11 +73,14 @@ public class HandlerActivity extends BaseActivity {
     @Override
     protected void initContent() {
         super.initContent();
+        tvOutput = findViewById(R.id.tv_output);
+        tvTiming = findViewById(R.id.tv_timing);
+
+        testPostRunnable();
+
 //        System.out.println("thread " + Thread.currentThread().getId());
 //        System.out.println(mHandler);
 //        System.out.println(mHandler.getLooper());
-//        tvOutput = (TextView) findViewById(R.id.tv_output);
-//        tvTiming = (TextView) findViewById(R.id.tv_timing);
 //
 ////        new UpdateThread().start();
 //        mHandler.postDelayed(clockRunnable, 1000 * 20);
@@ -104,6 +108,32 @@ public class HandlerActivity extends BaseActivity {
                 test.myHandler.sendEmptyMessage(0);
             }
         }.start();
+    }
+
+    // https://mp.weixin.qq.com/s?__biz=MjM5OTE4ODgzMw==&mid=2247483722&idx=1&sn=7290f6eefc0ef19d933c0b4039865bcb&chksm=a73e01449049885220395c4906f6293900a7bb51fc2f509643839f3c41440a51ddae01d9eb56&mpshare=1&scene=23&srcid=1213PI1J8VurqCMgoIYpgQQS#rd
+    // 对比runOnUiThread 、Handler.post、View.post
+    private void testPostRunnable() {
+        View view = new View(this);
+        view.post(() -> Log.d(TAG, "run: view.post"));
+        tvOutput.post(() -> Log.d(TAG, "run: tvOutput.post"));
+        new Handler().post(() -> Log.d(TAG, "run: handler.post"));
+        runOnUiThread(() -> Log.d(TAG, "run: runOnUiThread"));
+        new Thread(() -> runOnUiThread(() -> Log.d(TAG, "run: new Thread"))).start();
+        new Thread(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            view.post(() -> Log.d(TAG, "run: view.post delay 1s"));
+            tvOutput.post(() -> Log.d(TAG, "run: tvOutput.post delay 1s"));
+        }).start();
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        Log.d(TAG, "onAttachedToWindow: ");
     }
 
     class LooperThread extends Thread {

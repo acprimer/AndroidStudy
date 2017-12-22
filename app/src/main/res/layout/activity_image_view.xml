@@ -60,6 +60,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Round Glide"/>
             <ImageView
                 android:id="@+id/round_glide"
                 android:layout_width="80dp"

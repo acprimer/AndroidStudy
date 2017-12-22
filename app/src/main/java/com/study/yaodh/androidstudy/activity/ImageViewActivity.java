@@ -49,7 +49,8 @@ public class ImageViewActivity extends BaseActivity {
 
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
-    private String dragonBallUrl = "http://o7rnhttbe.bkt.clouddn.com/dragon_small.png";
+//    private String dragonBallUrl = "http://o7rnhttbe.bkt.clouddn.com/dragon_small.png";
+    private String dragonBallUrl = "https://external.xx.fbcdn.net/safe_image.php?d=AQBbVGeeoxVZ5v5Z&url=https%3A%2F%2Fwww.facebook.com%2Fadnw_creative%3Fu1%3Dhttps%253A%252F%252Fscontent.xx.fbcdn.net%252Fv%252Ft45.1600-4%252Fc101.1.400.400%252Fp403x403%252F13718231_6051214729367_913224657_n.png.jpg%253Foh%253D37920521bb6ac24608c0be154cdf8820%2526oe%253D5AD31010%26w1%3D400%26h1%3D400%26u2%3Dhttps%253A%252F%252Fscontent.xx.fbcdn.net%252Fv%252Ft45.1600-4%252Fc102.1.400.400%252Fp403x403%252F13720831_6051210580367_2087409572_n.png.jpg%253Foh%253D7fedbea9e5ed7e999442ad548ac49d1c%2526oe%253D5ABE9250%26w2%3D400%26h2%3D400%26ssi%3D1&_nc_hash=AQCy4OwYVoJ9R8I-";
 
     @Override
     protected int getLayoutId() {

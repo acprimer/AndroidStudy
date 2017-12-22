@@ -1,6 +1,7 @@
 package com.study.yaodh.androidstudy.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,11 @@ public class BaseActivity extends AppCompatActivity {
     protected String TAG = getClass().getSimpleName();
     protected Toolbar toolbar;
     protected Context mContext;
+
+    protected void start(Class<?> clazz) {
+        Intent intent = new Intent(this, clazz);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

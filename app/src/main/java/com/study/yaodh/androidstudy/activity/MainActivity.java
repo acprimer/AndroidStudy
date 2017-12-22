@@ -59,7 +59,9 @@ public class MainActivity extends BaseActivity {
             AnimationActivity.class,
             VectorActivity.class,
             ClassLoaderActivity.class,
-            ViewActivity.class
+            ViewActivity.class,
+            ShapeActivity.class,
+            DialogActivity.class
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -110,7 +112,9 @@ public class MainActivity extends BaseActivity {
             "动画",
             "Vector",
             "ClassLoader",
-            "自定义View"
+            "自定义View",
+            "Shape",
+            "Dialog"
     };
 
     @Override

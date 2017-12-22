@@ -13,6 +13,7 @@
             android:id="@+id/child"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:padding="16dp"
             android:text="Hello" />
     </com.study.yaodh.androidstudy.view.ParentViewGroup>
 

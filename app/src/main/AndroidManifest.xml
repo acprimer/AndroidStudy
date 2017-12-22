@@ -101,7 +101,7 @@
         </activity>
         <activity android:name=".activity.LoaderActivity" />
         <activity android:name=".activity.EventBusActivity" />
-        <activity android:name=".activity.TouchEventActivity" />
+         <activity android:name=".activity.TouchEventActivity" />
         <activity android:name=".activity.LiulishuoDownloadActivity" />
         <activity android:name=".activity.SpinnerActivity" />
         <activity android:name=".activity.CalendarActivity" />
@@ -111,7 +111,12 @@
         <activity android:name=".activity.AnimationActivity" />
         <activity android:name=".activity.VectorActivity" />
         <activity android:name=".activity.ClassLoaderActivity" />
-        <activity android:name=".activity.ViewActivity"/>
+        <activity android:name=".activity.ViewActivity" />
+        <activity android:name=".activity.ShapeActivity" />
+        <activity
+            android:name=".activity.DialogThemeActivity"
+            android:theme="@style/MyDialogActivityTheme" />
+        <activity android:name=".activity.DialogActivity"/>
     </application>
 
 </manifest>

@@ -137,4 +137,8 @@
         <item name="colorButtonNormal">@color/colorPrimary</item>
     </style>
 
+    <style name="MyDialogActivityTheme" parent="Base.Theme.AppCompat.Dialog">
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+
 </resources>
