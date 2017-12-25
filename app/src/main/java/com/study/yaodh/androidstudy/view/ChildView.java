@@ -1,18 +1,21 @@
 package com.study.yaodh.androidstudy.view;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
 
 /**
  * Created by yaodh on 2017/3/30.
  */
 
-public class ChildView extends AppCompatTextView {
+public class ChildView extends View {
     public static final String TAG = "TouchEvent";
+    Paint paint = new Paint();
 
     private String name;
 
@@ -33,6 +36,13 @@ public class ChildView extends AppCompatTextView {
     }
 
     @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+//        paint.setColor(0x33ff0000);
+        canvas.drawColor(0x33ff0000);
+    }
+
+    @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         Log.d(TAG, name + " dispatchTouchEvent: " + parseMotionEventAction(ev.getAction()));
         return super.dispatchTouchEvent(ev);
@@ -41,6 +51,14 @@ public class ChildView extends AppCompatTextView {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         Log.d(TAG, name + " onTouchEvent: " + parseMotionEventAction(event.getAction()));
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                return false;
+            case MotionEvent.ACTION_MOVE:
+                return false;
+            case MotionEvent.ACTION_UP:
+                return true;
+        }
         return super.onTouchEvent(event);
     }
 

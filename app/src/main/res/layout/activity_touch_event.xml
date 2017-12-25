@@ -1,20 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.study.yaodh.androidstudy.view.ParentViewGroup xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/grand"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:src="@drawable/ic_pronounce"
+        android:padding="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.study.yaodh.androidstudy.view.ChildView
+        android:id="@+id/custom"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" />
 
     <com.study.yaodh.androidstudy.view.ParentViewGroup
-        android:id="@+id/parent"
+        android:id="@+id/grand"
+        android:background="#3300ff00"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.study.yaodh.androidstudy.view.ChildView
-            android:id="@+id/child"
+        <com.study.yaodh.androidstudy.view.ParentViewGroup
+            android:id="@+id/parent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp"
-            android:text="Hello" />
-    </com.study.yaodh.androidstudy.view.ParentViewGroup>
+            android:layout_height="match_parent">
 
-</com.study.yaodh.androidstudy.view.ParentViewGroup>
+            <com.study.yaodh.androidstudy.view.ChildView
+                android:id="@+id/child"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:padding="16dp"
+                android:text="Hello" />
+        </com.study.yaodh.androidstudy.view.ParentViewGroup>
+
+    </com.study.yaodh.androidstudy.view.ParentViewGroup>
+</LinearLayout>
