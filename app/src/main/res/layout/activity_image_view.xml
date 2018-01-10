@@ -44,6 +44,11 @@
                 android:layout_width="320dp"
                 android:layout_height="180dp" />
 
+            <TextView
+                android:text="Volley Image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
             <ImageView
                 android:id="@+id/volley_round_image"
                 android:layout_width="320dp"

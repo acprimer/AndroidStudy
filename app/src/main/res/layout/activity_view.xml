@@ -6,15 +6,55 @@
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
-        app:title="View"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:title="View" />
 
     <ImageView
         android:id="@+id/blur_image"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <com.study.yaodh.androidstudy.view.CircleImageView
+        android:id="@+id/v4_circle_image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="16dp"
+        android:padding="0dp"
+        android:src="@drawable/dragon_small"
+        app:civ_border_color="#f00"
+        app:civ_border_overlay="true"
+        app:civ_border_width="2dp"
+        app:civ_fill_color="#0f0" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="#ff0" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="320dp"
+            android:layout_height="match_parent"
+            android:background="#0ff" />
+
+        <com.study.yaodh.androidstudy.view.FrameWrapperLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.study.yaodh.androidstudy.view.ImageWrapperView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#f0f"
+                android:src="@drawable/flag_uk" />
+        </com.study.yaodh.androidstudy.view.FrameWrapperLayout>
+    </LinearLayout>
 
     <com.study.yaodh.androidstudy.view.EasyView
         android:layout_width="wrap_content"
