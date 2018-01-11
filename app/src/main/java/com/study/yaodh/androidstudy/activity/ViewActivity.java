@@ -12,10 +12,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.view.Window;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.SimpleAdapter;
 
 import com.study.yaodh.androidstudy.R;
+import com.study.yaodh.androidstudy.view.ListWrapperLayout;
 
 public class ViewActivity extends AppCompatActivity {
     private ImageView ivBlur;
@@ -25,6 +28,13 @@ public class ViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
+        ListWrapperLayout listview = findViewById(R.id.list);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                R.layout.item_wrapper_list,
+                R.id.text,
+                new String[] {"A", "B"});
+        listview.setAdapter(adapter);
 //
 //        toolbar = findViewById(R.id.toolbar);
 //        ivBlur = findViewById(R.id.blur_image);

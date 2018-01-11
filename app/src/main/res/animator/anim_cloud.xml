@@ -3,7 +3,6 @@
     android:propertyName="translateX"
     android:valueFrom="45"
     android:valueTo="-100"
-    android:valueType="floatType"
     android:duration="3000"
     android:interpolator="@android:anim/linear_interpolator"
     android:repeatCount="infinite"/>

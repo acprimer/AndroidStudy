@@ -3,6 +3,7 @@ package com.study.yaodh.androidstudy.view;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -18,17 +19,25 @@ public class ChildView extends View {
     Paint paint = new Paint();
 
     private String name;
+    private String text = "Hello";
+    private Rect bounds = new Rect();
 
     public ChildView(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public ChildView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public ChildView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init();
+    }
+
+    private void init() {
+        paint.setAntiAlias(true);
+        paint.setTextSize(60);
     }
 
     public void setName(String name) {
@@ -40,6 +49,20 @@ public class ChildView extends View {
         super.onDraw(canvas);
 //        paint.setColor(0x33ff0000);
         canvas.drawColor(0x33ff0000);
+        canvas.drawText(text, 100, 100 + bounds.height(), paint);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+//        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        // 计算文字宽度
+        paint.getTextBounds(text, 0, text.length(), bounds);
+        int measuredWidth = bounds.width() + 100 * 2;
+        int measureHeight = bounds.height() + 100 * 2;
+        measuredWidth = resolveSize(measuredWidth, widthMeasureSpec);
+        measureHeight = resolveSize(measureHeight, heightMeasureSpec);
+
+        setMeasuredDimension(measuredWidth, measureHeight);
     }
 
     @Override

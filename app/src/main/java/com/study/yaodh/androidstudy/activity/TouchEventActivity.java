@@ -79,9 +79,7 @@ public class TouchEventActivity extends AppCompatActivity {
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         Log.d(TAG, "Activity dispatchTouchEvent: " + parseMotionEventAction(ev.getAction()));
-        boolean consume = super.dispatchTouchEvent(ev);
-        Log.d(TAG, "Activity dispatchTouchEvent: return " + consume);
-        return consume;
+        return super.dispatchTouchEvent(ev);
     }
 
     @Override

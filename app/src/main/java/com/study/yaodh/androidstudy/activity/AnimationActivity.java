@@ -124,7 +124,7 @@ public class AnimationActivity extends AppCompatActivity {
         // 方式二
 //        ObjectAnimator.ofFloat(view, "translationX", 0, 1000).setDuration(2000).start();
         // 方式三
-//        view.animate().translationX(1000).setDuration(2000).start();
+        view.animate().translationX(1000).setDuration(2000).start();
 
         // ValueAnimator
         ValueAnimator animator = ValueAnimator.ofFloat(0, 1000);
@@ -173,7 +173,6 @@ public class AnimationActivity extends AppCompatActivity {
         set.play(a1).with(a2).before(a3);
         set.play(a3).before(a4);
         set.play(a4).with(a5).before(a6);
-        System.out.println(set);
         set.start();
 //        set.playTogether(a1, a2, a3, a4);
 //        set.playSequentially(a1, a2, a3, a4);
