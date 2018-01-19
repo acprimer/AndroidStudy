@@ -61,7 +61,8 @@ public class MainActivity extends BaseActivity {
             ClassLoaderActivity.class,
             ViewActivity.class,
             ShapeActivity.class,
-            DialogActivity.class
+            DialogActivity.class,
+            ShadowActivity.class,
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -114,7 +115,8 @@ public class MainActivity extends BaseActivity {
             "ClassLoader",
             "自定义View",
             "Shape",
-            "Dialog"
+            "Dialog",
+            "阴影"
     };
 
     @Override

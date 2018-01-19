@@ -102,6 +102,13 @@ public class TextViewActivity extends BaseActivity {
         binding.reg.setText(sunio);
 
         autoFitTextView();
+
+        binding.inputConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.autoText.setText(binding.input.getText());
+            }
+        });
     }
 
     private void autoFitTextView() {

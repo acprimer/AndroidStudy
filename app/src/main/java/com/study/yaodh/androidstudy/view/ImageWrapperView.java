@@ -23,20 +23,29 @@ public class ImageWrapperView extends AppCompatImageView {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        System.out.println("\t\timage super onMeasure-----------");
-        System.out.printf("\t\timage widthSpec 0x%s, heightSpec 0x%s\n",
-                Integer.toHexString(widthMeasureSpec),
-                Integer.toHexString(heightMeasureSpec));
-        System.out.printf("\t\timage width 0x%s, height 0x%s\n",
-                Integer.toHexString(getMeasuredWidthAndState()),
-                Integer.toHexString(getMeasuredHeightAndState()));
+//        System.out.println("\t\timage super onMeasure-----------");
+//        System.out.printf("\t\timage widthSpec 0x%s, heightSpec 0x%s\n",
+//                Integer.toHexString(widthMeasureSpec),
+//                Integer.toHexString(heightMeasureSpec));
+//        System.out.printf("\t\timage width 0x%s, height 0x%s\n",
+//                Integer.toHexString(getMeasuredWidthAndState()),
+//                Integer.toHexString(getMeasuredHeightAndState()));
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        System.out.println("\t\tafter image super onMeasure-----------");
-        System.out.printf("\t\timage widthSpec 0x%s, heightSpec 0x%s\n",
-                Integer.toHexString(widthMeasureSpec),
-                Integer.toHexString(heightMeasureSpec));
-        System.out.printf("\t\timage width 0x%s, height 0x%s\n",
-                Integer.toHexString(getMeasuredWidthAndState()),
-                Integer.toHexString(getMeasuredHeightAndState()));
+//        System.out.println("\t\tafter image super onMeasure-----------");
+//        System.out.printf("\t\timage widthSpec 0x%s, heightSpec 0x%s\n",
+//                Integer.toHexString(widthMeasureSpec),
+//                Integer.toHexString(heightMeasureSpec));
+//        System.out.printf("\t\timage width 0x%s, height 0x%s\n",
+//                Integer.toHexString(getMeasuredWidthAndState()),
+//                Integer.toHexString(getMeasuredHeightAndState()));
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        System.out.println("\t\tonLayout-----------");
+        System.out.println("\t\timage super onLayout-----------");
+        System.out.printf("\t\timage %d, %d, %d, %d\n",
+                left, top, right, bottom);
+        super.onLayout(changed, left, top, right, bottom);
     }
 }

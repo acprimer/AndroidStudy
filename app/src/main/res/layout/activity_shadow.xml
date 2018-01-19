@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layoutMode="opticalBounds"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layoutMode="opticalBounds">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="83dp"
+            android:layout_height="113dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/cover_bg"
+            android:scaleType="centerCrop"
+            android:src="@drawable/dict_cover" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/image"
+            android:layout_toRightOf="@id/image"
+            android:background="#888"
+            android:text="Hello" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/image"
+            android:background="#888"
+            android:text="Hello" />
+
+    </RelativeLayout>
+
+    <Button
+        android:text="Click"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:text="Click"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/pop"
+        android:padding="16dp"
+        android:text="可绘制对象资源是一般概念，是指可在屏幕上绘制的图形，以及可以使用 getDrawable(int) 等 API 检索或者应用到具有 android:drawable 和 android:icon 等属性的其他 XML 资源的图形。共有多种不同类型的可绘制对象："
+        android:textColor="#fff"
+        android:lineSpacingExtra="4dp"
+        android:background="@drawable/nine_patch_test"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

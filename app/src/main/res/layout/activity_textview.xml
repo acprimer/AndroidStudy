@@ -411,6 +411,7 @@
                 android:layout_marginTop="8dp"
                 android:text="ɪmˈpɪəri:əs kɔːz hello /həˈləʊ/ hi: नमस्ते gu: હેલો pa: ਸਤ ਸ੍ਰੀ ਅਕਾਲ"
                 app:font="@{`segoeui`}" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -430,6 +431,30 @@
                 android:text="Hello"
                 app:drawable_tint="@{@color/pronounce_tint_color}" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/input"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/input_confirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="确定" />
+            </LinearLayout>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/auto_text"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:text="Hello"
+                app:autoSizeTextType="uniform" />
         </LinearLayout>
     </ScrollView>
 </layout>

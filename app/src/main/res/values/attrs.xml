@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <attr name="floatingSearchViewStyle" format="reference"/>
+    <attr name="floatingSearchViewStyle" format="reference" />
 
     <declare-styleable name="FloatingSearchView">
-        <attr name="fsv_searchBarWidth" format="dimension|reference"/>
-        <attr name="fsv_menu" format="reference"/>
-        <attr name="fsv_contentBackgroundColor" format="color|reference"/>
-        <attr name="fsv_cornerRadius" format="dimension|reference"/>
-        <attr name="fsv_icon" format="reference"/>
-        <attr name="logo"/>
-        <attr name="contentInsetStart"/>
-        <attr name="contentInsetEnd"/>
-        <attr name="android:divider"/>
-        <attr name="android:dividerHeight"/>
-        <attr name="android:hint"/>
-        <attr name="popupTheme"/>
+        <attr name="fsv_searchBarWidth" format="dimension|reference" />
+        <attr name="fsv_menu" format="reference" />
+        <attr name="fsv_contentBackgroundColor" format="color|reference" />
+        <attr name="fsv_cornerRadius" format="dimension|reference" />
+        <attr name="fsv_icon" format="reference" />
+        <attr name="logo" />
+        <attr name="contentInsetStart" />
+        <attr name="contentInsetEnd" />
+        <attr name="android:divider" />
+        <attr name="android:dividerHeight" />
+        <attr name="android:hint" />
+        <attr name="popupTheme" />
     </declare-styleable>
 
     <declare-styleable name="CircleProgressBar">
-        <attr name="line_count" format="integer"/>
-        <attr name="draw_progress_text" format="boolean"/>
-        <attr name="line_width" format="dimension|reference"/>
-        <attr name="background_color" format="color|reference"/>
-        <attr name="progress_start_color" format="color|reference"/>
-        <attr name="progress_end_color" format="color|reference"/>
-        <attr name="progress_text_color" format="color|reference"/>
-        <attr name="progress_text_size" format="dimension|reference"/>
-        <attr name="progress_stroke_width" format="dimension|reference"/>
-        <attr name="progress_background_color" format="color|reference"/>
-        <attr name="progress_text_format_pattern" format="string|reference"/>
+        <attr name="line_count" format="integer" />
+        <attr name="draw_progress_text" format="boolean" />
+        <attr name="line_width" format="dimension|reference" />
+        <attr name="background_color" format="color|reference" />
+        <attr name="progress_start_color" format="color|reference" />
+        <attr name="progress_end_color" format="color|reference" />
+        <attr name="progress_text_color" format="color|reference" />
+        <attr name="progress_text_size" format="dimension|reference" />
+        <attr name="progress_stroke_width" format="dimension|reference" />
+        <attr name="progress_background_color" format="color|reference" />
+        <attr name="progress_text_format_pattern" format="string|reference" />
 
         <attr name="style">
-            <enum name="line" value="0"/>
-            <enum name="solid" value="1"/>
-            <enum name="solid_line" value="2"/>
+            <enum name="line" value="0" />
+            <enum name="solid" value="1" />
+            <enum name="solid_line" value="2" />
         </attr>
 
         <attr name="progress_shader">
-            <enum name="linear" value="0"/>
-            <enum name="radial" value="1"/>
-            <enum name="sweep" value="2"/>
+            <enum name="linear" value="0" />
+            <enum name="radial" value="1" />
+            <enum name="sweep" value="2" />
         </attr>
 
         <attr name="progress_stroke_cap">
-            <enum name="butt" value="0"/>
-            <enum name="round" value="1"/>
-            <enum name="square" value="2"/>
+            <enum name="butt" value="0" />
+            <enum name="round" value="1" />
+            <enum name="square" value="2" />
         </attr>
 
     </declare-styleable>
 
     <declare-styleable name="CustomProgressbar">
-        <attr name="pb_thick" format="dimension"/>
-        <attr name="pb_color" format="color"/>
+        <attr name="pb_thick" format="dimension" />
+        <attr name="pb_color" format="color" />
     </declare-styleable>
 
 
@@ -63,8 +63,8 @@
         <attr name="cpv_animDuration" format="integer" />
         <attr name="cpv_animSwoopDuration" format="integer" />
         <attr name="cpv_animSyncDuration" format="integer" />
-        <attr name="cpv_color" format="color"/>
-        <attr name="cpv_thickness" format="dimension"/>
+        <attr name="cpv_color" format="color" />
+        <attr name="cpv_thickness" format="dimension" />
         <attr name="cpv_indeterminate" format="boolean" />
         <attr name="cpv_animAutostart" format="boolean" />
         <attr name="cpv_animSteps" format="integer" />
@@ -78,5 +78,14 @@
         <attr name="android:textSize" />
         <attr name="android:textColor" />
         <attr name="android:spacing" />
+    </declare-styleable>
+
+    <declare-styleable name="ChildView">
+        <attr name="android:drawableLeft" />
+        <attr name="android:drawableRight" />
+        <attr name="android:text" />
+        <attr name="android:textSize" />
+        <attr name="android:textColor" />
+        <attr name="android:padding" />
     </declare-styleable>
 </resources>

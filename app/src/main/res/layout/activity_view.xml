@@ -7,19 +7,23 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
         app:title="View" />
 
     <com.study.yaodh.androidstudy.view.ChildView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Hello"
+        android:textColor="#fff"
+        android:textSize="24sp" />
 
     <com.study.yaodh.androidstudy.view.ListWrapperLayout
         android:id="@+id/list"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <ImageView
         android:id="@+id/blur_image"
@@ -41,7 +45,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="0dp"
         android:background="#ff0" />
 
     <LinearLayout
@@ -50,19 +54,26 @@
         android:orientation="horizontal">
 
         <View
-            android:layout_width="320dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="#0ff" />
 
         <com.study.yaodh.androidstudy.view.FrameWrapperLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:measureAllChildren="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <com.study.yaodh.androidstudy.view.ImageWrapperView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:background="#f0f"
                 android:src="@drawable/flag_uk" />
+            <TextView
+                android:textSize="60sp"
+                android:visibility="gone"
+                android:text="XXXXXXXXX"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </com.study.yaodh.androidstudy.view.FrameWrapperLayout>
     </LinearLayout>
 
@@ -72,9 +83,9 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:text="EasyView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="EasyView" />
 
     <com.study.yaodh.androidstudy.view.EasyView
         android:layout_width="wrap_content"
@@ -82,29 +93,31 @@
 
     <com.study.yaodh.androidstudy.view.DoubleImageView
         android:id="@+id/image1"
-        android:background="#000"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#000"
         android:drawableLeft="@drawable/flag_us"
         android:drawableRight="@drawable/flag_uk"
-        android:textColor="#FFF"
-        android:textSize="32sp"
+        android:spacing="15dp"
         android:text="5 - 5"
-        android:spacing="15dp"/>
+        android:textColor="#FFF"
+        android:textSize="32sp" />
 
     <com.study.yaodh.androidstudy.view.FrameGroup
         android:layout_width="50dp"
         android:layout_height="wrap_content">
+
         <TextView
-            android:background="#ff0"
-            android:text="Hello"
             android:layout_width="100dp"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:background="#ff0"
+            android:text="Hello" />
+
         <TextView
-            android:background="#ff0"
-            android:text="Hello Android"
             android:layout_width="100dp"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:background="#ff0"
+            android:text="Hello Android" />
     </com.study.yaodh.androidstudy.view.FrameGroup>
 
 </LinearLayout>
