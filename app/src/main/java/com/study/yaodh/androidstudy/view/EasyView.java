@@ -1,12 +1,21 @@
 package com.study.yaodh.androidstudy.view;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Shader;
+import android.graphics.Xfermode;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.study.yaodh.androidstudy.R;
 
 /**
  * Created by yaodh on 2017/11/30.
@@ -98,7 +107,7 @@ public class EasyView extends View {
 //        path.addCircle(390, 300, 100, Path.Direction.CW);
 //        canvas.drawPath(path, mPaint);
 
-//        Shader shader = new LinearGradient(100, 100, 500, 500, 0xFF000000, 0xFFFFFFFF, Shader.TileMode.CLAMP);
+        Shader shader = new LinearGradient(100, 100, 100, 500, 0xFF000000, 0xFFFFFFFF, Shader.TileMode.CLAMP);
 //        Shader shader = new RadialGradient(300, 300, 200, 0xFFE91E63, 0xFF2196F3, Shader.TileMode.CLAMP);
 //        Shader shader = new SweepGradient(100, 100, 0xFFFF0000, 0xFF00FF00);
 //        Bitmap bitmap1 = BitmapFactory.decodeResource(getResources(), R.drawable.batman);
@@ -108,7 +117,7 @@ public class EasyView extends View {
 //        Bitmap bitmap2 = BitmapFactory.decodeResource(getResources(), R.drawable.batman_logo);
 //        Shader shader2 = new BitmapShader(bitmap2, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
 //        Shader shader = new ComposeShader(shader1, shader2, PorterDuff.Mode.DST_OUT);
-//        mPaint.setShader(shader);
+        mPaint.setShader(shader);
 
 //        ColorFilter colorFilter = new LightingColorFilter(0x00ffff, 0x000000);
 //        ColorFilter colorFilter = new PorterDuffColorFilter(0xffff0000, PorterDuff.Mode.LIGHTEN);
@@ -124,14 +133,14 @@ public class EasyView extends View {
 //        canvas.drawRect(0, 0, width, height, mPaint);
 //        canvas.drawCircle(300, 300, 300, mPaint);
 
-//        Bitmap rect = BitmapFactory.decodeResource(getResources(), R.drawable.rectangle);
-//        Bitmap circle = BitmapFactory.decodeResource(getResources(), R.drawable.circle);
-//        int saved = canvas.saveLayer(null, null, Canvas.ALL_SAVE_FLAG);
+        Bitmap rect = BitmapFactory.decodeResource(getResources(), R.drawable.rectangle);
+        Bitmap circle = BitmapFactory.decodeResource(getResources(), R.drawable.circle);
+        int saved = canvas.saveLayer(null, null, Canvas.ALL_SAVE_FLAG);
 //
-//        canvas.drawBitmap(rect, 0, 0, mPaint);
-//        Xfermode xfermode = new PorterDuffXfermode(PorterDuff.Mode.DST_IN);
-//        mPaint.setXfermode(xfermode);
-//        canvas.drawBitmap(circle, 0, 0, mPaint);
+        canvas.drawBitmap(rect, 0, 0, mPaint);
+        Xfermode xfermode = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
+        mPaint.setXfermode(xfermode);
+        canvas.drawBitmap(circle, 0, 0, mPaint);
 //
 //        canvas.restoreToCount(saved);
 

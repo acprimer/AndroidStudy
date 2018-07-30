@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/anim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="startAnimActivity"
+        android:layout_margin="16dp"
+        android:text="弹性动画" />
+
+    <Button
+        android:id="@+id/lock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="startLockActivity"
+        android:layout_margin="16dp"
+        android:text="锁屏" />
+</LinearLayout>

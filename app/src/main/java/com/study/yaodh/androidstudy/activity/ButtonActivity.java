@@ -1,5 +1,6 @@
 package com.study.yaodh.androidstudy.activity;
 
+import android.os.Build;
 import android.support.v7.widget.PopupMenu;
 import android.view.Gravity;
 import android.view.View;
@@ -18,6 +19,10 @@ public class ButtonActivity extends BaseActivity {
 
     @Override
     protected void initContent() {
+        View view = findViewById(R.id.rc_layout);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            view.setClipToOutline(true);
+        }
     }
 
     public void showPopupMenu(View view) {

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tab_view_pager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.TabActivity">
+
+    <com.study.yaodh.androidstudy.view.tab.EnhanceTabLayout
+        android:id="@+id/enhance_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:tabIndicatorColor="@color/colorPrimary"
+        app:tabIndicatorHeight="2dp"
+        app:tabIndicatorWidth="30dp"
+        app:tabSelectTextColor="@color/colorPrimary"
+        app:tabTextColor="#999999"
+        app:tabTextSize="6sp"
+        app:tab_Mode="mode_scrollable" />
+
+</LinearLayout>

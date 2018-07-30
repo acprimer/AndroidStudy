@@ -75,8 +75,45 @@ public class HandlerActivity extends BaseActivity {
         super.initContent();
         tvOutput = findViewById(R.id.tv_output);
         tvTiming = findViewById(R.id.tv_timing);
+//        System.out.println("Thread 1 " + Thread.currentThread());
 
-        testPostRunnable();
+//        new Thread() {
+//            @Override
+//            public void run() {
+//                Looper.prepare();
+//                Handler handler = new Handler(Looper.getMainLooper()) {
+//                    @Override
+//                    public void handleMessage(Message msg) {
+//                        System.out.println("Thread 3 " + Thread.currentThread());
+//                    }
+//                };
+//                handler.sendEmptyMessage(0);
+//
+//                Looper.loop();
+//            }
+//        }.start();
+
+        Log.d(TAG, "initContent: " + Thread.currentThread().getName());
+        new Thread() {
+            @Override
+            public void run() {
+                Looper.prepare();
+                Handler handler = new Handler(new Handler.Callback() {
+                    @Override
+                    public boolean handleMessage(Message msg) {
+                        Log.d(TAG, "handleMessage: " + Thread.currentThread().getName());
+                        return false;
+                    }
+                });
+                handler.sendEmptyMessage(0);
+
+                Looper.loop();
+            }
+        }.start();
+
+
+
+//        testPostRunnable();
 
 //        System.out.println("thread " + Thread.currentThread().getId());
 //        System.out.println(mHandler);
@@ -95,19 +132,19 @@ public class HandlerActivity extends BaseActivity {
 //        };
 //        mHandler2.sendEmptyMessage(0);
 
-        final LooperThread test = new LooperThread();
-        test.start();
-        new Thread() {
-            @Override
-            public void run() {
-                try {
-                    sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                test.myHandler.sendEmptyMessage(0);
-            }
-        }.start();
+//        final LooperThread test = new LooperThread();
+//        test.start();
+//        new Thread() {
+//            @Override
+//            public void run() {
+//                try {
+//                    sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                test.myHandler.sendEmptyMessage(0);
+//            }
+//        }.start();
     }
 
     // https://mp.weixin.qq.com/s?__biz=MjM5OTE4ODgzMw==&mid=2247483722&idx=1&sn=7290f6eefc0ef19d933c0b4039865bcb&chksm=a73e01449049885220395c4906f6293900a7bb51fc2f509643839f3c41440a51ddae01d9eb56&mpshare=1&scene=23&srcid=1213PI1J8VurqCMgoIYpgQQS#rd

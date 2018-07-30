@@ -141,4 +141,9 @@
         <item name="android:windowCloseOnTouchOutside">false</item>
     </style>
 
+    <style name="TextAppearanceDictCite">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">#FFB8B8B8</item>
+    </style>
+
 </resources>

@@ -74,6 +74,9 @@
         <activity android:name=".activity.DownloadActivity" />
 
         <service android:name=".service.DownloadService" />
+        <service
+            android:name=".service.DictionaryManagerService"
+            android:process=".server.DictionaryService" />
 
         <activity android:name=".activity.MultiDownloadActivity" />
         <activity android:name=".activity.RxAndroidActivity" />
@@ -117,7 +120,10 @@
             android:name=".activity.DialogThemeActivity"
             android:theme="@style/MyDialogActivityTheme" />
         <activity android:name=".activity.DialogActivity" />
-        <activity android:name=".activity.ShadowActivity"></activity>
+        <activity android:name=".activity.ShadowActivity" />
+        <activity android:name=".activity.TabActivity" />
+        <activity android:name=".activity.HandlerThreadActivity" />
+        <!--<activity android:name=".activity.RoundCornerActivity"></activity>-->
     </application>
 
 </manifest>

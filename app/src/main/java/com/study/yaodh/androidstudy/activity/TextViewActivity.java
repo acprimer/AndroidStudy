@@ -1,8 +1,10 @@
 package com.study.yaodh.androidstudy.activity;
 
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -12,9 +14,12 @@ import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.BulletSpan;
+import android.text.style.CharacterStyle;
 import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.text.style.LeadingMarginSpan;
 import android.text.style.TabStopSpan;
+import android.text.style.TextAppearanceSpan;
 import android.text.util.Linkify;
 import android.view.View;
 import android.widget.TextView;
@@ -26,6 +31,11 @@ import com.study.yaodh.androidstudy.span.FontTypefaceSpan;
 import com.study.yaodh.androidstudy.utils.FontCache;
 import com.study.yaodh.androidstudy.utils.Utils;
 import com.study.yaodh.androidstudy.view.CustomBulletSpan;
+import com.xycoding.richtext.LinkTouchMovementMethod;
+import com.xycoding.richtext.RichText;
+import com.xycoding.richtext.typeface.IStyleSpan;
+import com.xycoding.richtext.typeface.LinkClickSpan;
+import com.xycoding.richtext.typeface.WordClickSpan;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -60,7 +70,7 @@ public class TextViewActivity extends BaseActivity {
         binding.linkText2.setText(spStr);
         binding.linkText2.setMovementMethod(LinkMovementMethod.getInstance());
 
-        CharSequence t1 = getDemoText()+"\n";
+        CharSequence t1 = getDemoText() + "\n";
         SpannableString s1 = new SpannableString(t1);
         s1.setSpan(new CustomBulletSpan(15), 0, t1.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         CharSequence br = "\n";
@@ -109,6 +119,8 @@ public class TextViewActivity extends BaseActivity {
                 binding.autoText.setText(binding.input.getText());
             }
         });
+
+        setRichText(binding.richText, "Hello world", true);
     }
 
     private void autoFitTextView() {
@@ -117,7 +129,7 @@ public class TextViewActivity extends BaseActivity {
 
     int columnIndentation = 150;
 
-    private SpannableStringBuilder getDemoSpannable () {
+    private SpannableStringBuilder getDemoSpannable() {
         SpannableStringBuilder demoSpannableString = new SpannableStringBuilder(getDemoText());
         demoSpannableString.setSpan(new TabStopSpan() {
             @Override
@@ -131,12 +143,13 @@ public class TextViewActivity extends BaseActivity {
         return demoSpannableString;
     }
 
-    public String getDemoText () {
+    public String getDemoText() {
         return "Lorem \tipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis condimentum tincidunt.";
     }
 
     private class NoLineClickSpan extends ClickableSpan {
         private String text;
+
         public NoLineClickSpan(String text) {
             super();
             this.text = text;
@@ -154,4 +167,91 @@ public class TextViewActivity extends BaseActivity {
         }
     }
 
+    private static void setRichText(final TextView textView, String origin, boolean takeWord) {
+        final int normalTextColor = textView.getTextColors().getDefaultColor();
+        final int pressedTextColor = Color.WHITE;
+        final int pressedBackgroundColor = ContextCompat.getColor(textView.getContext(), R.color.B1);
+        RichText richText = commonRichTextBuilder(textView)
+                .addLinkTypeSpan(new LinkClickSpan(
+                        normalTextColor,
+                        pressedTextColor,
+                        pressedBackgroundColor,
+                        new LinkClickSpan.OnLinkClickListener() {
+                            @Override
+                            public void onClick(TextView textView, String url) {
+//                                DictDockerManager.startWebViewActivity(textView.getContext(), url);
+                            }
+                        }
+                ))
+                .addBlockTypeSpan(new IStyleSpan() {
+                    @Override
+                    public CharacterStyle getStyleSpan() {
+                        return new TextAppearanceSpan(textView.getContext(), R.style.TextAppearanceDictCite);
+                    }
+                }, "q")
+                .build();
+        if (takeWord) {
+            origin = createClickTagString(origin);
+        }
+        Spanned spanned = richText.parse(origin);
+        textView.setMovementMethod(LinkTouchMovementMethod.getInstance());
+        textView.setText(spanned);
+    }
+
+    public static RichText.Builder commonRichTextBuilder(TextView textView) {
+        final int foregroundTextColor = ContextCompat.getColor(textView.getContext(), R.color.R1);
+        final int normalTextColor = textView.getTextColors().getDefaultColor();
+        final int pressedTextColor = Color.WHITE;
+        final int pressedBackgroundColor = ContextCompat.getColor(textView.getContext(), R.color.B1);
+        return new RichText.Builder()
+                .addBlockTypeSpan(new IStyleSpan() {
+                    @Override
+                    public CharacterStyle getStyleSpan() {
+                        return new ForegroundColorSpan(foregroundTextColor);
+                    }
+                }, "b")
+                .addBlockTypeSpan(new WordClickSpan(
+                        normalTextColor,
+                        pressedTextColor,
+                        pressedBackgroundColor,
+                        new WordClickSpan.OnWordClickListener() {
+                            @Override
+                            public void onClick(final WordClickSpan span, TextView textView1, CharSequence text, float rawX, float rawY) {
+                                System.out.println("text " + text);
+//                                boolean check = checkShowBelow(textView1.getContext(), rawY);
+//                                rawY = check ? rawY + 5 : rawY - 5;
+//                                QuickQueryService.showWithArrow(
+//                                        new QuickQueryService.OnDismissListener() {
+//                                            @Override
+//                                            public void onDismiss() {
+//                                                span.clearBackgroundColor();
+//                                            }
+//                                        },
+//                                        textView1.getContext(),
+//                                        text.toString(),
+//                                        (int) rawX,
+//                                        (int) rawY,
+//                                        check,
+//                                        QuickQueryService.QuickQueryType.QUERY);
+                            }
+                        }), "c");
+    }
+
+    public static String createClickTagString(String origin) {
+        return replaceWordsWithTag(origin, "c");
+    }
+
+    private static String replaceWordsWithTag(String origin, String tag) {
+        String startTag = "<" + tag + ">";
+        String endTag = "</" + tag + ">";
+        //正则表达式：匹配除html标签的英文单词
+        Pattern pattern = Pattern.compile("(?![^<]*>)[a-zA-Z]+");
+        Matcher matcher = pattern.matcher(origin);
+        StringBuffer buffer = new StringBuffer();
+        while (matcher.find()) {
+            matcher.appendReplacement(buffer, startTag + matcher.group() + endTag);
+        }
+        matcher.appendTail(buffer);
+        return buffer.toString();
+    }
 }

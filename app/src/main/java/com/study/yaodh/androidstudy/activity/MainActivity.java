@@ -1,6 +1,11 @@
 package com.study.yaodh.androidstudy.activity;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -8,6 +13,8 @@ import android.widget.ListView;
 
 import com.study.yaodh.androidstudy.R;
 import com.study.yaodh.androidstudy.activity.fb.FBAdActivity;
+import com.study.yaodh.androidstudy.aidl.IDictionaryManager;
+import com.study.yaodh.androidstudy.service.DictionaryManagerService;
 
 public class MainActivity extends BaseActivity {
     private Class[] activities = new Class[]{
@@ -44,6 +51,7 @@ public class MainActivity extends BaseActivity {
             ToolbarActivity.class,
             TTSActivity.class,
             HandlerActivity.class,
+            HandlerThreadActivity.class,
             LoaderActivity.class,
             FBAdActivity.class,
             EventBusActivity.class,
@@ -63,6 +71,7 @@ public class MainActivity extends BaseActivity {
             ShapeActivity.class,
             DialogActivity.class,
             ShadowActivity.class,
+            TabActivity.class
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -98,6 +107,7 @@ public class MainActivity extends BaseActivity {
             "Toolbar",
             "TextToSpeech",
             "Handler",
+            "HandlerThread",
             "Loader",
             "Facebook ad",
             "EventBus",
@@ -116,7 +126,8 @@ public class MainActivity extends BaseActivity {
             "自定义View",
             "Shape",
             "Dialog",
-            "阴影"
+            "阴影",
+            "Tab"
     };
 
     @Override
@@ -143,5 +154,25 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+
+        startAndBindService();
+    }
+
+    private IDictionaryManager iDictionaryManager;
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            iDictionaryManager = IDictionaryManager.Stub.asInterface(service);
+            Log.d(TAG, "onServiceConnected: 连接成功");
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            Log.d(TAG, "onServiceDisconnected: 连接失败");
+        }
+    };
+    private void startAndBindService() {
+        Intent service = new Intent(this, DictionaryManagerService.class);
+        bindService(service, serviceConnection, Context.BIND_AUTO_CREATE);
     }
 }

@@ -16,4 +16,6 @@
     <color name="focused_background">#33999999</color>
     <color name="focused_background_red">#33f93238</color>
     <color name="app_white_hover">#e5e9ef</color>
+    <color name="B1">#4988b8</color>
+    <color name="R1">#f03744</color>
 </resources>

@@ -455,6 +455,11 @@
                 android:layout_height="80dp"
                 android:text="Hello"
                 app:autoSizeTextType="uniform" />
+
+            <TextView
+                android:id="@+id/rich_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
 </layout>

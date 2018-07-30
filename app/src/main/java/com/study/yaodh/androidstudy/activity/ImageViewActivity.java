@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Outline;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
@@ -15,6 +16,8 @@ import android.os.Message;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.util.LruCache;
+import android.view.View;
+import android.view.ViewOutlineProvider;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -24,9 +27,11 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.squareup.picasso.Picasso;
 import com.study.yaodh.androidstudy.R;
+import com.study.yaodh.androidstudy.utils.Utils;
 import com.study.yaodh.androidstudy.view.CircleImageView;
 
 import java.io.File;
@@ -57,18 +62,43 @@ public class ImageViewActivity extends BaseActivity {
         return R.layout.activity_image_view;
     }
 
+    private ViewOutlineProvider roundProvider = new ViewOutlineProvider() {
+        @Override
+        public void getOutline(View view, Outline outline) {
+            System.out.println("width " + view.getWidth());
+            System.out.println("height " + view.getHeight());
+            int size = Math.min(view.getWidth(), view.getHeight());
+//            outline.setOval(0, 0, size, size);
+            System.out.printf("w %d h %d\n", view.getWidth(), view.getHeight());
+            outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(),
+                    Utils.dip2px(ImageViewActivity.this, 10));
+        }
+    };
+
     @Override
     protected void initContent() {
         // 圆角矩形
         // http://www.stay4it.com/course/24/learn#lesson/286
         roundImage = (ImageView) findViewById(R.id.round_image);
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.dragon_small);
-//        roundImage.setImageBitmap(getRoundCornerBitmap(bitmap, Utils.dip2px(this, 80), Utils.dip2px(this, 80), 10.0f));
-        RoundedBitmapDrawable circularBitmapDrawable =
-                RoundedBitmapDrawableFactory.create(getResources(), bitmap);
-        circularBitmapDrawable.setCircular(false);
-        circularBitmapDrawable.setCornerRadius(100.f);
-        roundImage.setImageDrawable(circularBitmapDrawable);
+        roundImage.setOutlineProvider(roundProvider);
+        roundImage.setClipToOutline(true);
+        View outlineLayout = findViewById(R.id.outline_layout);
+//        outlineLayout.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                System.out.printf("w %d h %d\n", outlineLayout.getWidth(), outlineLayout.getHeight());
+//            }
+//        });
+
+//        outlineLayout.setOutlineProvider(roundProvider);
+//        outlineLayout.setClipToOutline(true);
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.dragon_small);
+////        roundImage.setImageBitmap(getRoundCornerBitmap(bitmap, Utils.dip2px(this, 80), Utils.dip2px(this, 80), 10.0f));
+//        RoundedBitmapDrawable circularBitmapDrawable =
+//                RoundedBitmapDrawableFactory.create(getResources(), bitmap);
+//        circularBitmapDrawable.setCircular(false);
+//        circularBitmapDrawable.setCornerRadius(100.f);
+//        roundImage.setImageDrawable(circularBitmapDrawable);
 
         // volley networkimageview
         volleyImage = (NetworkImageView) findViewById(R.id.volley_image);
@@ -84,7 +114,9 @@ public class ImageViewActivity extends BaseActivity {
                 return mCache.get(url);
             }
         });
-        volleyImage.setImageUrl(dragonBallUrl, mImageLoader);
+        System.out.println("width " + volleyImage.getWidth());
+        System.out.println("height " + volleyImage.getHeight());
+        volleyImage.setImageUrl("http://oimagec8.ydstatic.com/image?id=421895184780765768&product=adpublish&w=384&h=256&sc=0", mImageLoader);
 
         volleyRoundImage = (ImageView) findViewById(R.id.volley_round_image);
         mImageLoader.get(dragonBallUrl,
@@ -103,9 +135,11 @@ public class ImageViewActivity extends BaseActivity {
                 });
 
         // glide
-        imageView = (ImageView) findViewById(R.id.image);
+        imageView = findViewById(R.id.image);
         Glide.with(this)
-                .load("http://oimageb1.ydstatic.com/image?product=dict-homepage&url=http://pic.vcg.cn/bigimg/800bignowaterbig/13326000/478455506.jpg")
+                .load("http://ydschool-online.nos.netease.com/CET4luan_1_1_access_1521442768379000002_access_JY.png")
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+//                .centerCrop()
                 .into(imageView);
 
         gifView = (ImageView) findViewById(R.id.gifview);
