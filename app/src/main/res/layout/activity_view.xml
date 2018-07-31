@@ -12,6 +12,18 @@
         android:background="@color/colorPrimary"
         app:title="View" />
 
+    <!--<com.study.yaodh.androidstudy.view.CustomLinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <include layout="@layout/layout_custom_linear"/>
+        <include layout="@layout/layout_custom_linear"/>
+    </LinearLayout>
+
     <com.study.yaodh.androidstudy.view.ChildView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,21 +71,22 @@
             android:background="#0ff" />
 
         <com.study.yaodh.androidstudy.view.FrameWrapperLayout
-            android:measureAllChildren="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:measureAllChildren="true">
 
             <com.study.yaodh.androidstudy.view.ImageWrapperView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#f0f"
                 android:src="@drawable/flag_uk" />
+
             <TextView
-                android:textSize="60sp"
-                android:visibility="gone"
-                android:text="XXXXXXXXX"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="XXXXXXXXX"
+                android:textSize="60sp"
+                android:visibility="gone" />
         </com.study.yaodh.androidstudy.view.FrameWrapperLayout>
     </LinearLayout>
 
