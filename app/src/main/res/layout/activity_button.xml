@@ -7,108 +7,136 @@
 
     <include layout="@layout/layout_toolbar" />
 
-    <LinearLayout
-        android:id="@+id/rc_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_feed_ad_bg"
-        android:orientation="vertical">
-        <TextView
-            android:text="Hello"
-            android:padding="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <com.study.yaodh.androidstudy.view.RCRelativeLayout
-        android:layout_width="40dp"
-        android:layout_height="30dp"
-        android:layout_margin="4dp"
-        app:round_corner="4dp"
-        app:stroke_color="#e0e0e0"
-        app:stroke_width="1px">
-
-    </com.study.yaodh.androidstudy.view.RCRelativeLayout>
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Default Button Style" />
-
-    <Button
-        android:id="@+id/positive"
-        style="?attr/buttonBarPositiveButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Positive Button Style" />
-
-    <Button
-        android:id="@+id/negative"
-        style="?attr/buttonBarNegativeButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Negative Button Style"
-        android:textColor="@color/colorAccent" />
-
-    <Button
-        android:id="@+id/action"
-        style="?attr/actionButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Action Button Style" />
-
-    <Button
-        android:id="@+id/item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:text="Action Button Style" />
-
-    <com.sackcentury.shinebuttonlib.ShineButton
-        android:id="@+id/po_image1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_centerInParent="true"
-        android:src="@android:color/darker_gray"
-        app:allow_random_color="false"
-        app:big_shine_color="#FF6666"
-        app:btn_color="@android:color/darker_gray"
-        app:btn_fill_color="#FF6666"
-        app:click_animation_duration="200"
-        app:enable_flashing="false"
-        app:shine_animation_duration="1500"
-        app:shine_count="8"
-        app:shine_distance_multiple="1.5"
-        app:shine_turn_angle="10"
-        app:siShape="@raw/like"
-        app:small_shine_color="#CC9999"
-        app:small_shine_offset_angle="20" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        app:srcCompat="@drawable/ic_search_black_24dp" />
-
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/button_pressed"
-        android:gravity="center"
-        android:onClick="showPopupMenu"
-        android:text="Popup Menu" />
+        android:layout_height="wrap_content">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="点击"
-        android:theme="@style/WhiteButtonStyle" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="点击"
-        android:theme="@style/BlueButtonStyle" />
+            <LinearLayout
+                android:id="@+id/rc_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_feed_ad_bg"
+                android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="Hello" />
+            </LinearLayout>
+
+            <com.study.yaodh.androidstudy.view.RCRelativeLayout
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:layout_margin="4dp"
+                app:round_corner="4dp"
+                app:stroke_color="#e0e0e0"
+                app:stroke_width="1px">
+
+            </com.study.yaodh.androidstudy.view.RCRelativeLayout>
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Default Button Style" />
+
+            <Button
+                android:id="@+id/positive"
+                style="?attr/buttonBarPositiveButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Positive Button Style" />
+
+            <Button
+                android:id="@+id/negative"
+                style="?attr/buttonBarNegativeButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Negative Button Style"
+                android:textColor="@color/colorAccent" />
+
+            <Button
+                android:id="@+id/action"
+                style="?attr/actionButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Action Button Style" />
+
+            <Button
+                android:id="@+id/item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:text="Action Button Style" />
+
+            <com.sackcentury.shinebuttonlib.ShineButton
+                android:id="@+id/po_image1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:src="@android:color/darker_gray"
+                app:allow_random_color="false"
+                app:big_shine_color="#FF6666"
+                app:btn_color="@android:color/darker_gray"
+                app:btn_fill_color="#FF6666"
+                app:click_animation_duration="200"
+                app:enable_flashing="false"
+                app:shine_animation_duration="1500"
+                app:shine_count="8"
+                app:shine_distance_multiple="1.5"
+                app:shine_turn_angle="10"
+                app:siShape="@raw/like"
+                app:small_shine_color="#CC9999"
+                app:small_shine_offset_angle="20" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                app:srcCompat="@drawable/ic_search_black_24dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/button_pressed"
+                android:gravity="center"
+                android:onClick="showPopupMenu"
+                android:text="Popup Menu" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="点击"
+                android:theme="@style/WhiteButtonStyle" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="点击"
+                android:theme="@style/BlueButtonStyle" />
+
+            <TextView
+                android:id="@+id/tv_camera"
+                android:layout_width="wrap_content"
+                android:text="Camera"
+                android:drawableLeft="@drawable/ic_voice_black"
+                android:drawablePadding="8dp"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp"
+                android:gravity="center"
+                android:textColor="#2F343E"
+                android:includeFontPadding="false"
+                android:textSize="14sp"
+                android:onClick="clickMe"
+                android:layout_height="29dp" />
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -13,6 +13,51 @@
 
             <include layout="@layout/layout_toolbar" />
 
+            <TextView
+                android:text="By the end of April and early June this year, President Xi Jinping and Prime Minister Narendra Modi held
+consecutive meetings in Wuhan and Qingdao, China in less than a month and a half. Not just in the bilateral
+diplomatic history of China and India, even if we look at the bilateral relations of other countries across the
+world, such high-frequency interaction is rare. It is a strong indicator that, under the present scenario of
+world cooperation, the political and economic engagement between China and India will enter a new phase.
+s the Chinese economy has fully begun to shift from , a
+growing number of Chinese companies and investments will flow to India, a country with a population of
+more than one billion and bring in Chinese production capacity and experience. India, in recent years,
+advocated a series of reforms such as accelerating infrastructure construction, uniting taxation, drawing
+foreign capital and business, improving administrative efficiency, aimed at removing the stumbling blocks
+that hinder economic “high-speed growth”. Furthermore, India entails embracing Chinese technology and
+Chinese historical development experience based on the national conditions which is closer to China than
+the United States, Europe, Japan and South Korea.
+In fact, China’s technology and experience have already played a significant role in the development of
+various industries in India. Huawei, ZTE and other telecom companies have made Indian telecom rates
+more affordable; SEPCO, Shanghai Electric and other power companies have aided in lowering Indian
+power bills. In the recent years, upstream supply chain established by local manufacturing of smartphone
+brands such as vivo, OPPO and Xiaomi has had a notable impact to the Indian digital manufacturing
+industry. This is another major contribution to India's manufacturing sector made possible through Chinese
+capability and experience. Overall, Chinese companies have contributed in bridging the digital gap in India
+by providing more affordable telecom network and smartphones to all the Indians.
+Aside industrial cooperation, collaborations between China and India in the field of Internet technology has
+been innumerable. Chinese Tech giants such as Alibaba, Tencent and Xiaomi, in addition to their main
+businesses in India, have also helped a large number of Indian Tech companies to grow through strategic
+investments and sharing valuable product experience. Even Non-Chinese investors, such as Softbank,
+Naspers and other Dollar Funds have also invested in India analyzing China’s successful cases.
+However, it is unwise to simply aim to replicate Chinese business models in India. During 2015, India's
+leading internet-based companies attracted huge investments owing to promising market sentiments.
+Subsequently, these companies were plagued with slow growth and hopelessly tried to turn profitable. We
+believe, that the biggest challenge in the Internet Industry in India is to determine the optimum time for
+various Internet business models based on the country’s overall economic development stage - whether
+India's current infrastructure and consumer behavior can support the current mode of business development
+and achieve market adoption. Even in China, the rise of each unicorns has been due to gradual
+improvement of relevant infrastructure and dividends of consumption upgrades. Neglecting the laws of
+economic development and blindly following a business model irrespective of external circumstances can be
+catastrophic for any business. Therefore, undoubtedly the historical development of China is the best mirror
+to reflect and act upon.
+The judgment about optimum timing of investment needs to go hand-in-hand with India's status quo and
+China's past. We, Draphant, a Chinese company operating in India for over five years, based on historical
+trend of several Chinese industries venturing into India and our own experience of investing in India, are
+hoping to make a contribution to the China-India Internet Technology Ecosphere."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
             <Button
                 android:id="@+id/done"
                 android:layout_width="wrap_content"

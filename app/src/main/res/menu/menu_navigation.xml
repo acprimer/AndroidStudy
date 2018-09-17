@@ -3,7 +3,7 @@
     <item
         android:id="@+id/item1"
         android:checked="true"
-        android:icon="@drawable/ic_mail_outline_black_24dp"
+        android:icon="@drawable/nav_home"
         android:title="Message"/>
 
     <item

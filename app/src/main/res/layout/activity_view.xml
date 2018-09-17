@@ -100,6 +100,42 @@
         android:layout_height="wrap_content"
         android:text="EasyView" />
 
+    <com.study.yaodh.androidstudy.view.LabelViewGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:background="@color/colorAccent"
+            android:layout_width="80dp"
+            android:layout_height="40dp" />
+        <View
+            android:background="@color/colorAccent"
+            android:layout_width="80dp"
+            android:layout_height="40dp" />
+        <View
+            android:background="@color/colorAccent"
+            android:layout_width="60dp"
+            android:layout_height="40dp" />
+        <View
+            android:background="@color/colorAccent"
+            android:layout_width="80dp"
+            android:layout_height="40dp" />
+        <View
+            android:background="@color/colorAccent"
+            android:layout_width="80dp"
+            android:layout_height="40dp" />
+        <View
+            android:background="@color/colorAccent"
+            android:layout_width="80dp"
+            android:layout_height="40dp" />
+    </com.study.yaodh.androidstudy.view.LabelViewGroup>
+
+    <com.study.yaodh.androidstudy.view.SquareImageView
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:scaleType="centerCrop"
+        android:background="#33ff0000"
+        android:src="@drawable/dict_cover"/>
+
     <com.study.yaodh.androidstudy.view.EasyView
         android:layout_width="200dp"
         android:layout_height="200dp" />
