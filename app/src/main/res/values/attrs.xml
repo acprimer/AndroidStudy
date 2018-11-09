@@ -165,4 +165,15 @@
         <attr name="tabIndicatorWidth" format="dimension"/>
         <attr name="tabTextSize" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="AutoSizeTextView">
+        <attr name="maxTextSize" />
+        <attr name="minTextSize" />
+    </declare-styleable>
+
+    <declare-styleable name="AutoFitSizeTextView">
+        <attr name="fitLine" />
+        <attr name="addEllipsis" format="boolean" />
+        <attr name="minTextSize" />
+    </declare-styleable>
 </resources>

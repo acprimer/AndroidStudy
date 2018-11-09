@@ -123,7 +123,14 @@
         <activity android:name=".activity.ShadowActivity" />
         <activity android:name=".activity.TabActivity" />
         <activity android:name=".activity.HandlerThreadActivity" />
-        <!--<activity android:name=".activity.RoundCornerActivity"></activity>-->
+        <!-- <activity android:name=".activity.RoundCornerActivity"></activity> -->
+        <activity
+            android:name=".activity.TranslucentActivity"
+            android:theme="@style/TranslucentImageTheme" />
+        <activity android:name=".activity.SharedElementTransitionActivity" />
+        <activity android:name=".activity.SharedElementTargetActivity" />
+        <activity android:name=".activity.AutofitTextActivity" />
+        <activity android:name=".activity.BitmapActivity"></activity>
     </application>
 
 </manifest>

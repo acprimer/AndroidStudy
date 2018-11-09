@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.AutofitTextActivity">
+
+    <com.study.yaodh.androidstudy.view.AutoFitSizeTextView
+        android:id="@+id/auto_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#33ff0000"
+        android:text="By the end of April and early June this year, President Xi Jinping and Prime Minister Narendra Modi held consecutive meetings in Wuhan and Qingdao, China in less than a month and a half. Not just in the bilateral diplomatic history of China and India, even if we look at the bilateral relations of other countries across the world, such high-frequency interaction is rare. It is a strong indicator that, under the present scenario of world cooperation, the political and economic engagement between China and India will enter a new phase. the Chinese economy has fully begun to shift from"
+        android:textSize="32sp"
+        app:addEllipsis="false"
+        app:fitLine="1"
+        app:minTextSize="16sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="end" />
+
+</LinearLayout>

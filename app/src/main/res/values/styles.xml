@@ -2,6 +2,7 @@
 
     <!-- Base application theme.material design style -->
     <style name="AppTheme" parent="AppTheme.Base">
+        <item name="android:windowContentTransitions">true</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="actionModeBackground">@color/colorPrimary</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>

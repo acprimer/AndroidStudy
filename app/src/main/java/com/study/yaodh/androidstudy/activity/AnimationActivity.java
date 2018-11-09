@@ -242,4 +242,8 @@ public class AnimationActivity extends AppCompatActivity {
 //        drawable.start();
     }
 
+    public void multiAnimate(View view) {
+        ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationX", 0, 100);
+        animator.start();
+    }
 }

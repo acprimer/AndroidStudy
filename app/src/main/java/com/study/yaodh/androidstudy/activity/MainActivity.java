@@ -19,6 +19,7 @@ import com.study.yaodh.androidstudy.service.DictionaryManagerService;
 public class MainActivity extends BaseActivity {
     private Class[] activities = new Class[]{
             TextViewActivity.class,
+            AutofitTextActivity.class,
             NotificationActivity.class,
             RecyclerViewActivity.class,
             DrawerActivity.class,
@@ -71,10 +72,14 @@ public class MainActivity extends BaseActivity {
             ShapeActivity.class,
             DialogActivity.class,
             ShadowActivity.class,
-            TabActivity.class
+            TabActivity.class,
+            TranslucentActivity.class,
+            SharedElementTransitionActivity.class,
+            BitmapActivity.class
     };
     private String[] titles = new String[]{
             "TextView属性",
+            "自适应文本",
             "Notification",
             "RecyclerView",
             "Navigation Drawer",
@@ -127,7 +132,10 @@ public class MainActivity extends BaseActivity {
             "Shape",
             "Dialog",
             "阴影",
-            "Tab"
+            "Tab",
+            "Translucent",
+            "共享元素",
+            "Bitmap"
     };
 
     @Override

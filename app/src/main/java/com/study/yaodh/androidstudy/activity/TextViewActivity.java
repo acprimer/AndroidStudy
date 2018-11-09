@@ -121,6 +121,15 @@ public class TextViewActivity extends BaseActivity {
         });
 
         setRichText(binding.richText, "Hello world", true);
+
+
+//        binding.auto1.setText("Hello");
+//        binding.auto2.setText("By the end of April and early June this year, President Xi Jinping and Prime Minister Narendra Modi held\n" +
+//                "            consecutive meetings in Wuhan and Qingdao, China in less than a month and a half. Not just in the bilateral\n" +
+//                "            diplomatic history of China and India, even if we look at the bilateral relations of other countries across the\n" +
+//                "            world, such high-frequency interaction is rare. It is a strong indicator that, under the present scenario of\n" +
+//                "            world cooperation, the political and economic engagement between China and India will enter a new phase.\n" +
+//                "            s the Chinese economy has fully begun to shift from");
     }
 
     private void autoFitTextView() {

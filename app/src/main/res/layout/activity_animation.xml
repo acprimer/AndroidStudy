@@ -201,4 +201,10 @@
             android:onClick="fly"
             app:srcCompat="@drawable/anim_vector_cloud" />
     </LinearLayout>
+
+    <Button
+        android:onClick="multiAnimate"
+        android:text="平移"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>
