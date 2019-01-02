@@ -75,7 +75,8 @@ public class MainActivity extends BaseActivity {
             TabActivity.class,
             TranslucentActivity.class,
             SharedElementTransitionActivity.class,
-            BitmapActivity.class
+            BitmapActivity.class,
+            PicassoActivity.class
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -135,7 +136,8 @@ public class MainActivity extends BaseActivity {
             "Tab",
             "Translucent",
             "共享元素",
-            "Bitmap"
+            "Bitmap",
+            "Picasso"
     };
 
     @Override

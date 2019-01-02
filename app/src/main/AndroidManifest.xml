@@ -130,7 +130,8 @@
         <activity android:name=".activity.SharedElementTransitionActivity" />
         <activity android:name=".activity.SharedElementTargetActivity" />
         <activity android:name=".activity.AutofitTextActivity" />
-        <activity android:name=".activity.BitmapActivity"></activity>
+        <activity android:name=".activity.BitmapActivity" />
+        <activity android:name=".activity.PicassoActivity" />
     </application>
 
 </manifest>

@@ -66,7 +66,11 @@ public class BitmapActivity extends AppCompatActivity {
 
 
         ImageView iv = findViewById(R.id.image);
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.dragon);
+        BitmapFactory.Options ops = new BitmapFactory.Options();
+        ops.inDensity = 120;
+        ops.inTargetDensity = 360;
+        ops.inPreferredConfig = Bitmap.Config.RGB_565;
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.dragon, ops);
         iv.setImageBitmap(bitmap);
         System.out.println("bitmap: 0x" + Integer.toHexString(bitmap.hashCode()));
         System.out.println("bitmap: 0x" + Long.toHexString(addressOf(bitmap)));
@@ -76,5 +80,28 @@ public class BitmapActivity extends AppCompatActivity {
         System.out.println("densityDpi: " + metrics.densityDpi);
         Integer a = new Integer(3);
         System.out.println("Integer sizeOf: " + sizeOf(a));
+
+        TestA obj = new TestA();
+        test(obj);
+    }
+
+    private void test(TestA obj) {
+        synchronized (obj) {
+            print(obj);
+        }
+    }
+
+    private void print(TestA obj) {
+//        System.out.println("HashCode: 0x" + Integer.toHexString(obj.hashCode()));
+        for (int i = 0; i < 8; i++) {
+            System.out.printf("0x%08x\n", unsafe.getInt(obj, 4L * i));
+        }
+//        System.out.println("HashCode: 0x" + Integer.toHexString(obj.hashCode()));
+    }
+
+    class TestA {
+        long x = 0x88;
+        long y = 0x99;
+        int z = 0x77;
     }
 }

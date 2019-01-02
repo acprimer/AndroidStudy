@@ -1,1 +1,1 @@
-include ':app', ':lib', ':lockscreen', ':LearnRxJava'
+include ':app', ':lib', ':lockscreen', ':LearnRxJava', ':learnkotlin'
