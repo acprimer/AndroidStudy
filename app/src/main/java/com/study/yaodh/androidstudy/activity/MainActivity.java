@@ -72,6 +72,10 @@ public class MainActivity extends BaseActivity {
             ShapeActivity.class,
             DialogActivity.class,
             ShadowActivity.class,
+            ViewStubActivity.class,
+            ATaskActivity.class,
+            MotionEventActivity.class,
+            SparseArrayActivity.class,
             TabActivity.class,
             TranslucentActivity.class,
             SharedElementTransitionActivity.class,
@@ -133,6 +137,10 @@ public class MainActivity extends BaseActivity {
             "Shape",
             "Dialog",
             "阴影",
+            "ViewStub",
+            "SingleTask",
+            "触摸反馈",
+            "SparseArray",
             "Tab",
             "Translucent",
             "共享元素",
@@ -165,7 +173,7 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        startAndBindService();
+//        startAndBindService();
     }
 
     private IDictionaryManager iDictionaryManager;

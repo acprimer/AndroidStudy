@@ -30,6 +30,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Request;
+import com.squareup.picasso.RequestHandler;
 import com.study.yaodh.androidstudy.R;
 import com.study.yaodh.androidstudy.utils.Utils;
 import com.study.yaodh.androidstudy.view.CircleImageView;
@@ -54,8 +56,8 @@ public class ImageViewActivity extends BaseActivity {
 
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
-//    private String dragonBallUrl = "http://o7rnhttbe.bkt.clouddn.com/dragon_small.png";
-    private String dragonBallUrl = "https://external.xx.fbcdn.net/safe_image.php?d=AQBbVGeeoxVZ5v5Z&url=https%3A%2F%2Fwww.facebook.com%2Fadnw_creative%3Fu1%3Dhttps%253A%252F%252Fscontent.xx.fbcdn.net%252Fv%252Ft45.1600-4%252Fc101.1.400.400%252Fp403x403%252F13718231_6051214729367_913224657_n.png.jpg%253Foh%253D37920521bb6ac24608c0be154cdf8820%2526oe%253D5AD31010%26w1%3D400%26h1%3D400%26u2%3Dhttps%253A%252F%252Fscontent.xx.fbcdn.net%252Fv%252Ft45.1600-4%252Fc102.1.400.400%252Fp403x403%252F13720831_6051210580367_2087409572_n.png.jpg%253Foh%253D7fedbea9e5ed7e999442ad548ac49d1c%2526oe%253D5ABE9250%26w2%3D400%26h2%3D400%26ssi%3D1&_nc_hash=AQCy4OwYVoJ9R8I-";
+    //    private String dragonBallUrl = "http://o7rnhttbe.bkt.clouddn.com/dragon_small.png";
+    private String dragonBallUrl = "http://img3.imgtn.bdimg.com/it/u=2286118015,3537578538&fm=26&gp=0.jpg";
 
     @Override
     protected int getLayoutId() {
@@ -104,7 +106,13 @@ public class ImageViewActivity extends BaseActivity {
         volleyImage = (NetworkImageView) findViewById(R.id.volley_image);
         mRequestQueue = Volley.newRequestQueue(this);
         mImageLoader = new ImageLoader(mRequestQueue, new ImageLoader.ImageCache() {
-            private final LruCache<String, Bitmap> mCache = new LruCache<>(10);
+            // private final LruCache<String, Bitmap> mCache = new LruCache<>(10);
+            private final LruCache<String, Bitmap> mCache = new LruCache<String, Bitmap>(8 * 1024 * 1024) {
+                @Override
+                protected int sizeOf(String key, Bitmap value) {
+                    return value.getByteCount();
+                }
+            };
 
             public void putBitmap(String url, Bitmap bitmap) {
                 mCache.put(url, bitmap);
@@ -140,6 +148,7 @@ public class ImageViewActivity extends BaseActivity {
                 .load("http://ydschool-online.nos.netease.com/CET4luan_1_1_access_1521442768379000002_access_JY.png")
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
 //                .centerCrop()
+                .load("http://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=个人头像&step_word=&hs=0&pn=54&spn=0&di=90612157790&pi=0&rn=1&tn=baiduimagedetail&is=0%2C0&istype=2&ie=utf-8&oe=utf-8&in=&cl=2&lm=-1&st=-1&cs=3583730031%2C4019160518&os=3798798157%2C2623101599&simid=0%2C0&adpicid=0&lpn=0&ln=1943&fr=&fmq=1532082656333_R&fm=result&ic=0&s=undefined&se=&sme=&tab=0&width=&height=&face=undefined&ist=&jit=&cg=&bdtype=0&oriquery=&objurl=http%3A%2F%2Fg.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2F5fdf8db1cb13495447439243554e9258d1094ab3.jpg&fromurl=ippr_z2C%24qAzdH3FAzdH3Fzit1w5_z%26e3Bkwt17_z%26e3Bv54AzdH3Fq7jfpt5gAzdH3Fd8nbn9lnd80m0maa0ab_z%26e3Bip4s&gsm=1e&rpstart=0&rpnum=0&islist=&querylist=")
                 .into(imageView);
 
         gifView = (ImageView) findViewById(R.id.gifview);
@@ -174,6 +183,17 @@ public class ImageViewActivity extends BaseActivity {
         iv2.setImageUrl(dragonBallUrl, mImageLoader);
 
         ImageView ivPicasso = (ImageView) findViewById(R.id.picasso);
+        new Picasso.Builder(this).addRequestHandler(new RequestHandler() {
+            @Override
+            public boolean canHandleRequest(Request data) {
+                return false;
+            }
+
+            @Override
+            public Result load(Request request, int networkPolicy) throws IOException {
+                return null;
+            }
+        });
         Picasso picasso = Picasso.with(this);
         picasso.setLoggingEnabled(true);
         picasso.load(dragonBallUrl).into(ivPicasso);
@@ -262,7 +282,7 @@ public class ImageViewActivity extends BaseActivity {
                 return;
             }
             is = connection.getInputStream();
-            File file = new File(Environment.getExternalStorageDirectory(), "pic.jpg");
+            File file = new File(getCacheDir(), "pic.jpg");
             fos = new FileOutputStream(file);
             int len = 0;
             byte[] buffer = new byte[4 * 1024];
@@ -272,6 +292,7 @@ public class ImageViewActivity extends BaseActivity {
             fos.flush();
             downloadHandler.sendEmptyMessage(LOAD_SUCCESS);
         } catch (Exception e) {
+            e.printStackTrace();
             downloadHandler.sendEmptyMessage(LOAD_FAILED);
         } finally {
             try {

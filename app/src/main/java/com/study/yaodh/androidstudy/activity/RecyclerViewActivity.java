@@ -1,9 +1,9 @@
 package com.study.yaodh.androidstudy.activity;
 
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,10 +42,18 @@ public class RecyclerViewActivity extends BaseActivity implements Toolbar.OnMenu
         data.add(new StaggerItem("bootless", "http://ww3.sinaimg.cn/large/610dc034jw1f5e7x5vlfyj20dw0euaax.jpg"));
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        GridLayoutManager lm = new GridLayoutManager(this, 2);
+        lm.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                if (position == 0)return 2;
+                return 1;
+            }
+        });
+        recyclerView.setLayoutManager(lm);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         mAdapter = new SimpleRecyclerViewAdapter(this, data);
         recyclerView.setAdapter(mAdapter);
 //        recyclerView.setItemAnimator(new DefaultItemAnimator());

@@ -132,6 +132,15 @@
         <activity android:name=".activity.AutofitTextActivity" />
         <activity android:name=".activity.BitmapActivity" />
         <activity android:name=".activity.PicassoActivity" />
+        <activity android:name=".activity.ShadowActivity" />
+        <activity android:name=".activity.ViewStubActivity" />
+        <activity
+            android:name=".activity.ATaskActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".activity.BTaskActivity" />
+        <activity android:name=".activity.MotionEventActivity" />
+         <activity android:name=".activity.ObjectLayoutActivity"/>
+        <activity android:name=".activity.SparseArrayActivity"/>
     </application>
 
 </manifest>

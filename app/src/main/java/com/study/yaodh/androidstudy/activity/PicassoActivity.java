@@ -16,9 +16,12 @@ import com.study.yaodh.androidstudy.R;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
@@ -26,6 +29,11 @@ import io.reactivex.SingleOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.Cache;
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class PicassoActivity extends BaseActivity {
     @Override
@@ -35,18 +43,33 @@ public class PicassoActivity extends BaseActivity {
 
     @Override
     protected void initContent() {
-
-//        try {
-//            ResponseCacheIcs.install(this);
-//            System.out.println("http cache installed");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
         testOkHttp();
         testHttpCache();
+        testOkHttpCache();
 
         showImage();
+
+        System.out.println("md5 " + md5("http://square.github.io/picasso/static/sample.png"));
+    }
+
+    public static String md5(String source) {
+        try {
+            byte[] hash = MessageDigest.getInstance("MD5").digest(source.getBytes("UTF-8"));
+            return getHexString(hash);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    private static String getHexString(byte[] hash) {
+        StringBuilder builder = new StringBuilder(hash.length * 2);
+        for (byte b : hash) {
+            builder.append(String.format("%02x", b & 0xff));
+        }
+        return builder.toString();
     }
 
     private void showImage() {
@@ -193,5 +216,56 @@ public class PicassoActivity extends BaseActivity {
 //            } catch (IOException ignored) {
 //            }
         }
+    }
+
+    private void testOkHttpCache() {
+        ImageView iv4 = findViewById(R.id.iv4);
+//        String url = "http://publicobject.com/helloworld.txt";
+        String url = "http://square.github.io/picasso/static/sample.png";
+        Single.create((SingleOnSubscribe<String>) emitter -> emitter.onSuccess(url))
+                .map(s -> fetchOkhttp(s))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<Bitmap>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(Bitmap bitmap) {
+                        iv4.setImageBitmap(bitmap);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+                });
+    }
+
+    private Bitmap fetchOkhttp(String url) {
+        File cacheDir = new File(getCacheDir(), "okhttp-cache");
+        long maxSize = 10 * 1024 * 1024;
+        Cache cache = new Cache(cacheDir, maxSize);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .cache(cache)
+                .build();
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+        Call call = client.newCall(request);
+        Bitmap bitmap = null;
+        try {
+            Response response = call.execute();
+            InputStream is = response.body().byteStream();
+            bitmap = BitmapFactory.decodeStream(is);
+            System.out.println("bitmap " + bitmap);
+            System.out.println("cache: " + response.cacheResponse() + " network: " + response.networkResponse());
+            is.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bitmap;
     }
 }

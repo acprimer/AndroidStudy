@@ -21,12 +21,9 @@
 
         <ImageView
             android:id="@+id/image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            app:img_url="@{meizi.url}"
-            app:placeholder="@{@drawable/ic_logo}"/>
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:scaleType="fitCenter"/>
 
         <TextView
             android:id="@+id/title"
