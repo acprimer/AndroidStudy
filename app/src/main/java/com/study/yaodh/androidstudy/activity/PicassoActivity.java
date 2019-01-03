@@ -6,10 +6,7 @@ import android.graphics.BitmapFactory;
 import android.net.http.HttpResponseCache;
 import android.widget.ImageView;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
-import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.study.yaodh.androidstudy.R;
 
@@ -36,6 +33,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class PicassoActivity extends BaseActivity {
+    private String PHOTO_URL = "http://square.github.io/picasso/static/sample.png";
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_picasso;
@@ -43,13 +42,13 @@ public class PicassoActivity extends BaseActivity {
 
     @Override
     protected void initContent() {
-        testOkHttp();
-        testHttpCache();
-        testOkHttpCache();
+//        testOkHttp();
+//        testHttpCache();
+//        testOkHttpCache();
 
         showImage();
 
-        System.out.println("md5 " + md5("http://square.github.io/picasso/static/sample.png"));
+//        System.out.println("md5 " + md5("http://square.github.io/picasso/static/sample.png"));
     }
 
     public static String md5(String source) {
@@ -77,22 +76,26 @@ public class PicassoActivity extends BaseActivity {
         Picasso picasso = Picasso.with(this);
         picasso.setLoggingEnabled(true);
         picasso.setIndicatorsEnabled(true);
-        picasso.load("http://square.github.io/picasso/static/sample.png")
+        picasso.load(PHOTO_URL)
+                .networkPolicy(NetworkPolicy.OFFLINE)
                 .into(iv1);
 
-        NetworkImageView iv2 = findViewById(R.id.iv2);
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        iv2.setImageUrl("http://square.github.io/picasso/static/sample.png", new ImageLoader(requestQueue, new ImageLoader.ImageCache() {
-            @Override
-            public Bitmap getBitmap(String url) {
-                return null;
-            }
-
-            @Override
-            public void putBitmap(String url, Bitmap bitmap) {
-
-            }
-        }));
+//        NetworkImageView iv2 = findViewById(R.id.iv2);
+//        RequestQueue requestQueue = Volley.newRequestQueue(this);
+//        iv2.setImageUrl(PHOTO_URL, new ImageLoader(requestQueue, new ImageLoader.ImageCache() {
+//            @Override
+//            public Bitmap getBitmap(String url) {
+//                return null;
+//            }
+//
+//            @Override
+//            public void putBitmap(String url, Bitmap bitmap) {
+//
+//            }
+//        }));
+//
+//        ImageView iv5 = findViewById(R.id.iv5);
+//        Glide.with(this).load(PHOTO_URL).into(iv5);
     }
 
     private void testOkHttp() {
@@ -121,8 +124,7 @@ public class PicassoActivity extends BaseActivity {
 //        ExecutorService service = Executors.newCachedThreadPool();
 //        service.execute(new HttpRunnable());
 
-        String url = "http://square.github.io/picasso/static/sample.png";
-        Single.create((SingleOnSubscribe<String>) emitter -> emitter.onSuccess(url))
+        Single.create((SingleOnSubscribe<String>) emitter -> emitter.onSuccess(PHOTO_URL))
                 .map(s -> new URL(s))
                 .map(s -> fetchBitmap(s))
                 .subscribeOn(Schedulers.io())
@@ -157,6 +159,7 @@ public class PicassoActivity extends BaseActivity {
             connection.setRequestMethod("GET");
             System.out.println("cache: " + connection.getUseCaches());
             connection.setUseCaches(true);
+            connection.setRequestProperty("Cache-Control", "max-stale=2147483647");
 //                connection.getInputStream();
 //                connection.connect();
             int code = connection.getResponseCode();
@@ -220,9 +223,7 @@ public class PicassoActivity extends BaseActivity {
 
     private void testOkHttpCache() {
         ImageView iv4 = findViewById(R.id.iv4);
-//        String url = "http://publicobject.com/helloworld.txt";
-        String url = "http://square.github.io/picasso/static/sample.png";
-        Single.create((SingleOnSubscribe<String>) emitter -> emitter.onSuccess(url))
+        Single.create((SingleOnSubscribe<String>) emitter -> emitter.onSuccess(PHOTO_URL))
                 .map(s -> fetchOkhttp(s))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -253,6 +254,8 @@ public class PicassoActivity extends BaseActivity {
                 .build();
         Request request = new Request.Builder()
                 .url(url)
+//                .cacheControl(new CacheControl.Builder().maxAge(600, TimeUnit.SECONDS).build())
+//                .cacheControl(CacheControl.FORCE_CACHE)
                 .build();
         Call call = client.newCall(request);
         Bitmap bitmap = null;
@@ -260,11 +263,15 @@ public class PicassoActivity extends BaseActivity {
             Response response = call.execute();
             InputStream is = response.body().byteStream();
             bitmap = BitmapFactory.decodeStream(is);
+//            System.out.println(response.body().string());
             System.out.println("bitmap " + bitmap);
-            System.out.println("cache: " + response.cacheResponse() + " network: " + response.networkResponse());
+            System.out.println("cache: " + response.cacheResponse());
+            System.out.println("network: " + response.networkResponse());
             is.close();
+            System.out.println("is closed");
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return bitmap;
     }
