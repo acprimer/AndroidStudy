@@ -19,6 +19,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
@@ -27,10 +28,13 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.Cache;
+import okhttp3.CacheControl;
 import okhttp3.Call;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okio.ByteString;
 
 public class PicassoActivity extends BaseActivity {
     private String PHOTO_URL = "http://square.github.io/picasso/static/sample.png";
@@ -44,11 +48,16 @@ public class PicassoActivity extends BaseActivity {
     protected void initContent() {
 //        testOkHttp();
 //        testHttpCache();
-//        testOkHttpCache();
+        testOkHttpCache();
 
-        showImage();
+//        showImage();
 
-//        System.out.println("md5 " + md5("http://square.github.io/picasso/static/sample.png"));
+        System.out.println("md5 " + md5("http://square.github.io/picasso/static/sample.png"));
+        System.out.println("get key " + key("http://square.github.io/picasso/static/sample.png"));
+    }
+
+    public static String key(String url) {
+        return ByteString.encodeUtf8(url).md5().hex();
     }
 
     public static String md5(String source) {
@@ -250,11 +259,15 @@ public class PicassoActivity extends BaseActivity {
         long maxSize = 10 * 1024 * 1024;
         Cache cache = new Cache(cacheDir, maxSize);
         OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new ClientInterceptor())
+                .addNetworkInterceptor(new NetworkInterceptor())
                 .cache(cache)
                 .build();
         Request request = new Request.Builder()
                 .url(url)
-//                .cacheControl(new CacheControl.Builder().maxAge(600, TimeUnit.SECONDS).build())
+//                .cacheControl(new CacheControl.Builder().maxAge(0, TimeUnit.SECONDS).build())
+                .cacheControl(new CacheControl.Builder().maxStale(888, TimeUnit.SECONDS)
+                        .maxAge(777, TimeUnit.SECONDS).build())
 //                .cacheControl(CacheControl.FORCE_CACHE)
                 .build();
         Call call = client.newCall(request);
@@ -274,5 +287,32 @@ public class PicassoActivity extends BaseActivity {
             System.out.println(e.getMessage());
         }
         return bitmap;
+    }
+
+    class ClientInterceptor implements Interceptor {
+        @Override
+        public Response intercept(Chain chain) throws IOException {
+            Request request = chain.request();
+            System.out.println("ClientInterceptor before interceptor");
+            Response response = chain.proceed(request);
+            System.out.println("ClientInterceptor after interceptor");
+            return response;
+        }
+    }
+
+    class NetworkInterceptor implements Interceptor {
+        @Override
+        public Response intercept(Chain chain) throws IOException {
+            Request request = chain.request();
+            System.out.println("NetworkInterceptor before interceptor");
+            Response response = chain.proceed(request);
+            System.out.println("NetworkInterceptor after interceptor");
+
+            // 这里拿到响应进行修改，就会在缓存的时候改变
+            response = response.newBuilder()
+                    .header("Cache-Control", "max-age=111").build();
+            System.out.println(response.cacheControl());
+            return response;
+        }
     }
 }
