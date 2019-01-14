@@ -259,15 +259,50 @@ public class PicassoActivity extends BaseActivity {
         long maxSize = 10 * 1024 * 1024;
         Cache cache = new Cache(cacheDir, maxSize);
         OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(10, TimeUnit.SECONDS)
+//                .dns(new Dns() {
+//                    @Override
+//                    public List<InetAddress> lookup(String hostname) throws UnknownHostException {
+//                        System.out.println("host " + hostname);
+//                        if (hostname.equalsIgnoreCase("square.github.io")) {
+//                            List<InetAddress> list = new ArrayList<>();
+//                            InetAddress address = InetAddress.getByName("10.123.1.1");
+//                            list.add(address);
+//                            return list;
+//                        } else {
+//                            return Dns.SYSTEM.lookup(hostname);
+//                        }
+//                    }
+//                })
+//                .proxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress("10.234.1.129", 8888)))
+//                .proxySelector(new ProxySelector() {
+//                    @Override
+//                    public List<Proxy> select(URI uri) {
+//                        System.out.println("select uri " + uri);
+//                        List<Proxy> list = new ArrayList<>();
+//                        list.add(new Proxy(Proxy.Type.HTTP, new InetSocketAddress("10.234.1.12", 8888)));
+//                        list.add(new Proxy(Proxy.Type.HTTP, new InetSocketAddress("10.234.1.129", 8888)));
+//                        list.add(Proxy.NO_PROXY);
+//                        return list;
+////                        return Collections.singletonList(Proxy.NO_PROXY);
+//                    }
+//
+//                    @Override
+//                    public void connectFailed(URI uri, SocketAddress sa, IOException ioe) {
+//                        System.out.println("failed uri " + uri);
+//                    }
+//                })
+//                .retryOnConnectionFailure(false)
                 .addInterceptor(new ClientInterceptor())
                 .addNetworkInterceptor(new NetworkInterceptor())
                 .cache(cache)
                 .build();
         Request request = new Request.Builder()
                 .url(url)
+                .cacheControl(CacheControl.FORCE_NETWORK)
 //                .cacheControl(new CacheControl.Builder().maxAge(0, TimeUnit.SECONDS).build())
-                .cacheControl(new CacheControl.Builder().maxStale(888, TimeUnit.SECONDS)
-                        .maxAge(777, TimeUnit.SECONDS).build())
+//                .cacheControl(new CacheControl.Builder().maxStale(888, TimeUnit.SECONDS)
+//                        .maxAge(777, TimeUnit.SECONDS).build())
 //                .cacheControl(CacheControl.FORCE_CACHE)
                 .build();
         Call call = client.newCall(request);
