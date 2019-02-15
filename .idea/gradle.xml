@@ -10,8 +10,11 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/LearnRxJava" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/learnkotlin" />
             <option value="$PROJECT_DIR$/lib" />
             <option value="$PROJECT_DIR$/lockscreen" />
+            <option value="$PROJECT_DIR$/retrofit" />
+            <option value="$PROJECT_DIR$/rxtest" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

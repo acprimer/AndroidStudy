@@ -5,8 +5,11 @@
       <module fileurl="file://$PROJECT_DIR$/AndroidStudy.iml" filepath="$PROJECT_DIR$/AndroidStudy.iml" />
       <module fileurl="file://$PROJECT_DIR$/LearnRxJava/LearnRxJava.iml" filepath="$PROJECT_DIR$/LearnRxJava/LearnRxJava.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/learnkotlin/learnkotlin.iml" filepath="$PROJECT_DIR$/learnkotlin/learnkotlin.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/lockscreen/lockscreen.iml" filepath="$PROJECT_DIR$/lockscreen/lockscreen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/retrofit/retrofit.iml" filepath="$PROJECT_DIR$/retrofit/retrofit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rxtest/rxtest.iml" filepath="$PROJECT_DIR$/rxtest/rxtest.iml" />
     </modules>
   </component>
 </project>

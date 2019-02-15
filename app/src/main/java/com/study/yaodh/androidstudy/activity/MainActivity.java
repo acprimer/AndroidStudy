@@ -80,7 +80,8 @@ public class MainActivity extends BaseActivity {
             TranslucentActivity.class,
             SharedElementTransitionActivity.class,
             BitmapActivity.class,
-            PicassoActivity.class
+            PicassoActivity.class,
+            LeakActivity.class
     };
     private String[] titles = new String[]{
             "TextView属性",
@@ -145,7 +146,8 @@ public class MainActivity extends BaseActivity {
             "Translucent",
             "共享元素",
             "Bitmap",
-            "Picasso"
+            "Picasso",
+            "Leak"
     };
 
     @Override

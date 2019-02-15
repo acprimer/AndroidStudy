@@ -6,6 +6,10 @@ import android.graphics.BitmapFactory;
 import android.net.http.HttpResponseCache;
 import android.widget.ImageView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.study.yaodh.androidstudy.R;
@@ -27,6 +31,7 @@ import io.reactivex.SingleOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.Authenticator;
 import okhttp3.Cache;
 import okhttp3.CacheControl;
 import okhttp3.Call;
@@ -34,6 +39,7 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.Route;
 import okio.ByteString;
 
 public class PicassoActivity extends BaseActivity {
@@ -46,14 +52,32 @@ public class PicassoActivity extends BaseActivity {
 
     @Override
     protected void initContent() {
+        testVolley();
+//        testOkHttpCache();
 //        testOkHttp();
 //        testHttpCache();
-        testOkHttpCache();
+//        testOkHttpCache();
 
 //        showImage();
 
         System.out.println("md5 " + md5("http://square.github.io/picasso/static/sample.png"));
         System.out.println("get key " + key("http://square.github.io/picasso/static/sample.png"));
+    }
+
+    private void testVolley() {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest request = new StringRequest("http://10.234.1.134:8888", new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                System.out.println("success" + response);
+            }
+        }, new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("error" + error);
+            }
+        });
+        queue.add(request);
     }
 
     public static String key(String url) {
@@ -295,6 +319,13 @@ public class PicassoActivity extends BaseActivity {
 //                .retryOnConnectionFailure(false)
                 .addInterceptor(new ClientInterceptor())
                 .addNetworkInterceptor(new NetworkInterceptor())
+                .authenticator(new Authenticator() {
+                    @Override
+                    public Request authenticate(Route route, Response response) throws IOException {
+                        System.out.println("auth " + response);
+                        return null;
+                    }
+                })
                 .cache(cache)
                 .build();
         Request request = new Request.Builder()

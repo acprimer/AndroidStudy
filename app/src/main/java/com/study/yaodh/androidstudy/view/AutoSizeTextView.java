@@ -40,9 +40,12 @@ public class AutoSizeTextView extends AppCompatTextView {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.AutoSizeTextView);
             mMaxTextSize = typedArray.getDimension(R.styleable.AutoSizeTextView_maxTextSize, textSize);
             mMinTextSize = typedArray.getDimension(R.styleable.AutoSizeTextView_minTextSize, textSize);
+//            String text = typedArray.getString(R.styleable.AutoSizeTextView_text);
+//            setText(text);
             typedArray.recycle();
             resize();
         }
+
     }
 
     @Override

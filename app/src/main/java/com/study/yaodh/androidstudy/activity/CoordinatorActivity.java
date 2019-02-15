@@ -14,8 +14,6 @@ import com.study.yaodh.androidstudy.view.DividerItemDecoration;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.gmariotti.recyclerview.itemanimator.SlideInOutLeftItemAnimator;
-
 public class CoordinatorActivity extends BaseActivity {
 
     private ActivityCoordinatorBinding binding;
@@ -44,9 +42,9 @@ public class CoordinatorActivity extends BaseActivity {
         SimpleRecyclerViewAdapter mAdapter = new SimpleRecyclerViewAdapter(this, data);
         binding.recyclerView.setAdapter(mAdapter);
 //        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        SlideInOutLeftItemAnimator animator = new SlideInOutLeftItemAnimator(binding.recyclerView);
-        animator.setAddDuration(500);
-        binding.recyclerView.setItemAnimator(animator);
+//        SlideInOutLeftItemAnimator animator = new SlideInOutLeftItemAnimator(binding.recyclerView);
+//        animator.setAddDuration(500);
+//        binding.recyclerView.setItemAnimator(animator);
         binding.recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

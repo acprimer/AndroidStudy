@@ -15,8 +15,6 @@ import com.study.yaodh.androidstudy.model.StaggerItem;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.gmariotti.recyclerview.itemanimator.SlideInOutLeftItemAnimator;
-
 /**
  * Created by yaodh on 2016/5/12.
  */
@@ -57,9 +55,9 @@ public class RecyclerViewActivity extends BaseActivity implements Toolbar.OnMenu
         mAdapter = new SimpleRecyclerViewAdapter(this, data);
         recyclerView.setAdapter(mAdapter);
 //        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        SlideInOutLeftItemAnimator animator = new SlideInOutLeftItemAnimator(recyclerView);
-        animator.setAddDuration(500);
-        recyclerView.setItemAnimator(animator);
+//        SlideInOutLeftItemAnimator animator = new SlideInOutLeftItemAnimator(recyclerView);
+//        animator.setAddDuration(500);
+//        recyclerView.setItemAnimator(animator);
 //        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
     }
