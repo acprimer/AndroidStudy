@@ -1,18 +1,34 @@
 package com.study.yaodh.androidstudy.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.databinding.BindingAdapter;
+import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.http.HttpResponseCache;
+import android.support.annotation.NonNull;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.study.yaodh.androidstudy.R;
+import com.study.yaodh.androidstudy.databinding.ActivityPicassoBinding;
+import com.study.yaodh.androidstudy.databinding.LayoutGlideImageBinding;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,11 +59,13 @@ import okhttp3.Route;
 import okio.ByteString;
 
 public class PicassoActivity extends BaseActivity {
+    private ActivityPicassoBinding binding;
     private String PHOTO_URL = "http://square.github.io/picasso/static/sample.png";
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_picasso;
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_picasso);
+        return 0;
     }
 
     @Override
@@ -62,6 +80,88 @@ public class PicassoActivity extends BaseActivity {
 
         System.out.println("md5 " + md5("http://square.github.io/picasso/static/sample.png"));
         System.out.println("get key " + key("http://square.github.io/picasso/static/sample.png"));
+
+        setNineBackground();
+    }
+
+    private class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.SimpleViewHolder> {
+
+        @NonNull
+        @Override
+        public ImageAdapter.SimpleViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+            View view = LayoutInflater.from(mContext).inflate(R.layout.layout_glide_image, viewGroup, false);
+            return new SimpleViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull ImageAdapter.SimpleViewHolder viewHolder, int i) {
+            viewHolder.binding.setUrl("http://oimageb3.ydstatic.com/image?id=-15770416095066571&product=dict-homepage&w=1024");
+        }
+
+        @Override
+        public int getItemCount() {
+            return 5;
+        }
+
+        class SimpleViewHolder extends RecyclerView.ViewHolder {
+            private LayoutGlideImageBinding binding;
+
+            public SimpleViewHolder(View itemView) {
+                super(itemView);
+                binding = DataBindingUtil.bind(itemView);
+            }
+        }
+    }
+
+    private void setNineBackground() {
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        binding.recyclerView.setAdapter(new ImageAdapter());
+
+//        ImageView iv = findViewById(R.id.nine);
+//        String url = "http://oimageb3.ydstatic.com/image?id=-15770416095066571&product=dict-homepage&w=1024";
+//        binding.setUrl(url);
+//        Glide.with(this)
+//                .load(url)
+//                .asBitmap()
+//                .centerCrop()
+//                .into(new BitmapImageViewTarget(iv) {
+//                    @Override
+//                    protected void setResource(Bitmap resource) {
+//                        RoundedBitmapDrawable circleBitmap = RoundedBitmapDrawableFactory.create(
+//                                view.getContext().getResources(), resource);
+//                        circleBitmap.setCornerRadius(36f);
+//                        view.setImageDrawable(circleBitmap);
+//                        System.out.println("setResource view " + view.getWidth() + " " + view.getHeight());
+//                        System.out.println("setResource bitmap " + resource.getWidth() + " " + resource.getHeight());
+//                    }
+//                });
+    }
+
+    @BindingAdapter({"img_url", "corners"})
+    public static void setImageUrl(ImageView view, String url, final float corners) {
+        if (TextUtils.isEmpty(url)) {
+            return;
+        }
+
+        Glide.with(view.getContext())
+                .load(url)
+                .asBitmap()
+                .centerCrop()
+                .into(new BitmapImageViewTarget(view) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable circleBitmap = RoundedBitmapDrawableFactory.create(
+                                view.getContext().getResources(), resource);
+                        if (corners == -1) {
+                            circleBitmap.setCircular(true);
+                        } else if (corners > 0) {
+                            circleBitmap.setCornerRadius(corners);
+                        }
+                        view.setImageDrawable(circleBitmap);
+                        System.out.println("setResource view " + view.getWidth() + " " + view.getHeight());
+                        System.out.println("setResource bitmap " + resource.getWidth() + " " + resource.getHeight());
+                    }
+                });
     }
 
     private void testVolley() {
@@ -254,28 +354,14 @@ public class PicassoActivity extends BaseActivity {
         }
     }
 
+    @SuppressLint("CheckResult")
     private void testOkHttpCache() {
         ImageView iv4 = findViewById(R.id.iv4);
         Single.create((SingleOnSubscribe<String>) emitter -> emitter.onSuccess(PHOTO_URL))
                 .map(s -> fetchOkhttp(s))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleObserver<Bitmap>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onSuccess(Bitmap bitmap) {
-                        iv4.setImageBitmap(bitmap);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-                });
+                .subscribe(bitmap -> iv4.setImageBitmap(bitmap));
     }
 
     private Bitmap fetchOkhttp(String url) {

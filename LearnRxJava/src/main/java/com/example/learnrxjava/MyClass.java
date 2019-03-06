@@ -4,7 +4,9 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
+import io.reactivex.plugins.RxJavaPlugins;
 
 public class MyClass {
 
@@ -101,20 +103,32 @@ public class MyClass {
                     }
                 });
 
-        Observable.just("g", "go", "goo", "good", "good", "good", "goo", "go", "g", "t")
-//                .distinct(new Function<String, Integer>() {
-//                    @Override
-//                    public Integer apply(String s) throws Exception {
-//                        return s.length();
-//                    }
-//                })
-//                .distinct()
-                .distinctUntilChanged()
-                .subscribe(new Consumer<String>() {
-                    @Override
-                    public void accept(String s) throws Exception {
-                        System.out.println(s);
-                    }
-                });
+        RxJavaPlugins.setErrorHandler(new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+//                throwable.printStackTrace();
+            }
+        });
+        try {
+            Observable.just("g", "go", "", "good", "good", "goo", "go", "g", "t", "sg")
+                    .distinct(new Function<String, Integer>() {
+                        @Override
+                        public Integer apply(String s) throws Exception {
+                            if (s == null || s.equals(""))
+                                throw new IllegalArgumentException("s null");
+                            return s.length();
+                        }
+                    })
+                    .distinct()
+                    .distinctUntilChanged()
+                    .subscribe(new Consumer<String>() {
+                        @Override
+                        public void accept(String s) throws Exception {
+                            System.out.println(s);
+                        }
+                    });
+        } catch (Exception e) {
+
+        }
     }
 }

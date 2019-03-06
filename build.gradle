@@ -19,6 +19,8 @@ allprojects {
         jcenter()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://jitpack.io" }
+        maven { url  "http://nexus.corp.youdao.com/nexus/content/repositories/luna-android-release/" }
+        maven { url  "http://nexus.corp.youdao.com/nexus/content/repositories/central/" }
         google()
     }
 }

@@ -1,6 +1,7 @@
 package com.xueleme.retrofit;
 
 import io.reactivex.Single;
+import okhttp3.ResponseBody;
 import retrofit2.http.POST;
 
 /*
@@ -8,5 +9,5 @@ import retrofit2.http.POST;
  */
 public interface Api {
     @POST("api/ad/strategy")
-    Single<BaseModel<StrategyData>> getStrategy();
+    Single<ResponseBody> getStrategy();
 }

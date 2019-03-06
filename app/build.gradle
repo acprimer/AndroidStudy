@@ -78,4 +78,6 @@ dependencies {
     annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
     implementation 'com.implimentz:unsafe:0.0.6'
     implementation 'com.implimentz:unsafe:0.0.6'
+
+    compile "com.youdao.luna:YDSentenceGrade:1.1.5:beta@aar"
 }
