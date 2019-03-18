@@ -109,26 +109,23 @@ public class MyClass {
 //                throwable.printStackTrace();
             }
         });
-        try {
-            Observable.just("g", "go", "", "good", "good", "goo", "go", "g", "t", "sg")
-                    .distinct(new Function<String, Integer>() {
-                        @Override
-                        public Integer apply(String s) throws Exception {
-                            if (s == null || s.equals(""))
-                                throw new IllegalArgumentException("s null");
-                            return s.length();
-                        }
-                    })
-                    .distinct()
-                    .distinctUntilChanged()
-                    .subscribe(new Consumer<String>() {
-                        @Override
-                        public void accept(String s) throws Exception {
-                            System.out.println(s);
-                        }
-                    });
-        } catch (Exception e) {
 
-        }
+        Observable.just("g", "go", "", "good", "good", "goo", "go", "g", "t", "sg")
+                .distinct(new Function<String, Integer>() {
+                    @Override
+                    public Integer apply(String s) throws Exception {
+                        if (s == null || s.equals(""))
+                            throw new IllegalArgumentException("s null");
+                        return s.length();
+                    }
+                })
+                .distinct()
+                .distinctUntilChanged()
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        System.out.println(s);
+                    }
+                });
     }
 }
