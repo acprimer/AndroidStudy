@@ -2,6 +2,7 @@ package com.study.yaodh.androidstudy.activity;
 
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
@@ -18,6 +19,7 @@ import android.text.style.CharacterStyle;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.LeadingMarginSpan;
+import android.text.style.LineHeightSpan;
 import android.text.style.TabStopSpan;
 import android.text.style.TextAppearanceSpan;
 import android.text.util.Linkify;
@@ -130,6 +132,61 @@ public class TextViewActivity extends BaseActivity {
 //                "            world, such high-frequency interaction is rare. It is a strong indicator that, under the present scenario of\n" +
 //                "            world cooperation, the political and economic engagement between China and India will enter a new phase.\n" +
 //                "            s the Chinese economy has fully begun to shift from");
+
+
+        String leading = "adj.\t好的，新的带换行的字符串，新的带换行的字符串好的，新的带换行的字符串，新的带换行的字符串好的，新的带换行的字符串，新的带换行的字符串" +
+                "\nadj.\t好的，新的带换行的字符串，新的带换行的字符串好的，新的带换行的字符串，新的带换行的字符串好的，新的带换行的字符串，新的带换行的字符串";
+        SpannableString leadingSpan = new SpannableString(leading);
+        leadingSpan.setSpan(new LeadingMarginSpan.Standard(0, 150), 0, leading.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        leadingSpan.setSpan(new TabStopSpan() {
+            @Override
+            public int getTabStop() {
+                return 150;
+            }
+        }, 0, leading.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        int index = leading.indexOf('\n');
+        leadingSpan.setSpan(new LineHeightSpan() {
+            @Override
+            public void chooseHeight(CharSequence text, int start, int end, int spanstartv, int lineHeight, Paint.FontMetricsInt fm) {
+                if (end == ((Spanned) text).getSpanEnd(this)) {
+                    int ht = 400;
+
+                    int need = ht - (lineHeight + fm.descent - fm.ascent - spanstartv);
+                    if (need > 0) {
+                        fm.descent += need;
+                    }
+
+                    need = ht - (lineHeight + fm.bottom - fm.top - spanstartv);
+                    if (need > 0) {
+                        fm.bottom += need;
+                    }
+                }
+            }
+        }, index, index + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        binding.leadMarginText.setText(leadingSpan, TextView.BufferType.SPANNABLE);
+
+        String drawableString = "Aa\nB\nC";
+        SpannableString drawSpan = new SpannableString(drawableString);
+        drawSpan.setSpan(new LineHeightSpan() {
+                             @Override
+                             public void chooseHeight(CharSequence text, int start, int end, int spanstartv, int lineHeight, Paint.FontMetricsInt fm) {
+                                 if (end == ((Spanned) text).getSpanEnd(this)) {
+                                     int ht = 400;
+
+                                     int need = ht - (lineHeight + fm.descent - fm.ascent - spanstartv);
+                                     if (need > 0) {
+                                         fm.descent += need;
+                                     }
+
+                                     need = ht - (lineHeight + fm.bottom - fm.top - spanstartv);
+                                     if (need > 0) {
+                                         fm.bottom += need;
+                                     }
+                                 }
+                             }
+                         },
+                2, 3, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        binding.drawerText.setText(drawSpan);
     }
 
     private void autoFitTextView() {
@@ -147,13 +204,13 @@ public class TextViewActivity extends BaseActivity {
             }
         }, 0, demoSpannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        demoSpannableString.setSpan(new LeadingMarginSpan.Standard(columnIndentation), 0, demoSpannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        demoSpannableString.setSpan(new LeadingMarginSpan.Standard(columnIndentation), 0, demoSpannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 //        demoSpannableString.setSpan(new MyTypefaceSpan(this, TIMES_NEW_ROMAN), 0, demoSpannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         return demoSpannableString;
     }
 
     public String getDemoText() {
-        return "Lorem \tipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis condimentum tincidunt.";
+        return "adj.\tLorem \tipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis condimentum tincidunt.";
     }
 
     private class NoLineClickSpan extends ClickableSpan {
